@@ -7,6 +7,11 @@ git fetch origin
 https://www.blackbox.ai/screenshot/YcaL2kPzQPjwE5QcH69Xc
 
 https://www.blackbox.ai/screenshot/ce-2LSEdYru51_FRuyS_b
+https://www.blackbox.ai/chat/3vTfAvD
+
+make dashbord for projact e-comers for controler prodect add updata delete 
+make dashbord for projact e-comers for controler Customers add updata block,(Total purchase value and whether there are active orders or not, customer information (id , name and any data  projact need))
+
 ///////////////// 1-install packages /////////////////////
 --------------------------------------------------------------
 (
@@ -86,5 +91,8 @@ Body: {
 }
 
 <<<<<<<<<<<<<<------Have fun---------->>>>>>>>>>>>>>>
+الصفحه الرايسيه 
+  فرع
+   قسم
 
 

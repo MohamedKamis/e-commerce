@@ -30,22 +30,23 @@
  <body class="bg-[#f7f7f7] m-0 p-0">
   <!-- Header Section -->
   <header class="relative w-full h-40 sm:h-48 md:h-56 lg:h-64 bg-gradient-to-b from-[#2a2a2a] to-[#dba90a] flex items-center justify-start pl-10">
-   <h1 class="text-[#2a2a2a] text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-right">
-    شريط ليد
+   <h1 class="text-[#2a2a2a] text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-right" id="page-title">
+
+   
    </h1>
   
   </header>
   <!-- Breadcrumb -->
   <nav class="text-[#6b6b6b] text-sm sm:text-base px-6 py-4 flex justify-start space-x-1">
-   <a class="hover:underline" href="/">
+   <a class="hover:underline" href="/" id="home-link">
     الرئيسية
    </a>
    <span>
     /
    </span>
    <span>
-    <a class="hover:underline" href="/category?a=lighting"> 
-   الإضاءة 
+    <a class="hover:underline" href="/category?a=lighting" id="section-link">
+     قسم
    </a>
    </span>
    <span>
@@ -75,154 +76,9 @@
      </button>
     </div>
     <!-- Products grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="product_list">
      <!-- Product 1 -->
-     <div class="bg-white rounded-lg border border-gray-200 p-3 relative flex flex-col" style="min-width: 280px">
-      <!-- Heart icon top-left -->
-      <button aria-label="Add to favorites" class="absolute top-3 right-3 bg-white rounded-md p-2 text-gray-800 hover:text-red-600">
-       <i class="far fa-heart">
-       </i>
-      </button>
-      <!-- Product image -->
-      <div class="relative rounded-lg overflow-hidden">
-       <img alt="صنبور حمام اسود حديث في حمام فاخر مع حوض ابيض وارضية خشبية" class="w-full h-auto object-cover rounded-lg" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/6852f9bf-1d21-45c1-34d2-35d89df427ab.jpg" width="300"/>
-       <!-- Bottom-left black icon -->
-       <div aria-hidden="true" class="absolute bottom-3 left-3 bg-black bg-opacity-70 rounded-md p-1 text-yellow-400 text-lg">
-        <i class="fas fa-adjust">
-        </i>
-       </div>
-      </div>
-      <!-- Product title -->
-      <h3 class="mt-3 font-bold text-sm leading-tight text-gray-900">
-       جسم خلاط بانيه
-      </h3>
-      <!-- Rating stars -->
-      <div class="mt-1 flex space-x-1 justify-start rtl:space-x-reverse text-yellow-400 text-lg">
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-      </div>
-      <!-- Price -->
-      <p class="mt-2 font-semibold text-base text-gray-900">
-       5.550,00 EGP
-       <span class="text-gray-500 mx-1">
-        -
-       </span>
-       10.725,00 EGP
-      </p>
-      <!-- Button -->
-      <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-md py-2 flex items-center justify-center gap-2" type="button">
-       عرض التفاصيل
-       <i class="fas fa-shopping-cart">
-       </i>
-      </button>
-     </div>
-     <!-- Product 2 (same as product 1) -->
-     <div class="bg-white rounded-lg border border-gray-200 p-3 relative flex flex-col" style="min-width: 280px">
-      <!-- Heart icon top-left -->
-      <button aria-label="Add to favorites" class="absolute top-3 right-3 bg-white rounded-md p-2 text-gray-800 hover:text-red-600">
-       <i class="far fa-heart">
-       </i>
-      </button>
-      <!-- Product image -->
-      <div class="relative rounded-lg overflow-hidden">
-       <img alt="صنبور حمام اسود حديث في حمام فاخر مع حوض ابيض وارضية خشبية" class="w-full h-auto object-cover rounded-lg" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/6852f9bf-1d21-45c1-34d2-35d89df427ab.jpg" width="300"/>
-       <!-- Bottom-left black icon -->
-       <div aria-hidden="true" class="absolute bottom-3 left-3 bg-black bg-opacity-70 rounded-md p-1 text-yellow-400 text-lg">
-        <i class="fas fa-adjust">
-        </i>
-       </div>
-      </div>
-      <!-- Product title -->
-      <h3 class="mt-3 font-bold text-sm leading-tight text-gray-900">
-       جسم خلاط بانيه
-      </h3>
-      <!-- Rating stars -->
-      <div class="mt-1 flex space-x-1 justify-start rtl:space-x-reverse text-yellow-400 text-lg">
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-      </div>
-      <!-- Price -->
-      <p class="mt-2 font-semibold text-base text-gray-900">
-       5.550,00 EGP
-       <span class="text-gray-500 mx-1">
-        -
-       </span>
-       10.725,00 EGP
-      </p>
-      <!-- Button -->
-      <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-md py-2 flex items-center justify-center gap-2" type="button">
-       عرض التفاصيل
-       <i class="fas fa-shopping-cart">
-       </i>
-      </button>
-     </div>
-     <!-- Product 3 -->
-     <div class="bg-white rounded-lg border border-gray-200 p-3 relative flex flex-col" style="min-width: 280px">
-      <!-- Heart icon top-left -->
-      <button aria-label="Add to favorites" class="absolute top-3 right-3 bg-white rounded-md p-2 text-gray-800 hover:text-red-600">
-       <i class="far fa-heart">
-       </i>
-      </button>
-      <!-- Discount badge top-right -->
-      <div class="absolute top-3 left-3 bg-red-600 text-white rounded-tr-md rounded-br-md px-3 py-1 text-xs font-semibold">
-       -20%
-      </div>
-      <!-- Product image -->
-      <div class="relative rounded-lg overflow-hidden">
-       <img alt="حجر ديكور جلدي رمادي مع ظل ذهبي على خلفية رمادية" class="w-full h-auto object-cover rounded-lg" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/2104ea5e-4d9a-4737-65fb-f281b2e899a4.jpg" width="300"/>
-       <!-- Bottom-left black icon -->
-       <div aria-hidden="true" class="absolute bottom-3 left-3 bg-black bg-opacity-70 rounded-md p-1 text-yellow-400 text-lg">
-        <i class="fas fa-adjust">
-        </i>
-       </div>
-      </div>
-      <!-- Product title -->
-      <h3 class="mt-3 font-bold text-sm leading-tight text-gray-900">
-       ايبليك هاير جلدي
-      </h3>
-      <!-- Rating stars -->
-      <div class="mt-1 flex space-x-1 justify-start rtl:space-x-reverse text-yellow-400 text-lg">
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-       <i class="far fa-star">
-       </i>
-      </div>
-      <!-- Price with old price crossed out -->
-      <p class="mt-2 font-semibold text-base text-gray-900 flex items-center gap-2">
-       <span class="line-through text-gray-400 text-sm">
-        1.555,00 EGP
-       </span>
-       1.250,00 EGP
-      </p>
-      <!-- Button -->
-      <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-md py-2 flex items-center justify-center gap-2" type="button">
-       إضافة الي العربة
-       <i class="fas fa-shopping-cart">
-       </i>
-      </button>
-     </div>
+    
     </div>
    </div>
    <!-- Right sidebar -->
@@ -307,5 +163,93 @@
     </section>
    </aside>
   </div>
+  <script >
+    
+     const url = new URL(window.location.href);
+    const apis = url.searchParams.get('a') || 'err';
+    console.log(apis);
+    
+  async function read_all_products() {
+      const url = new URL(window.location.href);
+    const api_url =url.origin;
+    try {
+        const response = await fetch(api_url+"/all_products", {
+                method:"get",
+                headers:{
+                    'Content-Type':'application/json',
+                }
+            });
+                const data= await response.json();
+                return data;
+    } catch (error) {
+        window.location.href = api_url;
+    }
+}
+renderproducts = async () => {
+    const url = new URL(window.location.href);
+    const apis = url.searchParams.get('a') || 'err';
+    const api_url =url.origin;
+    const products = await read_all_products();
+    for (const product of products) {
+console.log(product);
+
+         if(product.section_name == apis){
+             document.getElementById('page-title').innerHTML = apis;
+             document.getElementById('section-link').href = api_url;
+              document.getElementById('section-link').innerHTML = product.section_name;
+             document.getElementById('home-link').href = api_url;
+
+        document.getElementById('product_list').innerHTML += `
+             <div class="bg-white rounded-lg border border-gray-200 p-3 relative flex flex-col" style="min-width: 280px">
+      <button aria-label="Add to favorites" class="absolute top-3 right-3 bg-white rounded-md p-2 text-gray-800 hover:text-red-600">
+       <i class="far fa-heart">
+       </i>
+      </button>
+
+      <div class="relative rounded-lg overflow-hidden">
+       <img alt="${product.description}" class="w-full h-auto object-cover rounded-lg" height="300" loading="lazy" src="${product.image_url}" width="300"/>
+       <!-- Bottom-left black icon -->
+       <div aria-hidden="true" class="absolute bottom-3 left-3 bg-black bg-opacity-70 rounded-md p-1 text-yellow-400 text-lg">
+        <i class="fas fa-adjust">
+        </i>
+       </div>
+      </div>
+      <h3 class="mt-3 font-bold text-sm leading-tight text-gray-900">
+         ${product.name_product}
+      </h3>
+      <!-- Rating stars -->
+      <div class="mt-1 flex space-x-1 justify-start rtl:space-x-reverse text-yellow-400 text-lg">
+       <i class="far fa-star">
+       </i>
+       <i class="far fa-star">
+       </i>
+       <i class="far fa-star">
+       </i>
+       <i class="far fa-star">
+       </i>
+       <i class="far fa-star">
+       </i>
+      </div>
+      <!-- Price -->
+      <p class="mt-2 font-semibold text-base text-gray-900">
+        ${product.price} EGP
+       <span class="text-gray-500 mx-1">
+        -
+       </span>
+        ${product.price +product.price/90% product.price} EGP
+      </p>
+      <!-- Button -->
+      <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-md py-2 flex items-center justify-center gap-2" type="button">
+       عرض التفاصيل
+       <i class="fas fa-shopping-cart">
+       </i>
+      </button>
+     </div>
+     `
+    };
+     }
+}
+renderproducts()
+  </script>
  </body>
 </html>

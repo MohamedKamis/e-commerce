@@ -1,7 +1,9 @@
 import express from 'express';
 // import routes from './controller/control';
-// import frontend from './controller/url.control.js';
+import products from './api/controller/products.control.js';
 import frontend from './api/controller/url.control.js';
+import categories from './api/controller/categories.control.js';
+// import users from './api/controller/users.control.js';
 import bodyParser from 'body-parser';
 import {port} from './api/dotenv/dotenv.js';
 import path from 'path'
@@ -27,7 +29,7 @@ app.use(
       'Access-Control-Allow-Origin',
       'Access-Control-Allow-Headers',
       'Access-Control-Allow-Methods',
-
+   
     ],
     methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
     preflightContinue: true,
@@ -41,7 +43,8 @@ app.get('/', async (req, res) => {
 });
 
 frontend(app);
-
+products(app);
+categories(app);
 app.listen(ports, () => {
   console.log(`Your server starting on --> http://localhost:${ports}`);
 });

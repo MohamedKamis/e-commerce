@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Category Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .category-card {
+            transition: all 0.3s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .section-item {
+            transition: all 0.2s ease;
+        }
+        .section-item:hover {
+            background-color: #f9fafb;
+        }
+        .dragging {
+            opacity: 0.5;
+            border: 2px dashed #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">E-commerce Dashboard</h1>
+            <div class="flex space-x-4">
+                <button id="analytics-btn" class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-md hover:bg-indigo-200 transition">
+                    <i class="fas fa-chart-line mr-2"></i>Analytics
+                </button>
+                <button class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <!-- Sidebar -->
+            <div class="md:col-span-1 bg-white rounded-lg shadow p-4">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Navigation</h2>
+                <ul class="space-y-2">
+                    <li><a href="#" class="block px-3 py-2 rounded bg-indigo-50 text-indigo-700 font-medium"><i class="fas fa-tags mr-2"></i>Categories</a></li>
+                    <li><a href="#" class="block px-3 py-2 rounded text-gray-600 hover:bg-gray-100"><i class="fas fa-box mr-2"></i>Products</a></li>
+                    <li><a href="#" class="block px-3 py-2 rounded text-gray-600 hover:bg-gray-100"><i class="fas fa-file-invoice-dollar mr-2"></i>Orders</a></li>
+                    <li><a href="#" class="block px-3 py-2 rounded text-gray-600 hover:bg-gray-100"><i class="fas fa-users mr-2"></i>Customers</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="md:col-span-3" style="display: inline-block;">
+                <!-- Header -->
+                <div class="bg-white rounded-lg shadow p-4 mb-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-2xl font-semibold text-gray-800">Category Management</h2>
+                        <button id="add-category-btn" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">
+                            <i class="fas fa-plus mr-2"></i>Add Category
+                        </button>
+                    </div>
+                    <p class="text-gray-500 mt-2">Manage categories and their sections for your e-commerce platform</p>
+                </div>
+
+                <!-- Categories Grid -->
+                <div id="categories-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Categories will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Category Modal -->
+    <div id="add-category-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div class="p-4 border-b border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800">Add New Category</h3>
+            </div>
+            <div class="p-4">
+                <form id="category-form">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="category-name">Category Name</label>
+                        <input type="text" id="category-name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="category-description">Description</label>
+                        <textarea id="category-description" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="category-image">Image URL</label>
+                        <input type="text" id="category-image" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="https://placehold.co/600x400">
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" id="cancel-category-btn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Add Category</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Section Modal -->
+    <div id="add-section-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div class="p-4 border-b border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800">Add New Section</h3>
+            </div>
+            <div class="p-4">
+                <form id="section-form">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="section-name">Section Name</label>
+                        <input type="text" id="section-name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="section-type">Section Type</label>
+                        <select id="section-type" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="product-grid">Product Grid</option>
+                            <option value="carousel">Product Carousel</option>
+                            <option value="featured">Featured Products</option>
+                            <option value="banner">Promotional Banner</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="section-position">Position</label>
+                        <input type="number" id="section-position" min="1" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" id="cancel-section-btn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">Add Section</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data structure
+        const categories = [
+            {
+                id: 1,
+                name: "Electronics",
+                description: "Latest gadgets and devices",
+                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/36a3b5b7-253e-4c62-8ecf-382cea51a26d.png",
+                sections: [
+                    { id: 101, name: "Featured Products", type: "featured", position: 1 },
+                    { id: 102, name: "Top Deals", type: "carousel", position: 2 },
+                    { id: 103, name: "New Arrivals", type: "product-grid", position: 3 }
+                ]
+            },
+            {
+                id: 2,
+                name: "Fashion",
+                description: "Trendy clothes and accessories",
+                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4887bb2d-496b-40c3-9421-f0e7f8e0d7b7.png",
+                sections: [
+                    { id: 201, name: "Summer Collection", type: "featured", position: 1 },
+                    { id: 202, name: "Best Sellers", type: "product-grid", position: 2 }
+                ]
+            },
+            {
+                id: 3,
+                name: "Home & Garden",
+                description: "Everything for your home",
+                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b8e93d96-ebfe-40b4-b36b-99b1a128ed71.png",
+                sections: [
+                    { id: 301, name: "Living Room", type: "product-grid", position: 1 },
+                    { id: 302, name: "Kitchen Essentials", type: "carousel", position: 2 },
+                    { id: 303, name: "Garden Tools", type: "product-grid", position: 3 }
+                ]
+            }
+        ];
+
+        // DOM Elements
+        const categoriesContainer = document.getElementById('categories-container');
+        const addCategoryBtn = document.getElementById('add-category-btn');
+        const addCategoryModal = document.getElementById('add-category-modal');
+        const cancelCategoryBtn = document.getElementById('cancel-category-btn');
+        const categoryForm = document.getElementById('category-form');
+        const addSectionModal = document.getElementById('add-section-modal');
+        const cancelSectionBtn = document.getElementById('cancel-section-btn');
+        const sectionForm = document.getElementById('section-form');
+        let activeCategoryId = null;
+
+        // Render all categories
+        function renderCategories() {
+            categoriesContainer.innerHTML = '';
+            categories.forEach(category => {
+                const categoryCard = document.createElement('div');
+                categoryCard.className = 'category-card bg-white rounded-lg shadow overflow-hidden';
+                categoryCard.dataset.categoryId = category.id;
+
+                categoryCard.innerHTML = `
+                    <div class="relative">
+                        <img src="${category.image}" alt="${category.name} showcase products" class="w-full h-48 object-cover" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/67cd8fe5-0a8b-461d-b8a2-36f8981f4394.png'">
+                        <div class="absolute top-2 right-2 flex space-x-1">
+                            <button class="edit-category-btn p-2 bg-white rounded-full shadow hover:bg-gray-100" data-id="${category.id}">
+                                <i class="fas fa-pen text-gray-600"></i>
+                            </button>
+                            <button class="delete-category-btn p-2 bg-white rounded-full shadow hover:bg-gray-100" data-id="${category.id}">
+                                <i class="fas fa-trash text-red-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">${category.name}</h3>
+                        <p class="text-gray-500 text-sm mt-1">${category.description}</p>
+                        
+                        <div class="mt-4 pt-2 border-t border-gray-100">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-medium text-gray-700">Sections</h4>
+                                <button class="add-section-btn px-2 py-1 text-sm bg-indigo-100 text-indigo-700 rounded hover:bg-indigo-200" data-category-id="${category.id}">
+                                    <i class="fas fa-plus mr-1"></i>Add Section
+                                </button>
+                            </div>
+                            <div class="sections-list space-y-2 mt-2" data-category-id="${category.id}">
+                                ${category.sections.map(section => `
+                                    <div class="section-item relative group p-3 border border-gray-200 rounded-md flex justify-between items-center" data-section-id="${section.id}">
+                                        <div>
+                                            <span class="font-medium text-gray-700">${section.name}</span>
+                                            <span class="ml-2 px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">${section.type}</span>
+                                        </div>
+                                        <div class="opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button class="edit-section-btn p-1 text-gray-500 hover:text-indigo-600" data-section-id="${section.id}">
+                                                <i class="fas fa-pen fa-sm"></i>
+                                            </button>
+                                            <button class="delete-section-btn p-1 text-gray-500 hover:text-red-600" data-section-id="${section.id}">
+                                                <i class="fas fa-trash fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                categoriesContainer.appendChild(categoryCard);
+            });
+
+            // Update section drag events
+            setupDragAndDrop();
+        }
+
+        // Setup drag and drop for sections
+        function setupDragAndDrop() {
+            document.querySelectorAll('.sections-list').forEach(list => {
+                list.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    const draggedItem = document.querySelector('.dragging');
+                    const afterElement = getDragAfterElement(list, e.clientY);
+                    if (afterElement) {
+                        list.insertBefore(draggedItem, afterElement);
+                    } else {
+                        list.appendChild(draggedItem);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.section-item').forEach(item => {
+                item.setAttribute('draggable', true);
+                item.addEventListener('dragstart', () => {
+                    item.classList.add('dragging');
+                });
+                item.addEventListener('dragend', () => {
+                    item.classList.remove('dragging');
+                });
+            });
+        }
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.section-item:not(.dragging)')];
+            
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        // Modal toggle functions
+        function toggleCategoryModal() {
+            addCategoryModal.classList.toggle('hidden');
+        }
+
+        function toggleSectionModal() {
+            addSectionModal.classList.toggle('hidden');
+        }
+
+        // Form handlers
+        categoryForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const id = categories.length > 0 ? Math.max(...categories.map(c => c.id)) + 1 : 1;
+            const newCategory = {
+                id,
+                name: document.getElementById('category-name').value,
+                description: document.getElementById('category-description').value,
+                image: document.getElementById('category-image').value || 'https://placehold.co/600x400',
+                sections: []
+            };
+            categories.push(newCategory);
+            renderCategories();
+            toggleCategoryModal();
+            categoryForm.reset();
+        });
+
+        sectionForm.addEventListener('submit', e => {
+            e.preventDefault();
+            if (!activeCategoryId) return;
+            
+            const category = categories.find(c => c.id === activeCategoryId);
+            if (category) {
+                const id = category.sections.length > 0 ? Math.max(...category.sections.map(s => s.id)) + 1 : 101;
+                const newSection = {
+                    id,
+                    name: document.getElementById('section-name').value,
+                    type: document.getElementById('section-type').value,
+                    position: parseInt(document.getElementById('section-position').value) || category.sections.length + 1
+                };
+                category.sections.push(newSection);
+                renderCategories();
+            }
+            toggleSectionModal();
+            sectionForm.reset();
+            activeCategoryId = null;
+        });
+
+        // Event listeners
+        addCategoryBtn.addEventListener('click', toggleCategoryModal);
+        cancelCategoryBtn.addEventListener('click', toggleCategoryModal);
+
+        categoriesContainer.addEventListener('click', e => {
+            if (e.target.classList.contains('add-section-btn') || e.target.closest('.add-section-btn')) {
+                const btn = e.target.classList.contains('add-section-btn') ? e.target : e.target.closest('.add-section-btn');
+                activeCategoryId = parseInt(btn.dataset.categoryId);
+                toggleSectionModal();
+            }
+            else if (e.target.classList.contains('edit-category-btn') || e.target.closest('.edit-category-btn')) {
+                const btn = e.target.classList.contains('edit-category-btn') ? e.target : e.target.closest('.edit-category-btn');
+                // Implement edit functionality
+            }
+            else if (e.target.classList.contains('delete-category-btn') || e.target.closest('.delete-category-btn')) {
+                const btn = e.target.classList.contains('delete-category-btn') ? e.target : e.target.closest('.delete-category-btn');
+                const categoryId = parseInt(btn.dataset.id);
+                if (confirm('Are you sure you want to delete this category?')) {
+                    const index = categories.findIndex(c => c.id === categoryId);
+                    if (index !== -1) {
+                        categories.splice(index, 1);
+                        renderCategories();
+                    }
+                }
+            }
+            else if (e.target.classList.contains('edit-section-btn') || e.target.closest('.edit-section-btn')) {
+                const btn = e.target.classList.contains('edit-section-btn') ? e.target : e.target.closest('.edit-section-btn');
+                // Implement edit functionality
+            }
+            else if (e.target.classList.contains('delete-section-btn') || e.target.closest('.delete-section-btn')) {
+                const btn = e.target.classList.contains('delete-section-btn') ? e.target : e.target.closest('.delete-section-btn');
+                const sectionId = parseInt(btn.dataset.sectionId);
+                if (confirm('Are you sure you want to delete this section?')) {
+                    categories.forEach(category => {
+                        const index = category.sections.findIndex(s => s.id === sectionId);
+                        if (index !== -1) {
+                            category.sections.splice(index, 1);
+                            renderCategories();
+                        }
+                    });
+                }
+            }
+        });
+
+        cancelSectionBtn.addEventListener('click', toggleSectionModal);
+
+        // Initialize
+        renderCategories();
+    </script>
+</body>
+</html>
+
