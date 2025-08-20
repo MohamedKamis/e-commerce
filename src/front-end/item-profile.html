@@ -1,0 +1,217 @@
+<html dir="rtl" lang="ar">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   بروفايل ليد سيليكوني مرن صفا
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   /* Custom scrollbar for vertical thumbnails */
+    .scrollbar-thumbs::-webkit-scrollbar {
+      width: 6px;
+    }
+    .scrollbar-thumbs::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 3px;
+    }
+  </style>
+ </head>
+ <body class="bg-white font-sans text-gray-900">
+  <div class="max-w-[1200px] mx-auto p-4">
+   <!-- Breadcrumb -->
+   <nav aria-label="breadcrumb" class="text-xs text-gray-500 mb-4 select-none">
+    <ol class="flex flex-wrap gap-1 items-center">
+     <li>
+      <a class="hover:underline" href="#">
+       الرئيسية
+      </a>
+     </li>
+     <li>
+      /
+     </li>
+     <li>
+      <a class="hover:underline" href="#">
+       الإضاءة
+      </a>
+     </li>
+     <li>
+      /
+     </li>
+     <li>
+      <a class="hover:underline" href="#">
+       شريط ليد
+      </a>
+     </li>
+     <li>
+      /
+     </li>
+     <li aria-current="page" class="text-gray-900 font-semibold">
+      بروفايل ليد سيليكوني مرن صفا
+     </li>
+    </ol>
+   </nav>
+   <div class="flex flex-col lg:flex-row gap-6">
+    <!-- Left side: logo and product info -->
+    <div class="flex flex-col gap-6 flex-1 max-w-[480px]">
+     <!-- Logo -->
+     <div class="w-24 h-24 rounded-lg bg-white shadow-md flex items-center justify-center">
+      <img alt="شعار شركة صفا لأنظمة الإضاءة" class="max-w-[70%] max-h-[70%]" height="96" src="https://storage.googleapis.com/a1aa/image/5a3de8a3-83ae-4714-c049-3f9e77fea0ba.jpg" width="96"/>
+     </div>
+     <!-- Product Title -->
+     <h1 class="text-2xl font-extrabold leading-tight" id="product-title">
+      بروفايل ليد سيليكوني مرن صفا
+     </h1>
+     <!-- Product details -->
+     <div class="text-sm text-gray-700 space-y-1">
+      <p>
+       <span class="font-semibold" >
+        الوصف:
+       </span>
+       <span class="font-normal" id="product-description">
+        بروفايل ليد سيليكوني مرن صفا هو خيار مثالي للإضاءة الداخلية والخارجية، يتميز بتصميمه المرن وسهولة التركيب.
+       </span>
+      <p>
+        <span class="font-semibold" >
+          العلامة التجارية:
+        </span>
+        <span class="font-normal" id="product-brand">
+          صفا
+        </span>
+      </p>
+      <p>
+
+       <span class="font-semibold" >
+        الرمز التعريفي:
+       </span>
+       <span class="font-normal" >
+        ليس قيمة
+       </span>
+      </p>
+      <p>
+       <span class="font-semibold" >
+        البائع:
+       </span>
+       <span class="font-normal lowercase" >
+        safa lighting system
+       </span>
+      </p>
+     </div>
+     <!-- Trusted seller badge -->
+     <button class="inline-block bg-yellow-400 text-white text-xs font-semibold rounded-full px-4 py-1 w-max" type="button">
+      بائع موثوق
+     </button>
+     <!-- Price -->
+     <div class="text-2xl font-extrabold mt-2" >
+      سعر:
+      <span id="product-price" class="text-gray-900">
+       514,10
+      </span>
+      <span>
+       EGP
+      </span>
+      <br>
+      <span class="text-gray-600 font-normal mx-1" >
+      </span>
+      <span class="text-lg text-red-600 font-semibold line-through" id="old-price">
+       135,80 EGP
+      </span>
+      <span>
+       
+      </span>
+     </div>
+     <!-- Size selector -->
+     <!-- <div class="flex items-center gap-2 mt-4 text-sm text-gray-700" >
+      <label class="min-w-[70px]" for="size" >
+       المقاس :
+      </label>
+      <select class="border border-gray-300 rounded-md px-3 py-1 w-full max-w-[220px] cursor-pointer" id="size" name="size">
+       <option>
+        حدد أحد الخيارات
+       </option>
+      </select>
+     </div> -->
+     <!-- Buttons row -->
+     <div class="flex flex-wrap gap-3 mt-6" id="buttons-row">
+      <button class="bg-yellow-400 text-black font-semibold flex items-center gap-2 px-5 py-2 rounded-md hover:bg-yellow-500 transition" type="button" id="add-to-cart-button">
+       <i class="fas fa-shopping-cart">
+       </i>
+       إضافة إلى العربة
+      </button>
+      <button class="bg-gray-900 text-yellow-400 font-semibold px-5 py-2 rounded-md hover:bg-gray-800 transition flex items-center gap-2" type="button" >
+       تقديم عرض سعر
+       <i class="fas fa-pen">
+       </i>
+      </button>
+      <div class="flex items-center justify-center border border-gray-300 rounded-md w-24 h-10 select-none">
+       <button aria-label="نقص الكمية" class="text-xl font-bold px-3 leading-none cursor-pointer select-none" onclick="decrementQty()" type="button">
+        -
+       </button>
+       <input class="w-10 text-center border-x border-gray-300 outline-none" id="qty" readonly="" type="text" value="1"/>
+       <button aria-label="زيادة الكمية" class="text-xl font-bold px-3 leading-none cursor-pointer select-none" onclick="incrementQty()" type="button">
+        +
+       </button>
+      </div>
+     </div>
+     <!-- Additional options -->
+     <div class="flex flex-wrap gap-6 mt-6 text-gray-700 text-sm select-none" >
+      <button class="flex items-center gap-1 hover:text-black transition" type="button" >
+       <i class="far fa-heart">
+       </i>
+       إضافة الى المفضلة
+      </button>
+      <button class="flex items-center gap-1 hover:text-black transition" type="button">
+       <i class="fas fa-exchange-alt">
+       </i>
+       إضافة الى المقارنة
+      </button>
+     </div>
+     <!-- Accordion items -->
+     <div class="mt-6 space-y-3 text-gray-900 text-sm font-semibold cursor-pointer select-none">
+      <details class="border border-gray-300 rounded-md p-3">
+       <summary>
+        الشحن والإرجاع
+       </summary>
+      </details>
+      <details class="border border-gray-300 rounded-md p-3">
+       <summary>
+        العناية بالمنتج
+       </summary>
+      </details>
+     </div>
+    </div>
+    <!-- Right side: images -->
+    <div class="flex gap-4 max-w-[600px] w-full">
+     <!-- Thumbnails vertical -->
+     <div class="flex flex-col gap-3 scrollbar-thumbs overflow-y-auto max-h-[480px] w-20">
+      <img alt="شعار ذهبي مزخرف على خلفية بيضاء" class="rounded-lg border border-gray-300 cursor-pointer" height="80" src="https://storage.googleapis.com/a1aa/image/67179c85-87ba-4893-42af-09126d614b01.jpg" width="80"/>
+      <img alt="صورة تعليمات تركيب بروفايل ليد سيليكوني مرن صفا، توضح خطوات التثبيت الأولى" class="rounded-lg border border-gray-300 cursor-pointer" height="80" src="https://storage.googleapis.com/a1aa/image/2968acd0-7b88-47d4-0f42-5118fb6965af.jpg" width="80"/>
+      <img alt="صورة تعليمات تركيب بروفايل ليد سيليكوني مرن صفا، توضح خطوات التثبيت الثانية" class="rounded-lg border border-gray-300 cursor-pointer" height="80" src="https://storage.googleapis.com/a1aa/image/2ddb00fd-6116-4c05-b514-462faa219011.jpg" width="80"/>
+     </div>
+     <!-- Main product image -->
+     <div class="relative flex-1 rounded-lg overflow-hidden" style="max-height: 480px;max-height: 380px;">
+      <img alt="صورة بروفايل ليد سيليكوني مرن صفا مضاء بألوان دافئة مع إضاءة ناعمة متداخلة"  class="w-full h-full object-cover rounded-lg" height="300" src="https://m7et.com/wp-content/uploads/2020/04/303c094f2bf4535ffedc33528a5df7ba.jpg" width="400" id="product-image"/>
+      <div class="absolute top-3 right-3 bg-red-600 text-white text-xs font-semibold rounded px-3 py-1 select-none">
+       -10%
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   function incrementQty() {
+      const qtyInput = document.getElementById("qty");
+      let current = parseInt(qtyInput.value);
+      qtyInput.value = current + 1;
+    }
+    function decrementQty() {
+      const qtyInput = document.getElementById("qty");
+      let current = parseInt(qtyInput.value);
+      if (current > 1) qtyInput.value = current - 1;
+    }
+  </script>
+  <script src="./js/item-profile.js"></script>
+ </body>
+</html>

@@ -1,0 +1,213 @@
+<html dir="ltr" lang="ar">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+    items
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   /* Custom scrollbar for the right sidebar if needed */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #fbbf24;
+      border-radius: 10px;
+    }
+      @import url('https://fonts.googleapis.com/css2?family=Almarai&display=swap');
+    body {
+      font-family: 'Almarai', sans-serif;
+    }
+   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    body {
+      font-family: 'Cairo', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-[#f7f7f7] m-0 p-0">
+  <!-- Header Section -->
+  <header class="relative w-full h-40 sm:h-48 md:h-56 lg:h-64 bg-gradient-to-b from-[#2a2a2a] to-[#dba90a] flex items-center justify-start pl-10">
+   <h1 class="text-[#2a2a2a] text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-right" id="page-title">
+
+   
+   </h1>
+  
+  </header>
+  <!-- Breadcrumb -->
+  <nav class="text-[#6b6b6b] text-sm sm:text-base px-6 py-4 flex justify-start space-x-1">
+   <a class="hover:underline" href="/" id="home-link">
+    الرئيسية
+   </a>
+   <span>
+    /
+   </span>
+   <span>
+    <a class="hover:underline" href="#" >
+     قسم
+   </a>
+   </span>
+   <span>
+    /
+   </span>
+   <span class="font-semibold">
+    <a href="#" id="section-link">
+
+    </a>
+   </span>
+  </nav>
+  <!-- Categories -->
+  <section class="flex justify-center gap-6 sm:gap-10 px-4 sm:px-10 py-8 flex-wrap">
+   <!-- Item 1 -->
+  </section>
+
+
+  <div class="max-w-[1200px] mx-auto p-4 flex flex-col lg:flex-row gap-6">
+   <!-- Left content: Filter dropdown and product cards -->
+   <div class="flex-1 space-y-4">
+    <!-- Filter dropdown -->
+    <div>
+     <button aria-expanded="false" aria-haspopup="listbox" class="border border-gray-300 rounded-md px-4 py-2 text-gray-800 font-semibold flex items-center gap-1" type="button">
+      التصنيف حسب الحدث
+      <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+       <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round">
+       </path>
+      </svg>
+     </button>
+    </div>
+    <!-- Products grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="product_list">
+     <!-- Product 1 -->
+    
+    </div>
+   </div>
+   <!-- Right sidebar -->
+   <aside aria-label="Sidebar with price and categories" class="w-full max-w-[320px] bg-white rounded-xl border border-gray-200 p-6 flex flex-col gap-6">
+    <!-- Results text -->
+    <p class="text-gray-500 text-sm text-right">
+     عرض 1-12 من 214 نتيجة
+    </p>
+    <!-- Price filter -->
+    <section aria-labelledby="price-filter" class="space-y-3">
+     <h2 class="font-bold text-lg text-gray-900 text-right border-b border-gray-200 pb-2" id="price-filter">
+      السعر
+     </h2>
+     <!-- Price range line -->
+     <div class="relative h-1 bg-yellow-400 rounded-full mx-4">
+      <div class="absolute top-0 left-0 right-0 bottom-0 border-t-2 border-yellow-600 rounded-full">
+      </div>
+     </div>
+     <!-- Price text -->
+     <p class="text-gray-700 text-sm text-right">
+      السعر:
+      <span class="font-extrabold">
+       EGP 140 — 30.500 EGP
+      </span>
+     </p>
+     <!-- Price button -->
+     <button class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-md py-2 px-4 w-full max-w-[140px] text-center" type="button">
+      ترشيح
+     </button>
+    </section>
+    <!-- Categories -->
+    <section aria-labelledby="categories" class="space-y-3">
+     <h2 class="font-bold text-lg text-gray-900 text-right border-b border-gray-200 pb-2" id="categories">
+      الأقسام
+     </h2>
+     <!-- Category group -->
+     <div class="space-y-1">
+      <button aria-controls="bath-kitchen-list" aria-expanded="true" class="flex items-center justify-between w-full text-yellow-500 font-semibold text-right" type="button">
+       <span>
+        الحمام و المطبخ
+       </span>
+       <i class="fas fa-chevron-up text-yellow-500">
+       </i>
+      </button>
+      <ul class="text-gray-600 text-sm list-disc list-inside space-y-1" id="bath-kitchen-list">
+       <li>
+        احواض
+       </li>
+       <li>
+        اكسسوارات الحمام
+       </li>
+       <li>
+        البانيوهات
+       </li>
+       <li>
+        الدش
+       </li>
+       <li>
+        خلطات
+       </li>
+       <li>
+        مرحاض
+       </li>
+       <li>
+        وحدات
+       </li>
+       <li>
+        السباكة
+       </li>
+      </ul>
+     </div>
+     <!-- Another category group collapsed -->
+     <div class="space-y-1">
+      <button aria-controls="other-list" aria-expanded="false" class="flex items-center justify-between w-full text-gray-900 font-semibold text-right" type="button">
+       <span>
+        أقسام أخرى
+       </span>
+       <i class="fas fa-chevron-down text-yellow-500">
+       </i>
+      </button>
+     </div>
+    </section>
+   </aside>
+  </div>
+  <aside class="fixed top-0 left-0 h-full w-72 bg-white/70 backdrop-blur z-50 flex flex-col" id="sidebar">
+   <!-- Header -->
+   <header class="flex items-center justify-between p-4 border-b border-gray-200 bg-transparent">
+    <h2 class="text-base font-semibold">
+     عربة التسوق
+    </h2>
+    <button aria-label="إغلاق" class="text-sm font-normal text-gray-700 flex items-center gap-1" id="close-btn" type="button">
+     إغلاق
+     <i class="fas fa-times">
+     </i>
+    </button>
+   </header>
+   <!-- Cart Items -->
+   <div class="flex-1 overflow-y-auto p-4 space-y-4">
+    <div class="flex gap-3">
+     <img alt="صورة منتج كشاف ليد 24 وات سقف مشرم 3 نكات سراج" class="w-14 h-14 rounded-md object-cover" height="60" src="https://storage.googleapis.com/a1aa/image/272a24ee-1a1f-4b58-1f9a-b24e14dc14c9.jpg" width="60"/>
+     <div class="flex flex-col text-xs text-gray-800">
+      <p class="font-semibold leading-tight">
+       كشاف ليد 24 وات سقف مشرم 3 نكات سراج
+      </p>
+      <p class="text-[9px] text-gray-500 mt-0.5">
+       النوع: Sirage
+      </p>
+      <p class="text-[10px] text-yellow-600 mt-1 font-semibold">
+       395,00 EGP
+      </p>
+     </div>
+     <button aria-label="حذف المنتج" class="text-gray-500 text-xs self-start" title="حذف المنتج">
+      ×
+     </button>
+    </div>
+   </div>
+   <!-- Footer -->
+   <footer class="p-4 border-t border-gray-200" id="cart-footer">
+
+    <button class="w-full mb-2 py-2 bg-yellow-500 text-black text-xs font-semibold rounded" type="button">
+     شاهد محتوى العربة
+    </button>
+    <button class="w-full py-2 bg-yellow-500 text-black text-xs font-semibold rounded" type="button">
+     اتمام الطلب
+    </button>
+   </footer>
+  </aside>
+  <script src="../js/item.js"></script>
+ </body>
+</html>

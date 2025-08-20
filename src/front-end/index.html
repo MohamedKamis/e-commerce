@@ -1,0 +1,646 @@
+<html dir="rtl" lang="ar">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   xxxxxx
+  </title>
+  <script src="css/tailwindcss.js">
+  </script>
+  <link href="css/min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai&amp;display=swap" rel="stylesheet"/>
+  <style>
+        #sidebar::-webkit-scrollbar {
+      display: none;
+    }
+    #sidebar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+   body {
+      font-family: 'Almarai', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-[#f9f8f1]">
+  <!-- Top black bar -->
+  <header class="bg-black text-white">
+   <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 py-2 text-xs sm:text-sm">
+    <div class="flex items-center space-x-2 space-x-reverse">
+     <div class="flex items-center justify-center w-5 h-5 rounded-full bg-white text-black text-[10px] font-semibold">
+      0
+     </div>
+     <span>
+      0,00 EGP
+     </span>
+    </div>
+    <nav class="flex items-center space-x-4 space-x-reverse text-white text-sm">
+     <button aria-label="Cart" class="hover:text-yellow-400">
+      <i class="fas fa-shopping-cart">
+      </i>
+     </button>
+     <button aria-label="Favorites" class="hover:text-yellow-400">
+      <i class="far fa-heart">
+      </i>
+     </button>
+     <button aria-label="Notifications" class="hover:text-yellow-400">
+      <i class="far fa-bell">
+      </i>
+     </button>
+     <a class="hover:text-yellow-400" href="/login">
+      دخول / تسجيل
+     </a>
+     <button aria-label="User" class="hover:text-yellow-400">
+      <i class="far fa-user">
+      </i>
+     </button>
+    </nav>
+   </div>
+  </header>
+  <!-- Main black header with logo and search -->
+  <div class="bg-black">
+   <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 py-3">
+    <a class="flex items-center space-x-2 space-x-reverse" href="#">
+     <img alt="Elecadi logo icon, golden hexagonal shape with electric bolt inside" class="w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/466cc65a-5f97-4171-5ae0-5bf9cf93d7c3.jpg" width="40"/>
+     <span class="text-yellow-400 font-extrabold text-2xl select-none" style="font-family: 'Almarai', sans-serif">
+      xxxxx
+      <span class="text-white">
+       xxx
+      </span>
+     </span>
+    </a>
+    <form class="flex-1 max-w-[600px] mx-auto">
+     <label class="sr-only" for="search">
+      البحث عن المنتجات
+     </label>
+     <div class="relative">
+      <input class="w-full rounded-full py-2 pr-4 pl-12 text-black text-sm focus:outline-none" id="search" placeholder="البحث عن المنتجات" type="search"/>
+      <button aria-label="Search" class="absolute left-3 top-1/2 -translate-y-1/2 text-black" type="submit">
+       <i class="fas fa-search">
+       </i>
+      </button>
+     </div>
+    </form>
+   </div>
+  </div>
+  <!-- Navigation bar below -->
+  <nav id="lest_category" class="max-w-[1200px] mx-auto px-4 py-2 bg-[#f9f8f1] flex flex-wrap gap-2 text-xs sm:text-sm font-semibold text-black select-none">
+   <button aria-current="true" class="flex items-center gap-1 px-3 py-1 rounded-md bg-yellow-100 text-yellow-500" data-slide="0" type="button">
+    <i class="fas fa-home text-base">
+    </i>
+    الرئيسية
+   </button>
+   <!-- <button class="flex items-center gap-1 px-3 py-1 rounded-md hover:bg-gray-200" data-slide="2" type="button">
+    <i class="fas fa-plug text-base text-gray-400">
+    </i>
+    السباكة
+   </button>
+   <button class="flex items-center gap-1 px-3 py-1 rounded-md hover:bg-gray-200" data-slide="3" type="button">
+    <span class="text-gray-400 text-xs">
+     ▼
+    </span>
+    <i class="fas fa-lock text-base text-gray-400">
+    </i>
+    الحمام و المطبخ
+   </button>
+   <button class="flex items-center gap-1 px-3 py-1 rounded-md hover:bg-gray-200" data-slide="4" type="button">
+    <span class="text-gray-400 text-xs">
+     ▼
+    </span>
+    <i class="fas fa-paint-roller text-base text-gray-400">
+    </i>
+    ديكور
+   </button>
+   <button class="flex items-center gap-1 px-3 py-1 rounded-md hover:bg-gray-200" data-slide="5" type="button">
+    <span class="text-gray-400 text-xs">
+     ▼
+    </span>
+    <i class="fas fa-bolt text-base text-gray-400">
+    </i>
+    كهرباء
+   </button>
+   <button class="flex items-center gap-1 px-3 py-1 rounded-md hover:bg-gray-200" data-slide="6" type="button">
+    <span class="text-gray-400 text-xs">
+     ▼
+    </span>
+    <i class="fas fa-bolt-lightning text-base text-gray-400">
+    </i>
+    كهرباء باور
+   </button>
+   <button class="flex items-center gap-1 px-3 py-1 rounded-md hover:bg-gray-200" data-slide="7" type="button">
+    <i class="fas fa-copyright text-base text-gray-400">
+    </i>
+    الماركات
+   </button> -->
+  </nav>
+  <!-- Hero section -->
+  <section class="max-w-[1200px] mx-auto mt-6 px-4 relative rounded-xl overflow-hidden">
+   <img alt="Hero image" class="w-full rounded-xl object-cover" height="400" id="hero-image" src="https://storage.googleapis.com/a1aa/image/7da8846b-a9e1-4bb5-5f86-973fe00d206f.jpg" style="height: 400px" width="1200"/>
+   <div class="absolute inset-0 bg-black bg-opacity-70 rounded-xl flex flex-col justify-center px-6 sm:px-12 text-white" id="hero-text">
+    <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight max-w-3xl" id="hero-title">
+     كل ما تحتاجه من منتجات
+     <span class="text-yellow-400" id="hero-highlight">
+      كهربائية
+     </span>
+     في مكان واحد
+    </h1>
+    <p class="text-gray-300 text-xs sm:text-sm max-w-2xl mt-4 leading-relaxed" id="hero-description">
+     سواءً كنت تبحث عن أجهزة صغيرة أو حلول كهربائية كبيرة، لدينا كل ما
+        تحتاجه بأسعار تنافسية وجودة لا مثيل لها. منتجاتنا تم تصميمها لتوفر
+        لك الأمان والراحة في الاستخدام
+    </p>
+    <button class="mt-8 bg-yellow-400 text-black rounded-lg px-8 py-3 w-48 flex items-center justify-center gap-2 font-semibold hover:bg-yellow-500 transition-colors" id="hero-button">
+     تسوق الآن
+     <i class="fas fa-shopping-cart">
+     </i>
+    </button>
+   </div>
+   <!-- Dots navigation -->
+   <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 space-x-reverse" id="dots">
+    <span class="w-4 h-4 rounded-full bg-white opacity-90 border border-gray-300">
+    </span>
+    <span class="w-4 h-4 rounded-full bg-white opacity-50 border border-gray-300">
+    </span>
+    <span class="w-4 h-4 rounded-full bg-white opacity-50 border border-gray-300">
+    </span>
+    <span class="w-4 h-4 rounded-full bg-white opacity-50 border border-gray-300">
+    </span>
+   </div>
+  </section>
+   <div class="max-w-[1200px] mx-auto px-4 py-6" id="main-section">
+   <!-- Header with arrows and title -->
+   <div class="flex justify-between items-center mb-6">
+    <div class="flex space-x-2 space-x-reverse">
+     <button aria-label="السابق" class="w-8 h-8 rounded border border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition" id="right-button">
+      <i class="fas fa-chevron-left">
+      </i>
+     </button>
+     <button aria-label="التالي" class="w-8 h-8 rounded border border-[#d9d9d9] flex items-center justify-center text-[#d9d9d9] hover:bg-[#1a1a1a] hover:text-white transition"  id="left-button">
+      <i class="fas fa-chevron-right">
+      </i>
+     </button>
+    </div>
+    <h2 class="text-lg font-normal">
+     تسوق حسب الأقسام
+    </h2>
+   </div>
+   <!-- Categories carousel -->
+   <div class="flex space-x-6 space-x-reverse overflow-x-auto scrollbar-hide mb-8" id="shopping_categories">
+    
+   </div>
+   <!-- Categories navigation -->
+   <nav class="flex space-x-6 space-x-reverse text-xs font-normal text-[#7a7a7a] mb-6 overflow-x-auto scrollbar-hide">
+    <a class="whitespace-nowrap hover:text-[#1a1a1a]" href="#">
+     كهرباء باور
+    </a>
+    <a class="whitespace-nowrap hover:text-[#1a1a1a]" href="#">
+     كهرباء
+    </a>
+    <a class="whitespace-nowrap hover:text-[#1a1a1a]" href="#">
+     الحمام و المطبخ
+    </a>
+    <a class="whitespace-nowrap hover:text-[#1a1a1a]" href="#">
+     الإضاءة
+    </a>
+    <a class="whitespace-nowrap hover:text-[#1a1a1a]" href="#">
+     السباكة
+    </a>
+    <a class="whitespace-nowrap border-b-2 border-[#c9a52b] text-[#1a1a1a] font-semibold" href="#">
+     الكل
+    </a>
+   </nav>
+   <!-- Most sold title -->
+   <h3 class="text-xl font-semibold mb-4">
+    الأكثر مبيعاً
+   </h3>
+   <!-- Products grid -->
+   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+    <!-- Product 1 -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden relative">
+     <img alt="شاحن USB ثنائي (Type C/A) نوفو ساس على خلفية بيضاء مع ديكور داخلي" class="w-full h-48 object-cover rounded-t-xl" height="300" src="https://storage.googleapis.com/a1aa/image/dfd1c1cf-1bf2-4592-e842-7da224345253.jpg" width="300"/>
+     <button aria-label="إضافة إلى المفضلة" class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#1a1a1a] shadow-md">
+      <i class="far fa-heart">
+      </i>
+     </button>
+     <div class="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold rounded px-2 py-1 select-none">
+      -5%
+     </div>
+     <div class="absolute bottom-3 left-3 bg-black bg-opacity-50 text-yellow-400 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+      ؟
+     </div>
+     <p class="text-xs font-bold text-[#1a1a1a] p-2 leading-tight">
+      شاحن USB ثنائي (Type C/A) نوفو ساس
+     </p>
+    </div>
+    <!-- Product 2 -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden relative">
+     <img alt="سلك كهرباء أنيرجيا السويدي هلال 100 متر على خلفية بيضاء" class="w-full h-48 object-cover rounded-t-xl" height="300" src="https://storage.googleapis.com/a1aa/image/be21d070-d0ae-4667-97eb-731a6c705153.jpg" width="300"/>
+     <button aria-label="إضافة إلى المفضلة" class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#1a1a1a] shadow-md">
+      <i class="far fa-heart">
+      </i>
+     </button>
+     <div class="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold rounded px-2 py-1 select-none">
+      -56%
+     </div>
+     <div class="absolute bottom-3 left-3 bg-black bg-opacity-50 text-yellow-400 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+      ؟
+     </div>
+     <p class="text-xs font-bold text-[#1a1a1a] p-2 leading-tight">
+      سلك كهرباء أنيرجيا السويدي هلال 100 متر.
+     </p>
+    </div>
+    <!-- Product 3 -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden relative">
+     <img alt="سداده نوفو ساس على خلفية بيضاء مع ديكور داخلي" class="w-full h-48 object-cover rounded-t-xl" height="300" src="https://storage.googleapis.com/a1aa/image/c16f86d3-889a-4c4a-cdf6-685d586e2da5.jpg" width="300"/>
+     <button aria-label="إضافة إلى المفضلة" class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#1a1a1a] shadow-md">
+      <i class="far fa-heart">
+      </i>
+     </button>
+     <div class="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold rounded px-2 py-1 select-none">
+      -5%
+     </div>
+     <div class="absolute bottom-3 left-3 bg-black bg-opacity-50 text-yellow-400 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+      ؟
+     </div>
+     <p class="text-xs font-bold text-[#1a1a1a] p-2 leading-tight">
+      سداده نوفو ساس
+     </p>
+    </div>
+    <!-- Product 4 -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden relative">
+     <img alt="لمبة بلحة ليد دمعة سراج مضيئة على خلفية داكنة" class="w-full h-48 object-cover rounded-t-xl" height="300" src="https://storage.googleapis.com/a1aa/image/2bc7a9d5-c402-4940-3949-cf1f010a6c2b.jpg" width="300"/>
+     <button aria-label="إضافة إلى المفضلة" class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#1a1a1a] shadow-md">
+      <i class="far fa-heart">
+      </i>
+     </button>
+     <div class="absolute bottom-3 left-3 bg-black bg-opacity-50 text-yellow-400 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+      ؟
+     </div>
+     <p class="text-xs font-bold text-[#1a1a1a] p-2 leading-tight">
+      لمبة بلحة ليد دمعة سراج
+     </p>
+    </div>
+   </div>
+  </div>
+  <!-- <script>
+
+   const button = document.getElementById('scrollLeftBtn');
+    const mainSection = document.getElementById('main-section');
+    
+    let moved = false;
+     const scrollContainer = document.getElementById("main-section");
+    const scrollLeftBtn = document.getElementById("scrollLeftBtn");
+    const scrollRightBtn = document.getElementById("scrollRightBtn");
+
+    // Scroll amount per click (adjust as needed)
+    const scrollAmount = 120;
+
+    scrollLeftBtn.addEventListener("click", () => {
+      scrollContainer.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    });
+
+    scrollRightBtn.addEventListener("click", () => {
+      scrollContainer.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
+    });
+  </script> -->
+ 
+  <!-- <script>
+   const slides = [
+    {
+      image: "https://storage.googleapis.com/a1aa/image/7da8846b-a9e1-4bb5-5f86-973fe00d206f.jpg",
+      title: `كل ما تحتاجه من منتجات <span class="text-yellow-400">كهربائية</span> في مكان واحد`,
+      description: `سواءً كنت تبحث عن أجهزة صغيرة أو حلول كهربائية كبيرة، لدينا كل ما تحتاجه بأسعار تنافسية وجودة لا مثيل لها. منتجاتنا تم تصميمها لتوفر لك الأمان والراحة في الاستخدام`,
+      buttonText: "تسوق الآن"
+    },
+    {
+      image: "https://placehold.co/1200x400?text=إضاءة+احترافية+على+خلفية+داكنة&font=Almarai&fontSize=48&textColor=ffffff&bg=222222",
+      title: `إضاءة <span class="text-yellow-400">احترافية</span> لمنزلك`,
+      description: `اكتشف مجموعة واسعة من حلول الإضاءة التي تضفي لمسة جمالية وعملية على كل زاوية في منزلك.`,
+      buttonText: "تسوق الإضاءة"
+    },
+    {
+      image: "https://placehold.co/1200x400?text=سباكة+احترافية+على+خلفية+داكنة&font=Almarai&fontSize=48&textColor=ffffff&bg=333333",
+      title: `منتجات <span class="text-yellow-400">سباكة</span> عالية الجودة`,
+      description: `كل ما تحتاجه من أدوات وملحقات السباكة لضمان أداء ممتاز وطول عمر.`,
+      buttonText: "تسوق السباكة"
+    },
+    {
+      image: "https://placehold.co/1200x400?text=الحمام+و+المطبخ+احترافي+على+خلفية+داكنة&font=Almarai&fontSize=48&textColor=ffffff&bg=444444",
+      title: `الحمام و المطبخ <span class="text-yellow-400">باحترافية</span>`,
+      description: `منتجات متكاملة للحمام والمطبخ تجمع بين الجودة والتصميم العصري.`,
+      buttonText: "تسوق الحمام والمطبخ"
+    },
+    {
+      image: "https://placehold.co/1200x400?text=ديكور+احترافي+على+خلفية+داكنة&font=Almarai&fontSize=48&textColor=ffffff&bg=555555",
+      title: `ديكور <span class="text-yellow-400">مميز</span> لمنزلك`,
+      description: `أضف لمسات ديكورية فريدة تعكس ذوقك وتكمل جمال منزلك.`,
+      buttonText: "تسوق الديكور"
+    },
+    {
+      image: "https://placehold.co/1200x400?text=كهرباء+احترافية+على+خلفية+داكنة&font=Almarai&fontSize=48&textColor=ffffff&bg=666666",
+      title: `منتجات <span class="text-yellow-400">كهرباء</span> عالية الجودة`,
+      description: `كل ما تحتاجه من معدات كهربائية موثوقة وآمنة للاستخدام.`,
+      buttonText: "تسوق الكهرباء"
+    },
+    {
+      image: "https://placehold.co/1200x400?text=كهرباء+باور+احترافية+على+خلفية+داكنة&font=Almarai&fontSize=48&textColor=ffffff&bg=777777",
+      title: `كهرباء باور <span class="text-yellow-400">باحترافية</span>`,
+      description: `حلول متقدمة في مجال كهرباء باور لتلبية جميع احتياجاتك.`,
+      buttonText: "تسوق كهرباء باور"
+    },
+    {
+      image: "https://placehold.co/1200x400?text=الماركات+الاحترافية+على+خلفية+داكنة&font=Almarai&fontSize=48&textColor=ffffff&bg=888888",
+      title: `الماركات <span class="text-yellow-400">الأفضل</span> فقط`,
+      description: `نقدم لك أفضل الماركات العالمية في مجال المنتجات الكهربائية.`,
+      buttonText: "تسوق الماركات"
+    }
+   ];
+
+   const heroImage = document.getElementById('hero-image');
+   const heroText = document.getElementById('hero-text');
+   const heroTitle = document.getElementById('hero-title');
+   const heroDescription = document.getElementById('hero-description');
+   const heroButton = document.getElementById('hero-button');
+   const navButtons = document.querySelectorAll('nav button[data-slide]');
+
+   function setActiveSlide(index) {
+     const slide = slides[index];
+     heroImage.src = slide.image;
+     heroTitle.innerHTML = slide.title;
+     heroDescription.textContent = slide.description;
+     heroButton.textContent = slide.buttonText;
+     const icon = document.createElement('i');
+     icon.className = 'fas fa-shopping-cart';
+     heroButton.appendChild(icon);
+
+     navButtons.forEach((btn, i) => {
+       if(i === index) {
+         btn.classList.add('bg-yellow-100', 'text-yellow-500');
+         btn.classList.remove('hover:bg-gray-200');
+         btn.setAttribute('aria-current', 'true');
+       } else {
+         btn.classList.remove('bg-yellow-100', 'text-yellow-500');
+         btn.classList.add('hover:bg-gray-200');
+         btn.removeAttribute('aria-current');
+       }
+     });
+   }
+
+   navButtons.forEach(btn => {
+     btn.addEventListener('click', () => {
+       const index = parseInt(btn.getAttribute('data-slide'));
+       setActiveSlide(index);
+     });
+   });
+  </script> -->
+
+      <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Almarai&display=swap');
+    body {
+      font-family: 'Almarai', sans-serif;
+    }
+  </style>
+  <footer class="pt-10 pb-6 px-6 md:px-20 bg-[#030201] text-white">
+   <div class="max-w-[1200px] mx-auto">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-8 gap-x-6 text-xs leading-6">
+     <div>
+      <h3 class="font-semibold mb-3">
+       السباكة
+      </h3>
+      <ul class="space-y-2">
+       <li>
+        مواسير تغذية
+       </li>
+       <li>
+        المحابس
+       </li>
+       <li>
+        مواسير صرف
+       </li>
+       <li>
+        اكسسوارات السباكة
+       </li>
+       <li>
+        المنتجات الكيميائية
+       </li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="font-semibold mb-3">
+       الاضاءة
+      </h3>
+      <ul class="space-y-2">
+       <li>
+        لمبات
+       </li>
+       <li>
+        اضاءة سقف و سبوتات
+       </li>
+       <li>
+        نجف
+       </li>
+       <li>
+        مصابيح طوارئ
+       </li>
+       <li>
+        اضاءة حائط
+       </li>
+       <li>
+        اكسسوارات الاضاءة
+       </li>
+       <li>
+        اضاءة خارجية
+       </li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="font-semibold mb-3">
+       الحمام والمطبخ
+      </h3>
+      <ul class="space-y-2">
+       <li>
+        اكسسوارات الحمام
+       </li>
+       <li>
+        البانيوهات
+       </li>
+       <li>
+        خلطات
+       </li>
+       <li>
+        الدش
+       </li>
+       <li>
+        احواض
+       </li>
+       <li>
+        مرحاض
+       </li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="font-semibold mb-3">
+       كهرباء
+      </h3>
+      <ul class="space-y-2">
+       <li>
+        مواسير و خرطوم
+       </li>
+       <li>
+        اكسسوارات كهرباء
+       </li>
+       <li>
+        لوحات و قواطع كهرباء
+       </li>
+       <li>
+        وشوش ومفاتيح
+       </li>
+       <li>
+        البواطس
+       </li>
+       <li>
+        اسلاك
+       </li>
+       <li>
+        برايز
+       </li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="font-semibold mb-3">
+       كهرباء باور
+      </h3>
+      <ul class="space-y-2">
+       <li>
+        كابلات واسلاك
+       </li>
+       <li>
+        مكيفات
+       </li>
+       <li>
+        قواطع و مفاتيح
+       </li>
+       <li>
+        كونتاكتور و اوفرلود
+       </li>
+       <li>
+        فيوزات و قواعد
+       </li>
+       <li>
+        عدادات قياس و حراره
+       </li>
+       <li>
+        لوحات
+       </li>
+      </ul>
+     </div>
+    </div>
+    <hr class="border-t border-[#3a2f1f] my-8"/>
+    <div class="flex flex-wrap justify-between items-center gap-4 max-w-[1200px] mx-auto">
+     <div class="flex flex-wrap gap-4">
+      <a class="w-12 h-12 flex justify-center items-center border border-gray-600 rounded-md text-white text-xl hover:text-yellow-500 hover:border-yellow-500 transition" href="#">
+       <i class="fab fa-instagram">
+       </i>
+      </a>
+      <a class="w-12 h-12 flex justify-center items-center border border-gray-600 rounded-md text-white text-xl hover:text-yellow-500 hover:border-yellow-500 transition" href="#">
+       <i class="fab fa-facebook-f">
+       </i>
+      </a>
+      <a class="w-12 h-12 flex justify-center items-center border border-gray-600 rounded-md text-white text-xl hover:text-yellow-500 hover:border-yellow-500 transition" href="#">
+       <i class="fab fa-whatsapp">
+       </i>
+      </a>
+      <a class="flex items-center border border-gray-600 rounded-md px-4 text-xs text-white gap-2 hover:text-yellow-500 hover:border-yellow-500 transition" href="tel:01066674474">
+       <i class="fas fa-mobile-alt">
+       </i>
+       01xxxxxxxx
+      </a>
+      <a class="flex items-center border border-gray-600 rounded-md px-4 text-xs text-white gap-2 hover:text-yellow-500 hover:border-yellow-500 transition" href="mailto:info@elecadi.com">
+       <i class="far fa-envelope">
+       </i>
+       info@xxxxxxxx.com
+      </a>
+     </div>
+    </div>
+    <hr class="border-t border-[#3a2f1f] my-6"/>
+    <div class="flex flex-wrap justify-start gap-4 text-[10px] text-gray-400 max-w-[1200px] mx-auto">
+     <a class="hover:text-yellow-500 transition" href="#">
+      من نحن
+     </a>
+     <a class="hover:text-yellow-500 transition" href="#">
+      اتصل بنا
+     </a>
+     <a class="hover:text-yellow-500 transition" href="#">
+      سياسة الخصوصية
+     </a>
+     <a class="hover:text-yellow-500 transition" href="#">
+      سياسة الإرجاع والاسترداد
+     </a>
+    </div>
+    <p class="text-[10px] text-gray-400 mt-4 max-w-[1200px] mx-auto">
+     © جميع الحقوق محفوظة للإكترادي 2025.
+    </p>
+   </div>
+ <aside class="fixed top-0 left-0 h-full w-72 bg-white/70 backdrop-blur z-50 flex flex-col" id="sidebar">
+   <!-- Header -->
+   <header class="flex items-center justify-between p-4 border-b border-gray-200 bg-transparent">
+    <h2 class="text-base font-semibold">
+     عربة التسوق
+    </h2>
+    <button aria-label="إغلاق" class="text-sm font-normal text-gray-700 flex items-center gap-1" id="close-btn" type="button">
+     إغلاق
+     <i class="fas fa-times">
+     </i>
+    </button>
+   </header>
+   <!-- Cart Items -->
+   <div class="flex-1 overflow-y-auto p-4 space-y-4">
+    <div class="flex gap-3">
+     <img alt="صورة منتج كشاف ليد 24 وات سقف مشرم 3 نكات سراج" class="w-14 h-14 rounded-md object-cover" height="60" src="https://storage.googleapis.com/a1aa/image/272a24ee-1a1f-4b58-1f9a-b24e14dc14c9.jpg" width="60"/>
+     <div class="flex flex-col text-xs text-gray-800">
+      <p class="font-semibold leading-tight">
+       كشاف ليد 24 وات سقف مشرم 3 نكات سراج
+      </p>
+      <p class="text-[9px] text-gray-500 mt-0.5">
+       النوع: Sirage
+      </p>
+      <p class="text-[10px] text-yellow-600 mt-1 font-semibold">
+       395,00 EGP
+      </p>
+     </div>
+     <button aria-label="حذف المنتج" class="text-gray-500 text-xs self-start" title="حذف المنتج">
+      ×
+     </button>
+    </div>
+   </div>
+   <!-- Footer -->
+   <footer class="p-4 border-t border-gray-200">
+    <div class="flex justify-between items-center mb-3 text-xs font-semibold text-yellow-600">
+     <span>
+      المجموع الكلي:
+     </span>
+     <span>
+      395,00 EGP
+     </span>
+    </div>
+    <button class="w-full mb-2 py-2 bg-yellow-500 text-black text-xs font-semibold rounded" type="button">
+     شاهد محتوى العربة
+    </button>
+    <button class="w-full py-2 bg-yellow-500 text-black text-xs font-semibold rounded" type="button">
+     اتمام الطلب
+    </button>
+   </footer>
+  </aside>
+   <script src="./js/script.js"></script>
+  </header>
+ </body>
+</html>
