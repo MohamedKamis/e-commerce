@@ -1,12 +1,98 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce Product Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./css/tailwindcss.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+      
+         #add-material {
+      background-color: #21d809;
+      color: white;
+      border: none;
+      padding: 5px 7px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(255, 77, 79, 0.3);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    #add-material:hover {
+      background-color: #2fdfd0;
+      box-shadow: 0 6px 12px rgba(217, 54, 62, 0.5);
+    }
+
+    #logoutBtn {
+      background-color: #ff4d4f;
+      color: white;
+      border: none;
+      padding: 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(255, 77, 79, 0.3);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    #logoutBtn:hover {
+      background-color: #d9363e;
+      box-shadow: 0 6px 12px rgba(217, 54, 62, 0.5);
+    }
+    #logoutBtn:active {
+      background-color: #b32a31;
+      box-shadow: none;
+    }
+           .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .notification {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-left: 4px solid #48bb78;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            min-width: 300px;
+        }
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .notification-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .notification-icon {
+            width: 24px;
+            height: 24px;
+            background: #48bb78;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-weight: bold;
+        }
+        .notification-title {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 16px;
+        }
+        .notification-message {
+            color: #718096;
+            font-size: 14px;
+            line-height: 1.5;
+        }
         :root {
             --primary-color: #4f46e5;
             --secondary-color: #10b981;
@@ -19,7 +105,7 @@
             background-color: #f9fafb;
         }
         
-        .sidebar {
+        .sidebar_orders {
             transition: all 0.3s ease;
         }
         
@@ -54,13 +140,13 @@
         }
         
         @media (max-width: 768px) {
-            .sidebar {
+            .sidebar_orders {
                 transform: translateX(-100%);
                 position: fixed;
                 z-index: 50;
             }
             
-            .sidebar.active {
+            .sidebar_orders.active {
                 transform: translateX(0);
             }
         }
@@ -135,7 +221,7 @@
             opacity: 0.5;
             border: 2px dashed #3b82f6;
         }
-               .sidebar {
+               .sidebar_orders {
             transition: all 0.3s;
         }
         .dashboard-card:hover {
@@ -154,7 +240,7 @@
             100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
         }
     </style>
-    
+    <script src="./js/secur-dashbord.js"></script>
 </head>
 <body class="bg-gray-50">
     <div class="flex h-screen overflow-hidden">
@@ -171,29 +257,36 @@
                    <nav class="p-4">
             <ul class="space-y-2">
                 <li>
-                    <a  class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700" onclick="changeborder('orders')" id="orders_id">
+                    <a  class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700" onclick="show_order();changeborder('orders'); " id="orders_id">
                         <i class="fas fa-shopping-cart w-5 mr-3 text-center"></i>
                         Orders
                     </a>
                 </li>
                 <li>
-                    <a class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700" onclick="changeborder('products');show_all_products_and_edit();" id="products_id">
+                    <a class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700" onclick="options_product_section();changeborder('products');show_all_products_and_edit();options_all_product_section();" id="products_id">
                         <i class="fas fa-box w-5 mr-3 text-center"></i>
                         Products
                     </a>
                 </li>
                 <li>
-                    <a  class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700" onclick="changeborder('users')" id="users_id">
+                    <a  class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700" onclick="show_users();changeborder('users');" id="users_id">
                         <i class="fas fa-users w-5 mr-3 text-center"></i>
                         Customers
                     </a>
                 </li>
                 <li>
+                    <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700" onclick="changeborder('color-management');show_all_colors();" id="color-management_id">
+                        <i class="fas fa-chart-line w-5 mr-3 text-center"></i>
+                        products options
+                    </a>
+                </li>
+<!-- 
+                <li>
                     <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700" onclick="changeborder('analytics')" id="analytics_id">
                         <i class="fas fa-chart-line w-5 mr-3 text-center"></i>
                         Analytics
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a class="flex items-center p-3 rounded-lg hover:bg-gray-100 text-gray-700" onclick="changeborder('category');chenges();" id="category_id">
                           <i class="fas fa-chart-line w-5 mr-3 text-center"></i> 
@@ -204,25 +297,28 @@
         </nav>
                 </div>
                 <div class="p-4 border-t border-indigo-600">
+
                     <div class="flex items-center">
                         <img src="https://placehold.co/40x40" alt="Admin user profile picture with default avatar" class="h-10 w-10 rounded-full mr-3">
                         <div>
                             <p class="text-sm font-medium">Admin User</p>
                             <p class="text-xs text-indigo-200">admin@example.com</p>
                         </div>
+
                     </div>
+                   
                 </div>
             </div>
         </div>
-  <main class="p-6" id="orders" style="display: none; width: 100%;">
+  <main class="p-6" id="orders" style="display: inline-block; width: 100%;">
             <!-- Stats Overview -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white rounded-lg shadow p-6">
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Total Orders</p>
-                            <h3 class="text-2xl font-bold text-gray-800 mt-1">1,248</h3>
-                            <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 12% from last week</p>
+                            <h3 class="text-2xl font-bold text-gray-800 mt-1" id="total_orders">0</h3>
+                            <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 0% from last week</p>
                         </div>
                         <div class="bg-indigo-100 p-3 rounded-full">
                             <i class="fas fa-shopping-cart text-indigo-600"></i>
@@ -234,8 +330,8 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Pending Orders</p>
-                            <h3 class="text-2xl font-bold text-gray-800 mt-1">98</h3>
-                            <p class="text-sm text-orange-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 5% from last week</p>
+                            <h3 class="text-2xl font-bold text-gray-800 mt-1" id="total_pending">0</h3>
+                            <p class="text-sm text-orange-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 0% from last week</p>
                         </div>
                         <div class="bg-orange-100 p-3 rounded-full">
                             <i class="fas fa-clock text-orange-600"></i>
@@ -247,8 +343,8 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Processing</p>
-                            <h3 class="text-2xl font-bold text-gray-800 mt-1">342</h3>
-                            <p class="text-sm text-blue-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 8% from last week</p>
+                            <h3 class="text-2xl font-bold text-gray-800 mt-1" id="total_processing">0</h3>
+                            <p class="text-sm text-blue-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 0% from last week</p>
                         </div>
                         <div class="bg-blue-100 p-3 rounded-full">
                             <i class="fas fa-cog text-blue-600"></i>
@@ -259,9 +355,9 @@
                 <div class="bg-white rounded-lg shadow p-6">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-sm font-medium text-gray-500">Revenue</p>
-                            <h3 class="text-2xl font-bold text-gray-800 mt-1">$48,256</h3>
-                            <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 22% from last week</p>
+                            <p class="text-sm font-medium text-gray-500">delivered</p>
+                            <h3 class="text-2xl font-bold text-gray-800 mt-1" id="total_delivered">$48,256</h3>
+                            <p class="text-sm text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i> 0% from last week</p>
                         </div>
                         <div class="bg-green-100 p-3 rounded-full">
                             <i class="fas fa-dollar-sign text-green-600"></i>
@@ -271,21 +367,21 @@
             </div>
 
             <!-- Order Controls -->
-            <div class="bg-white rounded-lg shadow p-6 mb-8">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+            <div class="bg-white rounded-lg shadow p-6 mb-8"  >
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6" >
                     <h3 class="text-lg font-semibold text-gray-800 mb-4 md:mb-0">Recent Orders</h3>
                     <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full md:w-auto">
                         <div class="relative w-full">
-                            <input type="text" placeholder="Search orders..." class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                            <input type="text" placeholder="Search orders code or phone number.." id="search-orders" value="" onkeyup="search_orders();" class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400" onclick="search_orders();" class="cursor-pointer"></i>
                         </div>
-                        <select class="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            <option>Filter by Status</option>
-                            <option>Pending</option>
-                            <option>Processing</option>
-                            <option>Shipped</option>
-                            <option>Delivered</option>
-                            <option>Cancelled</option>
+                        <select class="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" onchange="show_order();" id="filter-status-orders">
+                            <option value="all">Filter by Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+    
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
                         </select>
                         <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center justify-center">
                             <i class="fas fa-plus mr-2"></i> New Order
@@ -294,20 +390,21 @@
                 </div>
 
                 <!-- Orders Table -->
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
+                <div style="height: 400px; overflow: auto;">
+                    <table class="min-w-full divide-y divide-gray-200" style="overflow: auto;">
+                        <thead class="bg-gray-50" style="overflow: scroll;" >
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">PM</th> -->
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                 <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200" id="show_orders">
-                            <!-- Order 1 -->
+                        <tbody class="bg-white divide-y divide-gray-200" id="show_orders"  style="overflow: scroll;"  >
+                            
 
                         </tbody>
                     </table>
@@ -343,13 +440,11 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Order Details Modal -->
-            <div id="order-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+             <div id="order-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
                 <div class="relative top-10 mx-auto p-5 border w-full max-w-4xl shadow-lg rounded-md bg-white">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="text-lg font-semibold text-gray-800">Order Details <span id="modal-order-id"></span></h3>
-                        <button id="modal-close" class="text-gray-400 hover:text-gray-500">
+                        <h3 class="text-lg font-semibold text-gray-800">Order Details #<span id="modal-order-id"></span></h3>
+                        <button id="modal-close" class="text-gray-400 hover:text-gray-500" onclick="close_order_modal();">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -359,113 +454,56 @@
                         <div>
                             <h4 class="text-md font-medium text-gray-700 mb-2">Order Information</h4>
                             <div class="space-y-2">
-                                <p><span class="font-medium">Date:</span> <span id="order-date">May 15, 2023</span></p>
+                                <p><span class="font-medium">Date:</span> <span id="modal-order-date">0</span></p>
                                 <p><span class="font-medium">Status:</span> 
                                     <select id="order-status" class="ml-2 px-2 py-1 rounded">
+                                        <option value="" id="modal-order-status">Select Status</option>
                                         <option value="pending">Pending</option>
                                         <option value="processing">Processing</option>
-                                        <option value="shipped">Shipped</option>
                                         <option value="delivered">Delivered</option>
                                         <option value="cancelled">Cancelled</option>
                                     </select>
                                 </p>
-                                <p><span class="font-medium">Amount:</span> $<span id="order-amount">128.95</span></p>
-                                <p><span class="font-medium">Payment Method:</span> <span id="payment-method">Credit Card</span></p>
-                                <p><span class="font-medium">Tracking Number:</span> <span id="tracking-number" class="text-blue-600 hover:underline cursor-pointer">USPS-93548345</span></p>
+                                <p><span class="font-medium">Amount:</span> EGP<span id="modal-order-total">0</span></p>
+                                <p><span class="font-medium">Payment Method:</span> <span id="payment-method"></span></p>
+                                <!-- <p><span class="font-medium">Tracking Number:</span> <span id="tracking-number" class="text-blue-600 hover:underline cursor-pointer">USPS-93548345</span></p> -->
                             </div>
                             
-                            <!-- Shipping Information -->
-                            <h4 class="text-md font-medium text-gray-700 mt-6 mb-2">Shipping Information</h4>
-                            <div class="space-y-2" id="shipping-info">
-                                <p>John Smith</p>
-                                <p>123 Main Street</p>
-                                <p>Apt 4B</p>
-                                <p>New York, NY 10001</p>
-                                <p>United States</p>
-                                <p>Phone: +1 (555) 123-4567</p>
+                            <!-- Address Information -->
+                            <h4 class="text-md font-medium text-gray-700 mt-6 mb-2">Address Information</h4>
+                            <div class="space-y-2" id="address-info">
+                                <p id="address-info-country"></p>
+                                <p id="address-info-city"></p>
+                                <p id="address-info-region"></p>
+                                <p id="address-info-Street_address"></p>
+                                <p id="address-info-floor"></p>
                             </div>
+                                <p id="modal-order-shipper-phone"> </p>
                         </div>
                         
                         <!-- Products -->
                         <div>
                             <h4 class="text-md font-medium text-gray-700 mb-2">Products</h4>
-                            <div class="space-y-4">
-                                <!-- Product 1 -->
-                                <div class="flex">
-                                    <div class="flex-shrink-0 h-20 w-20 border rounded-md overflow-hidden">
-                                        <img src="https://placehold.co/80x80" alt="Product image - Wireless Bluetooth Headphones" class="h-full w-full object-cover">
-                                    </div>
-                                    <div class="ml-4">
-                                        <h5 class="text-sm font-medium text-gray-900">Premium Wireless Headphones</h5>
-                                        <p class="text-sm text-gray-500">SKU: WH-2023-BLK</p>
-                                        <p class="text-sm text-gray-500">Quantity: 1</p>
-                                        <p class="text-sm font-medium text-gray-900">$99.95</p>
-                                    </div>
-                                </div>
-                                
-                                <!-- Product 2 -->
-                                <div class="flex">
-                                    <div class="flex-shrink-0 h-20 w-20 border rounded-md overflow-hidden">
-                                        <img src="https://placehold.co/80x80" alt="Product image - Smartphone Case" class="h-full w-full object-cover">
-                                    </div>
-                                    <div class="ml-4">
-                                        <h5 class="text-sm font-medium text-gray-900">Smartphone Case</h5>
-                                        <p class="text-sm text-gray-500">SKU: SC-IP13-CLR</p>
-                                        <p class="text-sm text-gray-500">Quantity: 1</p>
-                                        <p class="text-sm font-medium text-gray-900">$19.99</p>
-                                    </div>
-                                </div>
-                                
-                                <!-- Product 3 -->
-                                <div class="flex">
-                                    <div class="flex-shrink-0 h-20 w-20 border rounded-md overflow-hidden">
-                                        <img src="https://placehold.co/80x80" alt="Product image - USB-C Cable" class="h-full w-full object-cover">
-                                    </div>
-                                    <div class="ml-4">
-                                        <h5 class="text-sm font-medium text-gray-900">USB-C Fast Charging Cable</h5>
-                                        <p class="text-sm text-gray-500">SKU: UC-3FT-USB</p>
-                                        <p class="text-sm text-gray-500">Quantity: 2</p>
-                                        <p class="text-sm font-medium text-gray-900">$9.00</p>
-                                    </div>
-                                </div>
+                            <div class="space-y-4" id="order-product-container">
+                                <!-- Products -->
+
                             </div>
                             
                             <!-- Order Notes -->
-                            <h4 class="text-md font-medium text-gray-700 mt-6 mb-2">Order Notes</h4>
+                            <!-- <h4 class="text-md font-medium text-gray-700 mt-6 mb-2">Order Notes</h4>
                             <textarea id="order-notes" class="w-full border rounded-md p-2 text-sm h-20" placeholder="Add notes about this order..."></textarea>
-                        </div>
+                        </div> -->
                     </div>
                     
                     <div class="flex justify-end space-x-3 mt-6 border-t pt-4">
-                        <button id="cancel-order-btn" class="px-4 py-2 border rounded-md text-red-600 border-red-600 hover:bg-red-50">Cancel Order</button>
-                        <button id="update-order-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Update Order</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Delete Confirmation Modal -->
-            <div id="delete-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
-                <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-                    <div class="flex justify-between items-center pb-3">
-                        <h3 class="text-lg font-semibold text-gray-800">Confirm Deletion</h3>
-                        <button id="delete-modal-close" class="text-gray-400 hover:text-gray-500">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="mt-4">
-                        <p class="text-gray-600">Are you sure you want to delete order <span id="order-to-delete" class="font-medium">#EC-5842</span>? This action cannot be undone.</p>
-                    </div>
-                    
-                    <div class="flex justify-end space-x-3 mt-6 pt-4">
-                        <button id="cancel-delete-btn" class="px-4 py-2 border rounded-md text-gray-600 border-gray-600 hover:bg-gray-50">Cancel</button>
-                        <button id="confirm-delete-btn" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">Delete</button>
+                        <button id="cancel-order-btn" class="px-4 py-2 border rounded-md text-red-600 border-red-600 hover:bg-red-50" onclick="close_order_modal();">close Order</button>
+                        <button id="update-order-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700" onclick="update_order_status();">Update Order</button>
                     </div>
                 </div>
             </div>
         </main>
         <!-- Main users -->
-           <main class="p-6" id="users"  style="position: relative;left: 10px; display: inline-block; width: 100%;" >
+           <main class="p-6" id="users"  style="position: relative;left: 10px; display:none; width: 100%;" >
               <header class="bg-white shadow">
                 <div class="flex justify-between items-center px-6 py-4">
                     <div class="flex items-center">
@@ -480,10 +518,9 @@
                             <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                         </div>
                         <div class="relative">
-                            <i class="fas fa-bell text-gray-600 text-xl"></i>
-                            <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
+                             <button id="logoutBtn" onclick="localStorage.removeItem('tokin');window.location.href = api_url_token;"> <i class="fas fa-sign-out-alt absolute right-3 top-3 text-gray-400"></i></button>
                         </div>
-                        <div class="flex items-center">
+                        <div class="flex items-center" id="newPassword">
                             <img src="https://placehold.co/40x40" alt="Admin profile picture showing a professional headshot of a business person" class="w-8 h-8 rounded-full">
                             <span class="ml-2 text-gray-700">Admin</span>
                         </div>
@@ -497,14 +534,14 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-500">Total Customers</p>
-                                <p class="text-3xl font-bold">1,842</p>
+                                <p class="text-3xl font-bold" id="totalCustomers">0</p>
                             </div>
                             <div class="p-3 rounded-full bg-indigo-100 text-indigo-600">
                                 <i class="fas fa-users text-xl"></i>
                             </div>
                         </div>
                         <div class="mt-4">
-                            <span class="text-green-500 text-sm font-semibold"><i class="fas fa-arrow-up"></i> 12.5%</span>
+                            <span class="text-green-500 text-sm font-semibold"><i class="fas fa-arrow-up"></i> 0%</span>
                             <span class="text-gray-500 text-sm ml-2">vs last month</span>
                         </div>
                     </div>
@@ -513,14 +550,14 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-500">Active Orders</p>
-                                <p class="text-3xl font-bold">324</p>
+                                <p class="text-3xl font-bold" id="activeOrders">0</p>
                             </div>
                             <div class="p-3 rounded-full bg-green-100 text-green-600">
                                 <i class="fas fa-shopping-cart text-xl"></i>
                             </div>
                         </div>
                         <div class="mt-4">
-                            <span class="text-green-500 text-sm font-semibold"><i class="fas fa-arrow-up"></i> 8.2%</span>
+                            <span class="text-green-500 text-sm font-semibold"><i class="fas fa-arrow-up"></i>0%</span>
                             <span class="text-gray-500 text-sm ml-2">vs last month</span>
                         </div>
                     </div>
@@ -529,14 +566,14 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-500">Total Revenue</p>
-                                <p class="text-3xl font-bold">$48,276</p>
+                                <p class="text-2xl font-bold" id="totalRevenue">EGP 0</p>
                             </div>
                             <div class="p-3 rounded-full bg-blue-100 text-blue-600">
                                 <i class="fas fa-dollar-sign text-xl"></i>
                             </div>
                         </div>
                         <div class="mt-4">
-                            <span class="text-green-500 text-sm font-semibold"><i class="fas fa-arrow-up"></i> 17.3%</span>
+                            <span class="text-green-500 text-sm font-semibold"><i class="fas fa-arrow-up"></i> 0%</span>
                             <span class="text-gray-500 text-sm ml-2">vs last month</span>
                         </div>
                     </div>
@@ -545,14 +582,14 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-500">Blocked Customers</p>
-                                <p class="text-3xl font-bold">18</p>
+                                <p class="text-3xl font-bold" id="totalBlockedCustomers">0</p>
                             </div>
                             <div class="p-3 rounded-full bg-red-100 text-red-600">
                                 <i class="fas fa-ban text-xl"></i>
                             </div>
                         </div>
                         <div class="mt-4">
-                            <span class="text-red-500 text-sm font-semibold"><i class="fas fa-arrow-down"></i> 3.1%</span>
+                            <span class="text-red-500 text-sm font-semibold"><i class="fas fa-arrow-down"></i> 0%</span>
                             <span class="text-gray-500 text-sm ml-2">vs last month</span>
                         </div>
                     </div>
@@ -587,105 +624,9 @@
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            <tbody class="bg-white divide-y divide-gray-200" id="customer-table">
                                 <!-- Sample Customer 1 -->
-                                <tr class="customer-row hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#EC1001</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img src="https://placehold.co/40x40" alt="Profile picture of a young asian woman with black hair and business casual attire" class="w-8 h-8 rounded-full mr-2">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">Emma Johnson</div>
-                                                <div class="text-sm text-gray-500">Joined 15 Jan 2022</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">emma.johnson@example.com</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$2,450.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active <i class="fas fa-circle ml-1 text-green-500 text-xs"></i>
-                                        </span>
-                                        <span class="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 active-order">
-                                            Active Order
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <button onclick="openEditCustomerModal('EC1001')" class="text-indigo-600 hover:text-indigo-900 mr-3">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button onclick="blockCustomer('EC1001')" class="text-gray-600 hover:text-gray-900 mr-3">
-                                            <i class="fas fa-ban"></i>
-                                        </button>
-                                        <button onclick="deleteCustomer('EC1001')" class="text-red-600 hover:text-red-900">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <!-- Sample Customer 2 -->
-                                <tr class="customer-row hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#EC1002</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img src="https://placehold.co/40x40" alt="Profile picture of a middle-aged caucasian man with glasses and corporate attire" class="w-8 h-8 rounded-full mr-2">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">Michael Chen</div>
-                                                <div class="text-sm text-gray-500">Joined 5 Mar 2023</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">michael.chen@example.com</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1,780.50</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active <i class="fas fa-circle ml-1 text-green-500 text-xs"></i>
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <button onclick="openEditCustomerModal('EC1002')" class="text-indigo-600 hover:text-indigo-900 mr-3">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button onclick="blockCustomer('EC1002')" class="text-gray-600 hover:text-gray-900 mr-3">
-                                            <i class="fas fa-ban"></i>
-                                        </button>
-                                        <button onclick="deleteCustomer('EC1002')" class="text-red-600 hover:text-red-900">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <!-- Sample Customer 3 (Blocked) -->
-                                <tr class="customer-row hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#EC1003</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img src="https://placehold.co/40x40" alt="Profile picture of a young african american woman with curly hair and professional business attire" class="w-8 h-8 rounded-full mr-2">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">Sarah Williams</div>
-                                                <div class="text-sm text-gray-500">Joined 22 Oct 2021</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">sarah.w@example.com</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$3,245.75</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                            Blocked <i class="fas fa-circle ml-1 text-red-500 text-xs"></i>
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <button onclick="openEditCustomerModal('EC1003')" class="text-indigo-600 hover:text-indigo-900 mr-3">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button onclick="unblockCustomer('EC1003')" class="text-green-600 hover:text-green-900 mr-3">
-                                            <i class="fas fa-check"></i>
-                                        </button>
-                                        <button onclick="deleteCustomer('EC1003')" class="text-red-600 hover:text-red-900">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                             
                             </tbody>
                         </table>
                     </div>
@@ -738,7 +679,7 @@
                 </div>
             </main>
                 <!-- Main Category -->
-        <div class="flex flex-col flex-1 overflow-scroll" style="position: none;left: 10px; display: none;" id="category">
+        <div class="flex flex-col flex-1 overflow-scroll" style="position:relative;left: 10px; display: none;" id="category">
             <!-- Top Navigation -->
             <header class="bg-white shadow-sm z-10">
                 <div class="flex items-center justify-between px-4 py-3">
@@ -756,7 +697,7 @@
                         </div>
                     </div>
                     <div class="flex items-center">
-                        <div class="relative ml-4">
+                        <!-- <div class="relative ml-4">
                             <button class="flex items-center text-gray-500 hover:text-gray-600 focus:outline-none">
                                 <i class="fas fa-bell"></i>
                                 <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
@@ -766,7 +707,7 @@
                             <button class="flex items-center text-gray-500 hover:text-gray-600 focus:outline-none">
                                 <i class="fas fa-cog"></i>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </header>
@@ -830,7 +771,7 @@
                         <button class="md:hidden mr-4 text-gray-600 focus:outline-none">
                             <i class="fas fa-bars"></i>
                         </button>
-                        <h1 class="text-2xl font-semibold text-gray-800">Customer Management</h1>
+                        <h1 class="text-2xl font-semibold text-gray-800">Product Management</h1>
                     </div>
                     <div class="flex items-center space-x-4">
                         <div class="relative">
@@ -850,7 +791,7 @@
             </header>
                <br>
                 <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
-                    <h1 class="text-2xl font-bold text-gray-800">Product Management</h1>
+                    <!-- <h1 class="text-2xl font-bold text-gray-800">Product Management</h1> -->
                     <div class="mt-3 md:mt-0">
                         <button id="add-product-button" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all">
                             <i class="fas fa-plus mr-2"></i> Add Product
@@ -862,25 +803,21 @@
                 <div class="bg-white rounded-lg shadow-sm mb-6 p-4">
                     <div class="flex flex-col md:flex-row md:items-center md:space-x-4">
                         <div class="w-full md:w-1/3 mb-3 md:mb-0">
-                            <label for="category-filter" class="block text-sm font-medium text-gray-700 mb-1">section</label>
-                            <select id="category-filter" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                <option value="all">All sections</option>
-                                <option value="electronics">Electronics</option>
-                                <option value="clothing">Clothing</option>
-                                <option value="home">Home & Garden</option>
-                                <option value="beauty">Beauty</option>
+                            <label for="filter-section-product" class="block text-sm font-medium text-gray-700 mb-1">section</label>
+                            <select id="filter-section-product" onchange="show_all_products_and_edit();" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                  <option value="all_sections">All sections</option>
                             </select>
                         </div>
                         <div class="w-full md:w-1/3 mb-3 md:mb-0">
-                            <label for="status-filter" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                            <select id="status-filter" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <label for="status-filter-product" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <select id="status-filter-product" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                                 <option value="all">All Statuses</option>
                                 <option value="active">Active</option>
                                 <option value="draft">Draft</option>
                                 <option value="archived">Archived</option>
                             </select>
                         </div>
-                        <div class="w-full md:w-1/3">
+                        <!-- <div class="w-full md:w-1/3">
                             <label for="stock-filter" class="block text-sm font-medium text-gray-700 mb-1">Stock</label>
                             <select id="stock-filter" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                                 <option value="all">All Stock Levels</option>
@@ -888,13 +825,13 @@
                                 <option value="low-stock">Low Stock</option>
                                 <option value="out-of-stock">Out of Stock</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
                 <!-- Products Table -->
                 <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto" style="height: 350px; overflow: auto;">
                         <table class="min-w-full divide-y divide-gray-200 product-table">
                             <thead class="bg-gray-50">
                                 <tr>
@@ -919,44 +856,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200" id="edit-product-list">
-                                <!-- Sample Product Row 1 -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10">
-                                                <img src="https://placehold.co/100" alt="Smartphone product image with sleek design and metallic finish" class="h-10 w-10 rounded-md">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Premium Smartphone</div>
-                                                <div class="text-sm text-gray-500">#SP-001</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Electronics</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">$899.99</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
-                                            24 in stock
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium action-buttons">
-                                        <button class="text-indigo-600 hover:text-indigo-900 mr-3 edit-product" data-id="1">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-red-600 hover:text-red-900 delete-product" data-id="1">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -1016,6 +916,390 @@
                     </div>
                 </div>
             </main>
+<main class="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50" style="display: none;" id="color-management">
+  <header class="bg-white shadow">
+    <div class="flex justify-between items-center px-6 py-4">
+      <div class="flex items-center">
+        <button class="md:hidden mr-4 text-gray-600 focus:outline-none" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="text-2xl font-semibold text-gray-800">Color Management</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="relative">
+          <input
+            type="text"
+            placeholder="Search by color or product code..."
+            class="pl-10 pr-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            aria-label="Search colors"
+            id="search-color"
+          />
+          <i class="fas fa-search absolute left-3 top-3 text-gray-400 pointer-events-none"></i>
+        </div>
+        <div class="relative">
+          <i class="fas fa-bell text-gray-600 text-xl"></i>
+          <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
+        </div>
+        <div class="flex items-center">
+          <img
+            src="https://placehold.co/40x40"
+            alt="Admin profile picture"
+            class="w-8 h-8 rounded-full"
+          />
+          <span class="ml-2 text-gray-700">Admin</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between mt-6">
+    <h2 class="text-2xl font-bold text-gray-800">Manage Colors</h2>
+    <button
+      id="open-add-color-modal"
+      class="mt-3 md:mt-0 inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition"
+      aria-haspopup="dialog"
+    >
+      <i class="fas fa-plus mr-2"></i> Add Color
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <section class="bg-white rounded-lg shadow-sm mb-6 p-4">
+    <form id="filter-form" class="flex flex-col md:flex-row md:items-center md:space-x-6 space-y-4 md:space-y-0">
+      <div class="flex-1 min-w-[150px]">
+        <label for="filter-status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+        <select
+          id="filter-status"
+          name="status"
+          class="block w-full pl-3 pr-10 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        >
+          <option value="all">All Statuses</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="flex-1 min-w-[150px]">
+        <label for="filter-prodect-code" class="block text-sm font-medium text-gray-700 mb-1">Product Code</label>
+        <input
+          type="text"
+          id="filter-prodect-code"
+          name="prodect_code"
+          placeholder="Enter product code"
+          class="block w-full pl-3 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <div class="flex items-end">
+        <button
+          type="submit"
+          class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition"
+        >
+          <i class="fas fa-filter mr-2"></i> Filter
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Color Data Table -->
+  <section class="bg-white rounded-lg shadow-sm overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Color Name</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product Code</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created At</th>
+          <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="color-data-list" class="bg-white divide-y divide-gray-200">
+        <!-- Example row -->
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Crimson Red</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <img
+              src="https://placehold.co/40x40/ff0000/ffffff?text=CR"
+              alt="Crimson Red"
+              class="h-10 w-10 rounded-md object-cover"
+              loading="lazy"
+            />
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1234567890</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-06-01 14:23</td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+            <!-- <button
+              class="text-indigo-600 hover:text-indigo-900"
+              aria-label="Edit color 1"
+              data-id="1"
+            >
+              <i class="fas fa-edit"></i>
+            </button> -->
+            <button
+              class="text-red-600 hover:text-red-900"
+              aria-label="Delete color 1"
+              data-id="1"
+            >
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+        <!-- More rows dynamically inserted here -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Pagination -->
+  <nav
+    class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 rounded-b-lg mt-6"
+    aria-label="Pagination"
+  >
+    <div class="flex-1 flex justify-between sm:hidden" >
+      <a
+        href="#"
+        class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+      >
+        Previous
+      </a>
+      <a
+        href="#"
+        class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+      >
+        Next
+      </a>
+    </div>
+    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+      <p class="text-sm text-gray-700">
+        Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of
+        <span class="font-medium">50</span> colors
+      </p>
+      <div>
+        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+          <a
+            href="#"
+            class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+          >
+            <span class="sr-only">Previous</span>
+            <i class="fas fa-chevron-left"></i>
+          </a>
+          <a
+            href="#"
+            aria-current="page"
+            class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+          >
+            1
+          </a>
+          <a
+            href="#"
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+          >
+            2
+          </a>
+          <a
+            href="#"
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+          >
+            3
+          </a>
+          <span
+            class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"
+          >
+            ...
+          </span>
+          <a
+            href="#"
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+          >
+            5
+          </a>
+          <a
+            href="#"
+            class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+          >
+            <span class="sr-only">Next</span>
+            <i class="fas fa-chevron-right"></i>
+          </a>
+        </nav>
+      </div>
+      <div class="ml-4">
+        <select
+          class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          aria-label="Select number of items per page"
+        >
+          <option>10 per page</option>
+          <option>25 per page</option>
+          <option>50 per page</option>
+          <option>100 per page</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Add Color Modal -->
+  <div
+    id="add-color-modal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="add-color-title"
+  >
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative">
+      <h3 id="add-color-title" class="text-xl font-semibold mb-4">Add New Color</h3>
+      <form id="add-color-form" class="space-y-5" enctype="multipart/form-data" novalidate>
+        <div>
+          <label for="color_name" class="block text-sm font-medium text-gray-700 mb-1">Color Name</label>
+          <input
+            type="text"
+            id="color_name"
+            name="color_name"
+            required
+            class="block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Enter color name"
+          />
+        </div>
+        <div>
+          <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+          <select
+            id="status"
+            name="status"
+            class="block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          >
+            <option value="active" selected>Active</option>
+            <!-- <option value="inactive">Inactive</option> -->
+          </select>
+        </div>
+        <div>
+          <label for="prodect_code_color" class="block text-sm font-medium text-gray-700 mb-1">Product Code</label>
+          <input
+            type="number"
+            id="prodect_code_color"
+            name="prodect_code_color"
+            required
+            class="block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Enter product code"
+          />
+        </div>
+        <div>
+          <label for="imgs_url_color" class="block text-sm font-medium text-gray-700 mb-1">Upload Image</label>
+          <input
+            type="file"
+            id="imgs_url_color"
+            name="imgs_url_color"
+            accept="imgs_url_color/*"
+            required
+            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+            aria-describedby="image-upload-desc"
+          />
+          <p id="image-upload-desc" class="mt-1 text-xs text-gray-500">Supported formats: JPG, PNG, GIF</p>
+          <div id="image-preview" class="mt-3 hidden">
+            <p class="text-sm font-medium text-gray-700 mb-1">Preview:</p>
+            <img src="" alt="Image preview" class="h-24 w-24 rounded-md object-cover border border-gray-300" />
+          </div>
+        </div>
+        <div class="flex justify-end space-x-3">
+          <button
+            type="button"
+            id="cancel-add-color"
+            class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          >
+            Cancel
+          </button>
+          <button
+          onclick="add_color()"
+            type="button"
+            class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Add Color
+          </button>
+        </div>
+      </form>
+      <button
+        id="close-add-color-modal"
+        class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 focus:outline-none"
+        aria-label="Close modal"
+      >
+        <i class="fas fa-times text-lg"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Modal open/close handlers
+    const addColorModal = document.getElementById('add-color-modal');
+    const openAddColorBtn = document.getElementById('open-add-color-modal');
+    const closeAddColorBtn = document.getElementById('close-add-color-modal');
+    const cancelAddColorBtn = document.getElementById('cancel-add-color');
+    const addColorForm = document.getElementById('add-color-form');
+    const imageInput = document.getElementById('imgs_url');
+    const imagePreviewContainer = document.getElementById('image-preview');
+    const imagePreview = imagePreviewContainer.querySelector('img');
+
+    function openModal() {
+      addColorModal.classList.remove('hidden');
+      // Reset form and preview
+      addColorForm.reset();
+      imagePreviewContainer.classList.add('hidden');
+      imagePreview.src = '';
+      // Focus first input
+      document.getElementById('color_name').focus();
+    }
+
+    function closeModal() {
+      addColorModal.classList.add('hidden');
+    }
+
+    openAddColorBtn.addEventListener('click', openModal);
+    closeAddColorBtn.addEventListener('click', closeModal);
+    cancelAddColorBtn.addEventListener('click', closeModal);
+
+    // Close modal on outside click
+    addColorModal.addEventListener('click', (e) => {
+      if (e.target === addColorModal) closeModal();
+    });
+
+    // Image preview
+    // imageInput.addEventListener('change', () => {
+    //   const file = imageInput.files[0];
+    //   if (file) {
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       imagePreview.src = e.target.result;
+    //       imagePreviewContainer.classList.remove('hidden');
+    //     };
+    //     reader.readAsDataURL(file);
+    //   } else {
+    //     imagePreviewContainer.classList.add('hidden');
+    //     imagePreview.src = '';
+    //   }
+    // });
+
+    // Form submission example
+    // addColorForm.addEventListener('submit', (e) => {
+    //   e.preventDefault();
+
+      // Validate form here if needed
+
+    //   const formData = new FormData(addColorForm);
+
+    //   // Example: log form data keys and values
+    //   for (const [key, value] of formData.entries()) {
+    //     console.log(key, value);
+    //   }
+
+    //   // TODO: Implement your AJAX/fetch call to upload image and save data
+
+    //   // Close modal and reset form
+    //   closeModal();
+    //   addColorForm.reset();
+    //   imagePreviewContainer.classList.add('hidden');
+    //   imagePreview.src = '';
+    // });
+  </script>
+</main>
     </div>
   
     <!-- Add Category Modal -->
@@ -1114,7 +1398,7 @@
                                                 Product Name
                                             </label>
                                             <div class="mt-1">
-                                                <input type="text" name="product-name" id="product-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                <input type="text" name="product-name" id="product-name" style="padding: 3px;size: 10px; border: solid 1px #a3a1a1;"  class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                             </div>
                                         </div>
 
@@ -1124,7 +1408,7 @@
                                                 Description
                                             </label>
                                             <div class="mt-1">
-                                                <textarea id="product-description" name="product-description" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                                                <textarea id="product-description" name="product-description" style="border: solid 1px #a3a1a1;" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
                                             </div>
                                         </div>
 
@@ -1146,21 +1430,31 @@
                                                 Brand
                                             </label>
                                             <div class="mt-1">
-                                                <input type="text" name="product-brand" id="product-brand" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                <input type="text" name="product-brand" id="product-brand" style="padding: 3px;border: solid 1px #a3a1a1;"  class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                             </div>
                                         </div>
-
-                                        <!-- Price -->
-                                        <div class="sm:col-span-2">
-                                            <label for="product-price" class="block text-sm font-medium text-gray-700">
-                                                Price ($)
+                                          <!-- sizes -->
+                                        <div class="sm:col-span-3">
+                                            <label for="product-sizes" class="block text-sm font-medium text-gray-700">
+                                                sizes
                                             </label>
-                                            <div class="mt-1 relative rounded-md shadow-sm">
-                                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                    <span class="text-gray-500 sm:text-sm">$</span>
-                                                </div>
-                                                <input type="text" name="product-price" id="product-price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="0.00">
+                                            <div class="mt-1">
+                                                <input type="text" name="product-sizes" placeholder="Enter sizes separated by dash ( - )" id="product-sizes" style="padding: 3px; border: solid 1px #a3a1a1;" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                             </div>
+                                        </div>
+                                         <!-- material -->
+                                        <div class="sm:col-span-3">
+                                            <label for="product-material" class="block text-sm font-medium text-gray-700">
+                                                material
+                                            </label>
+                                            <div class="mt-1">
+                                                <input type="text" name="product-material" placeholder="Enter material separated by dash ( - )" id="product-material" style="padding: 3px; border: solid 1px #a3a1a1; width: 200px; display: inline-block;" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                <input type="button" value="add" id="add-material" >
+                                            </div>
+                                        </div>
+                                        <!-- Price -->
+                                        <div class="sm:col-span-2" id="all-price" style="max-height: 300px;overflow: auto;">
+                                           
                                         </div>
 
                                         <!-- Cost -->
@@ -1267,6 +1561,28 @@
                     </button>
                 </div>
             </div>
+        </div>
+    </div>
+
+     <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-8 rounded-lg shadow-2xl max-w-md w-full mx-4">
+            <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Enter New Admin Password</h2>
+                <div class="mb-4">
+                    <label for="newPass" class="block text-gray-700 font-medium mb-2">New Password</label>
+                    <input type="password" id="newPass" name="newPass" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="confirmPass" class="block text-gray-700 font-medium mb-2">Confirm New Password</label>
+                    <input type="password" id="confirmPass" name="confirmPass" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div class="flex justify-between">
+                    <button type="button" id="closeModal" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                        Cancel
+                    </button>
+                    <button type="button" id="savePassword" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                        Save Password
+                    </button>
+                </div>
         </div>
     </div>
 
@@ -1589,6 +1905,7 @@
             </div>
         </div>
     </div>
+      <div class="notification-container" id="notification-container"></div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile Menu Toggle
@@ -1627,66 +1944,6 @@
             const editProductModal = document.getElementById('edit-product-modal');
             const closeEditProduct = document.getElementById('close-edit-product');
             const cancelEditProduct = document.getElementById('cancel-edit-product');
-
-            // editProductButtons.forEach(button => {
-            //     button.addEventListener('click', function() {
-            //         const productId = this.getAttribute('data-id');
-            //         document.getElementById('edit-product-id').value = productId;
-                    
-            //         // In a real app, you would fetch product details by ID here
-            //         // For demo, we'll just populate with sample data
-            //         switch(productId) {
-            //             case '1':
-            //                 document.getElementById('edit-product-name').value = 'Premium Smartphone';
-            //                 document.getElementById('edit-product-sku').value = 'SP-001';
-            //                 document.getElementById('edit-product-description').value = 'High-end smartphone with advanced camera features';
-            //                 document.getElementById('edit-product-category').value = 'Electronics';
-            //                 document.getElementById('edit-product-brand').value = 'TechBrand';
-            //                 document.getElementById('edit-product-price').value = '899.99';
-            //                 document.getElementById('edit-product-cost').value = '599.99';
-            //                 document.getElementById('edit-product-quantity').value = '24';
-            //                 document.getElementById('edit-product-weight').value = '0.45';
-            //                 document.getElementById('edit-product-dimensions').value = '15cm x 7cm x 0.9cm';
-            //                 document.getElementById('edit-product-status').value = 'Active';
-            //                 document.getElementById('edit-product-featured').checked = true;
-            //                 document.getElementById('edit-product-image-preview').src = 'https://placehold.co/100';
-            //                 break;
-            //             case '2':
-            //                 document.getElementById('edit-product-name').value = 'Wireless Headphones';
-            //                 document.getElementById('edit-product-sku').value = 'HP-002';
-            //                 document.getElementById('edit-product-description').value = 'Premium wireless headphones with noise cancellation';
-            //                 document.getElementById('edit-product-category').value = 'Electronics';
-            //                 document.getElementById('edit-product-brand').value = 'AudioTech';
-            //                 document.getElementById('edit-product-price').value = '199.99';
-            //                 document.getElementById('edit-product-cost').value = '129.99';
-            //                 document.getElementById('edit-product-quantity').value = '3';
-            //                 document.getElementById('edit-product-weight').value = '0.3';
-            //                 document.getElementById('edit-product-dimensions').value = '20cm x 15cm x 5cm';
-            //                 document.getElementById('edit-product-status').value = 'Active';
-            //                 document.getElementById('edit-product-featured').checked = false;
-            //                 document.getElementById('edit-product-image-preview').src = 'https://placehold.co/100';
-            //                 break;
-            //             case '3':
-            //                 document.getElementById('edit-product-name').value = 'Winter Jacket';
-            //                 document.getElementById('edit-product-sku').value = 'CJ-003';
-            //                 document.getElementById('edit-product-description').value = 'Warm winter jacket for cold weather';
-            //                 document.getElementById('edit-product-category').value = 'Clothing';
-            //                 document.getElementById('edit-product-brand').value = 'OutdoorWear';
-            //                 document.getElementById('edit-product-price').value = '129.99';
-            //                 document.getElementById('edit-product-cost').value = '79.99';
-            //                 document.getElementById('edit-product-quantity').value = '0';
-            //                 document.getElementById('edit-product-weight').value = '1.2';
-            //                 document.getElementById('edit-product-dimensions').value = '60cm x 40cm x 5cm';
-            //                 document.getElementById('edit-product-status').value = 'Archived';
-            //                 document.getElementById('edit-product-featured').checked = false;
-            //                 document.getElementById('edit-product-image-preview').src = 'https://placehold.co/100';
-            //                 break;
-            //         }
-                    
-            //         editProductModal.classList.remove('hidden');
-            //     });
-            // });
-
             closeEditProduct.addEventListener('click', function() {
                 editProductModal.classList.add('hidden');
             });
@@ -1798,24 +2055,6 @@
             closeAddCustomerModal();
         }
 
-        function openEditCustomerModal(customerId) {
-            alert('Opening edit modal for customer: ' + customerId);
-            // In a real app, this would fetch customer data and populate a modal
-        }
-
-        function blockCustomer(customerId) {
-            if (confirm('Are you sure you want to block this customer?')) {
-                alert('Customer ' + customerId + ' has been blocked');
-                // In a real app, this would make an API call to update status
-            }
-        }
-
-        function unblockCustomer(customerId) {
-            if (confirm('Are you sure you want to unblock this customer?')) {
-                alert('Customer ' + customerId + ' has been unblocked');
-                // In a real app, this would make an API call to update status
-            }
-        }
 
         function deleteCustomer(customerId) {
             if (confirm('Are you sure you want to delete this customer? This cannot be undone.')) {
@@ -1824,88 +2063,68 @@
             }
         }
     </script>
-      <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
+  <script>
+      const button = document.getElementById('newPassword');
+        const modal = document.getElementById('modal');
+        const closeButton = document.getElementById('closeModal');
+        const form = document.getElementById('savePassword');
+        // Show modal when button is clicked
+        button.addEventListener('click', function() {
+            modal.classList.remove('hidden');
+            modal.classList.add('show');
         });
-
-        // Edit order modal
-        document.querySelectorAll('.edit-order').forEach(button => {
-            button.addEventListener('click', function() {
-                const orderId = this.getAttribute('data-order-id');
-                document.getElementById('modal-order-id').textContent = '#EC-' + orderId;
-                document.getElementById('order-modal').classList.remove('hidden');
-                
-                // In a real app, we would fetch order details based on orderId
-                // For this demo, we're just showing static content
-            });
+        // Hide modal when close button is clicked
+        closeButton.addEventListener('click', function() {
+            modal.classList.remove('show');
+            modal.classList.add('hidden');
         });
-
-        // Delete order modal
-        document.querySelectorAll('.delete-order').forEach(button => {
-            button.addEventListener('click', function() {
-                const orderId = this.getAttribute('data-order-id');
-                document.getElementById('order-to-delete').textContent = '#EC-' + orderId;
-                document.getElementById('delete-modal').classList.remove('hidden');
-            });
-        });
-
-        // Close modals
-        document.getElementById('modal-close').addEventListener('click', function() {
-            document.getElementById('order-modal').classList.add('hidden');
-        });
-
-        document.getElementById('delete-modal-close').addEventListener('click', function() {
-            document.getElementById('delete-modal').classList.add('hidden');
-        });
-
-        document.getElementById('cancel-delete-btn').addEventListener('click', function() {
-            document.getElementById('delete-modal').classList.add('hidden');
-        });
-
-        // Cancel order
-        document.getElementById('cancel-order-btn').addEventListener('click', function() {
-            alert('Order cancellation functionality would be implemented here');
-            document.getElementById('order-modal').classList.add('hidden');
-        });
-
-        // Update order
-        document.getElementById('update-order-btn').addEventListener('click', function() {
-            const newStatus = document.getElementById('order-status').value;
-            alert(`Order status updated to: ${newStatus}`);
-            document.getElementById('order-modal').classList.add('hidden');
-        });
-
-        // Delete order
-        document.getElementById('confirm-delete-btn').addEventListener('click', function() {
-            alert('Order deletion functionality would be implemented here');
-            document.getElementById('delete-modal').classList.add('hidden');
-        });
-
-        // Close modals when clicking outside
+        // Optional: Hide modal when clicking outside the content
         window.addEventListener('click', function(event) {
-            if (event.target === document.getElementById('order-modal')) {
-                document.getElementById('order-modal').classList.add('hidden');
-            }
-            if (event.target === document.getElementById('delete-modal')) {
-                document.getElementById('delete-modal').classList.add('hidden');
+            if (event.target === modal) {
+                modal.classList.remove('show');
+                modal.classList.add('hidden');
             }
         });
+          form.addEventListener('click',async function (event) {
+            event.preventDefault();
+            const newPass = document.getElementById('newPass').value;
+            const confirmPass = document.getElementById('confirmPass').value;
+            if (newPass === confirmPass) {
+                modal.classList.remove('show');
+                modal.classList.add('hidden');
+                // Here you can add logic to send the password to the server
+         try {
+              const block_user = new URL(window.location.href);
+            const api_block_user =block_user.origin;
+                const  dataform={
+                    pass:newPass
+                }
+                const response = await fetch(api_block_user+`/updataAdminPassowrd`, {
+                        method:"post",
+                        body:JSON.stringify(dataform),
+                        headers:{
+                            'Content-Type':'application/json',
+                        }
+                })
+                alert(`Password updated successfully!  passowrd=(${newPass})`);
+                return ;
+                            
 
-        // Status update functionality
-        const statusSelects = document.querySelectorAll('.order-card select');
-        statusSelects.forEach(select => {
-            select.addEventListener('change', function() {
-                this.closest('tr').querySelector('.status-badge').className = `px-2 py-1 text-xs rounded-full ${this.value.toLowerCase()}`;
-                this.closest('tr').querySelector('.status-badge').textContent = this.options[this.selectedIndex].text;
-            });
+    } catch (error) {
+        console.log('Error uploading file:', error);
+    }
+
+            } else {
+                alert('Passwords do not match. Please try again.');
+            }
         });
     </script>
+    <script src="./js/search.js"></script>
     <script src="./js/product.js"></script>
     <script src="./js/controle_dashbord.js"></script>
     <script src="./js/category.js"></script>
     <script src="./js/api_url.js"></script>
     <script src="./js/orders.js"></script>
+    <script src="./js/c.color.js"></script>
 </body>
 </html>

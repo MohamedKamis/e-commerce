@@ -51,21 +51,29 @@ const formData = {
             }
         });
         const data = await response.json();
-        if (data.error) {
-            alert(data.error);
-            console.error('Login failed:', data.error);
+        if (!data) {
+            document.location.href = api_url+ '/login';
+            alert('اسم المستخدم او كلمة المرور غير صحيحة');
             document.getElementById('log_password').value = '';
             document.getElementById('log_username').value = '';
             // document.getElementById('log_password').focus();
-        } else {
-            
+            return;
+        }
+         else {
+            if(data.login==true){
+                localStorage.setItem('tokin', data.tokin);
+                document.location.href = api_url+'/dashbord';
+            }
+            else{
             localStorage.setItem('user_id', data.id);
             localStorage.setItem('user_name', data.user_name);
             document.location.href = api_url;
             console.log('Login successful:', data);
+             }
         }
-    } catch (error) {
-        console.error('Error:', error);
+    }
+     catch (error) {
+        document.location.href = api_url;
         alert('An error occurred while logging in. Please try again.');
     }
 

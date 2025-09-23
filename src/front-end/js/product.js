@@ -36,64 +36,64 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeEditProduct = document.getElementById('close-edit-product');
     const cancelEditProduct = document.getElementById('cancel-edit-product');
 
-    editProductButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const productId = this.getAttribute('data-id');
-            document.getElementById('edit-product-id').value = productId;
+    // editProductButtons.forEach(button => {
+    //     button.addEventListener('click', function() {
+    //         const productId = this.getAttribute('data-id');
+    //         document.getElementById('edit-product-id').value = productId;
             
-            // In a real app, you would fetch product details by ID here
-            // For demo, we'll just populate with sample data
-            switch(productId) {
-                case '1':
-                    document.getElementById('edit-product-name').value = 'Premium Smartphone';
-                    document.getElementById('edit-product-sku').value = 'SP-001';
-                    document.getElementById('edit-product-description').value = 'High-end smartphone with advanced camera features';
-                    document.getElementById('edit-product-category').value = 'Electronics';
-                    document.getElementById('edit-product-brand').value = 'TechBrand';
-                    document.getElementById('edit-product-price').value = '899.99';
-                    document.getElementById('edit-product-cost').value = '599.99';
-                    document.getElementById('edit-product-quantity').value = '24';
-                    document.getElementById('edit-product-weight').value = '0.45';
-                    document.getElementById('edit-product-dimensions').value = '15cm x 7cm x 0.9cm';
-                    document.getElementById('edit-product-status').value = 'Active';
-                    document.getElementById('edit-product-featured').checked = true;
-                    document.getElementById('edit-product-image-preview').src = 'https://placehold.co/100';
-                    break;
-                case '2':
-                    document.getElementById('edit-product-name').value = 'Wireless Headphones';
-                    document.getElementById('edit-product-sku').value = 'HP-002';
-                    document.getElementById('edit-product-description').value = 'Premium wireless headphones with noise cancellation';
-                    document.getElementById('edit-product-category').value = 'Electronics';
-                    document.getElementById('edit-product-brand').value = 'AudioTech';
-                    document.getElementById('edit-product-price').value = '199.99';
-                    document.getElementById('edit-product-cost').value = '129.99';
-                    document.getElementById('edit-product-quantity').value = '3';
-                    document.getElementById('edit-product-weight').value = '0.3';
-                    document.getElementById('edit-product-dimensions').value = '20cm x 15cm x 5cm';
-                    document.getElementById('edit-product-status').value = 'Active';
-                    document.getElementById('edit-product-featured').checked = false;
-                    document.getElementById('edit-product-image-preview').src = 'https://placehold.co/100';
-                    break;
-                case '3':
-                    document.getElementById('edit-product-name').value = 'Winter Jacket';
-                    document.getElementById('edit-product-sku').value = 'CJ-003';
-                    document.getElementById('edit-product-description').value = 'Warm winter jacket for cold weather';
-                    document.getElementById('edit-product-category').value = 'Clothing';
-                    document.getElementById('edit-product-brand').value = 'OutdoorWear';
-                    document.getElementById('edit-product-price').value = '129.99';
-                    document.getElementById('edit-product-cost').value = '79.99';
-                    document.getElementById('edit-product-quantity').value = '0';
-                    document.getElementById('edit-product-weight').value = '1.2';
-                    document.getElementById('edit-product-dimensions').value = '60cm x 40cm x 5cm';
-                    document.getElementById('edit-product-status').value = 'Archived';
-                    document.getElementById('edit-product-featured').checked = false;
-                    document.getElementById('edit-product-image-preview').src = 'https://placehold.co/100';
-                    break;
-            }
+    //         // In a real app, you would fetch product details by ID here
+    //         // For demo, we'll just populate with sample data
+    //         switch(productId) {
+    //             case '1':
+    //                 document.getElementById('edit-product-name').value = 'Premium Smartphone';
+    //                 document.getElementById('edit-product-sku').value = 'SP-001';
+    //                 document.getElementById('edit-product-description').value = 'High-end smartphone with advanced camera features';
+    //                 document.getElementById('edit-product-category').value = 'Electronics';
+    //                 document.getElementById('edit-product-brand').value = 'TechBrand';
+    //                 document.getElementById('edit-product-price').value = '899.99';
+    //                 document.getElementById('edit-product-cost').value = '599.99';
+    //                 document.getElementById('edit-product-quantity').value = '24';
+    //                 document.getElementById('edit-product-weight').value = '0.45';
+    //                 document.getElementById('edit-product-dimensions').value = '15cm x 7cm x 0.9cm';
+    //                 document.getElementById('edit-product-status').value = 'Active';
+    //                 document.getElementById('edit-product-featured').checked = true;
+    //                 document.getElementById('edit-product-image-preview').src = 'https://placehold.co/100';
+    //                 break;
+    //             case '2':
+    //                 document.getElementById('edit-product-name').value = 'Wireless Headphones';
+    //                 document.getElementById('edit-product-sku').value = 'HP-002';
+    //                 document.getElementById('edit-product-description').value = 'Premium wireless headphones with noise cancellation';
+    //                 document.getElementById('edit-product-category').value = 'Electronics';
+    //                 document.getElementById('edit-product-brand').value = 'AudioTech';
+    //                 document.getElementById('edit-product-price').value = '199.99';
+    //                 document.getElementById('edit-product-cost').value = '129.99';
+    //                 document.getElementById('edit-product-quantity').value = '3';
+    //                 document.getElementById('edit-product-weight').value = '0.3';
+    //                 document.getElementById('edit-product-dimensions').value = '20cm x 15cm x 5cm';
+    //                 document.getElementById('edit-product-status').value = 'Active';
+    //                 document.getElementById('edit-product-featured').checked = false;
+    //                 document.getElementById('edit-product-image-preview').src = 'https://placehold.co/100';
+    //                 break;
+    //             case '3':
+    //                 document.getElementById('edit-product-name').value = 'Winter Jacket';
+    //                 document.getElementById('edit-product-sku').value = 'CJ-003';
+    //                 document.getElementById('edit-product-description').value = 'Warm winter jacket for cold weather';
+    //                 document.getElementById('edit-product-category').value = 'Clothing';
+    //                 document.getElementById('edit-product-brand').value = 'OutdoorWear';
+    //                 document.getElementById('edit-product-price').value = '129.99';
+    //                 document.getElementById('edit-product-cost').value = '79.99';
+    //                 document.getElementById('edit-product-quantity').value = '0';
+    //                 document.getElementById('edit-product-weight').value = '1.2';
+    //                 document.getElementById('edit-product-dimensions').value = '60cm x 40cm x 5cm';
+    //                 document.getElementById('edit-product-status').value = 'Archived';
+    //                 document.getElementById('edit-product-featured').checked = false;
+    //                 document.getElementById('edit-product-image-preview').src = 'https://placehold.co/100';
+    //                 break;
+    //         }
             
-            editProductModal.classList.remove('hidden');
-        });
-    });
+    //         editProductModal.classList.remove('hidden');
+    //     });
+    // });
 
     closeEditProduct.addEventListener('click', function() {
         editProductModal.classList.add('hidden');
@@ -190,14 +190,36 @@ document.addEventListener('DOMContentLoaded', function() {
         showNotification('Image upload functionality would be implemented here');
     });
 });
+function readAllPrices() {
+  const all_price = document.getElementById('all-price');
+  const priceInputs = all_price.querySelectorAll('input[type="text"][name^="product-price-"]');
+  const prices = {};
+  priceInputs.forEach(input => {
+    const name = input.name; // e.g. product-price-cotton
+    const material = name.replace('product-price-', ''); // e.g. cotton
+    const value = input.value.trim();
+    prices[material] = value;
+  });
+  console.log(prices);
+  return prices;
+}
+
 const uplode_product = async ()=>{
+  const all_price=readAllPrices()
+const productMaterial = Object.keys(all_price).join('-');
+  const productPrice= JSON.stringify(all_price)
+  console.log(productMaterial);
+  console.log(productPrice);
+
     const url = new URL(window.location.href);
     const api_url =url.origin;
     const productName = document.getElementById('product-name').value;
     const productDescription = document.getElementById('product-description').value;
     const sections_code = document.getElementById('section-code').value;
     const productBrand = document.getElementById('product-brand').value;
-    const productPrice = document.getElementById('product-price').value;
+    // const productPrice = document.getElementById('product-price').value;
+    // const productMaterial = document.getElementById('product-material').value;
+     const productSizes = document.getElementById('product-sizes').value;
     const productStatus = document.getElementById('product-status').value;
 
     // Here you would typically send this data to your server
@@ -205,6 +227,8 @@ const uplode_product = async ()=>{
     const file = fileInput.files[0];
     const formData = new FormData();
    // formData.append('movieDescription',movieDescription);
+    formData.append('sizes',productSizes) ;
+    formData.append('material',productMaterial) ;
     formData.append('name_product',productName) ;
     formData.append('description', productDescription);
     formData.append('sections_code', sections_code);
@@ -244,56 +268,169 @@ const uplode_product = async ()=>{
         console.error('Error sending data:', error);
     }
 }
+const deleteProduct= async (product_id)=>{
+    console.log(product_id);
+         const dataform={
+                    'id':product_id
+                    }  
+                try {
+                 await fetch(api+"/product/remove", {
+                        method:"post",
+                        body:JSON.stringify(dataform),
+                        headers:{
+                            'Content-Type':'application/json',
+                        }
+                    });
+                 
+            } catch (error) {
+                console.error('Error sending data:', error);
+            }
+            show_all_products_and_edit()
+}
 // onclick="show_all_products_and_edit()" 
-show_all_products_and_edit = async () => {
-      const url = new URL(window.location.href);
-    const api_url =url.origin;
-      await read_all_products().then((products) => {
-        const productList = document.getElementById('edit-product-list');
-        productList.innerHTML = ''; // Clear existing products
-        products.forEach(product => {
-            // if (product.products_Status === 'Active') {
-                productList.innerHTML += `
-                          <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10">
-                                                <img src="${product.image_url}" alt="Smartphone product image with sleek design and metallic finish" class="h-10 w-10 rounded-md">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">${product.name_product}</div>
-                                                <div class="text-sm text-gray-500">#${product.products_code}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">${product.sections_name}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">${product.price} EGP</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
-                                            -----
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
-                                            ${product.products_Status}
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium action-buttons">
-                                        <button class="text-indigo-600 hover:text-indigo-900 mr-3 edit-product" data-id="1" onclick="editProduct(${product.id})">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-red-600 hover:text-red-900 delete-product" data-id="1" onclick="deleteProduct(${product.id})">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>`;
-            // }
-        });
-        });
+// show_all_products_and_edit = async () => {
+//       const url = new URL(window.location.href);
+//     const api_url =url.origin;
+//       await read_all_products().then((products) => {
+//         const productList = document.getElementById('edit-product-list');
+//         productList.innerHTML = ''; // Clear existing products
+//         products.forEach(product => {
+//             // if (product.products_Status === 'Active') {
+//                 productList.innerHTML += `
+//                           <tr>
+//                                     <td class="px-6 py-4 whitespace-nowrap">
+//                                         <div class="flex items-center">
+//                                             <div class="flex-shrink-0 h-10 w-10">
+//                                                 <img src="${product.image_url}" alt="Smartphone product image with sleek design and metallic finish" class="h-10 w-10 rounded-md">
+//                                             </div>
+//                                             <div class="ml-4">
+//                                                 <div class="text-sm font-medium text-gray-900">${product.name_product}</div>
+//                                                 <div class="text-sm text-gray-500">#${product.products_code}</div>
+//                                             </div>
+//                                         </div>
+//                                     </td>
+//                                     <td class="px-6 py-4 whitespace-nowrap">
+//                                         <div class="text-sm text-gray-900">${product.sections_name}</div>
+//                                     </td>
+//                                     <td class="px-6 py-4 whitespace-nowrap">
+//                                         <div class="text-sm text-gray-900">${product.price} EGP</div>
+//                                     </td>
+//                                     <td class="px-6 py-4 whitespace-nowrap">
+//                                         <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+//                                             -----
+//                                         </span>
+//                                     </td>
+//                                     <td class="px-6 py-4 whitespace-nowrap">
+//                                         <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
+//                                             ${product.products_Status}
+//                                         </span>
+//                                     </td>
+//                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium action-buttons">
+                                 
+//                                         <button class="text-red-600 hover:text-red-900 delete-product" data-id="1" onclick="deleteProduct(${product.id})">
+//                                             <i class="fas fa-trash-alt"></i>
+//                                         </button>
+//                                     </td>
+//                                 </tr>`;
+//             // }       <button class="text-indigo-600 hover:text-indigo-900 mr-3 edit-product" data-id="1" onclick="editProduct(${product.id})">
+//             //                                 <i class="fas fa-edit"></i>
+//             //                             </button>
+//         });
 
+
+//         });
+
+// }
+show_all_products_and_edit = async () => {
+  const url = new URL(window.location.href);
+  const api_url = url.origin;
+  // Get filter values
+  const selectedSection = document.getElementById('filter-section-product').value ;
+//   let a=1
+//   if(selectedSection=='all_sections') return a=0
+//   const selectedStatus = document.getElementById('filter-status-product').value;
+  await read_all_products().then((products) => {
+    const productList = document.getElementById('edit-product-list');
+    productList.innerHTML = ''; // Clear existing products
+    // Filter products by section and status if filters are selected
+    products.forEach(product => {
+    //  console.log(selectedSection +  product.sections_name);
+    //  console.log(product);
+     
+    if(selectedSection == product.sections_code){
+      productList.innerHTML += `
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 h-10 w-10">
+                <img src="${product.image_url}" alt="Smartphone product image with sleek design and metallic finish" class="h-10 w-10 rounded-md">
+              </div>
+              <div class="ml-4">
+                <div class="text-sm font-medium text-gray-900">${product.name_product}</div>
+                <div class="text-sm text-gray-500">#${product.products_code}</div>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">${product.sections_name}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">${product.price} EGP</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+              -----
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
+              ${product.products_Status}
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium action-buttons">
+            <button class="text-red-600 hover:text-red-900 delete-product" data-id="${product.id}" onclick="deleteProduct(${product.id})">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>`;
+    } else if(selectedSection == 'all_sections' ){
+               productList.innerHTML += `
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 h-10 w-10">
+                <img src="${product.image_url}" alt="Smartphone product image with sleek design and metallic finish" class="h-10 w-10 rounded-md">
+              </div>
+              <div class="ml-4">
+                <div class="text-sm font-medium text-gray-900">${product.name_product}</div>
+                <div class="text-sm text-gray-500">#${product.products_code}</div>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">${product.sections_name}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">${product.price} EGP</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+              -----
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
+              ${product.products_Status}
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium action-buttons">
+            <button class="text-red-600 hover:text-red-900 delete-product" data-id="${product.id}" onclick="deleteProduct(${product.id})">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>`;
+    }   
+    });
+  });
 }
 show_all_products_and_edit();

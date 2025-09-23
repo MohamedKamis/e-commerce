@@ -4,12 +4,15 @@ import products from './api/controller/products.control.js';
 import frontend from './api/controller/url.control.js';
 import categories from './api/controller/categories.control.js';
 import users from './api/controller/users.control.js';
+import imgs_colors from './api/controller/img_products_control.js';
 import bodyParser from 'body-parser';
 import {port} from './api/dotenv/dotenv.js';
+
 import path from 'path'
 import cors from 'cors'
 const app = express();
 const ports = 8080 || port;
+
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -47,6 +50,8 @@ products(app);
 categories(app);
 users (app);
 orders(app);
+imgs_colors(app);
+
 app.listen(ports, () => {
   console.log(`Your server starting on --> http://localhost:${ports}`);
 });

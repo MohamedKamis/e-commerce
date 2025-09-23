@@ -3,12 +3,91 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <title>
-   بروفايل ليد سيليكوني مرن صفا
+بيت جبر - Bait gabr
   </title>
   <script src="https://cdn.tailwindcss.com">
   </script>
+    <script src="../css/tailwindcss.js">
+  </script>
+  <link href="../css/min.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <style>
+            .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .notification {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-left: 4px solid #48bb78;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            min-width: 300px;
+        }
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .notification-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .notification-icon {
+            width: 24px;
+            height: 24px;
+            background: #48bb78;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-weight: bold;
+        }
+        .notification-title {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 16px;
+        }
+        .notification-message {
+            color: #718096;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .scrollbar-thumbs::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .scrollbar-thumbs::-webkit-scrollbar-thumb {
+            background-color: #c9a52b;
+            border-radius: 10px;
+        }
+        
+        .scrollbar-thumbs::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+        
+        .thumbnail {
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail:hover {
+            transform: scale(1.05);
+            border-color: #c9a52b !important;
+        }
+        
+        .thumbnail.active {
+            border-color: #c9a52b !important;
+            border-width: 2px !important;
+            box-shadow: 0 0 0 2px rgba(201, 165, 43, 0.3);
+        }
    /* Custom scrollbar for vertical thumbnails */
     .scrollbar-thumbs::-webkit-scrollbar {
       width: 6px;
@@ -17,48 +96,150 @@
       background-color: #ccc;
       border-radius: 3px;
     }
+    
+    .thumbnail {
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail:hover {
+            transform: scale(1.05);
+            border-color: #c9a52b !important;
+        }
+        
+        .thumbnail.active {
+            border-color: #c9a52b !important;
+            border-width: 2px !important;
+            box-shadow: 0 0 0 2px rgba(201, 165, 43, 0.3);
+        }
+    .product-image-container {
+            position: relative;
+            overflow: hidden;
+            /* Removed cursor: zoom-in; */
+        }
+        
+        /* Removed .product-image-container.zooming cursor styling */
+        
+        #product-image {
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+        }
+        
+        .zoom-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+    .zoom-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(1.8);
+            transform-origin: center center;
+            border: 2px solid white;
+            border-radius: 8px;
+        }
+        
+        .close-zoom {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
   </style>
  </head>
  <body class="bg-white font-sans text-gray-900">
+  <header class="bg-black text-white">
+   <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 py-2 text-xs sm:text-sm">
+    <div class="flex items-center space-x-2 space-x-reverse">
+     <div class="flex items-center justify-center w-5 h-5 rounded-full bg-white text-black text-[10px] font-semibold">
+      0
+     </div>
+     <span>
+      0,00 EGP
+     </span>
+    </div>
+    <nav class="flex items-center space-x-4 space-x-reverse text-white text-sm">
+     <button aria-label="Cart" class="hover:text-yellow-400" onclick="show_sidebar(); show_cart_footer();">
+      <i class="fas fa-shopping-cart">
+      </i>
+     </button>
+     <button aria-label="Favorites" class="hover:text-yellow-400">
+      <i class="far fa-heart">
+      </i>
+     </button>
+     <button aria-label="Notifications" class="hover:text-yellow-400">
+      <i class="far fa-bell">
+      </i>
+     </button>
+     <a class="hover:text-yellow-400" href="/login">
+      دخول / تسجيل
+     </a>
+     <button aria-label="User" class="hover:text-yellow-400">
+      <i class="far fa-user">
+      </i>
+     </button>
+    </nav>
+   </div>
+  </header>
+    <div class="bg-black">
+   <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 py-3">
+    <a class="flex items-center space-x-2 space-x-reverse" href="#">
+     <img alt="Bait gabr  logo icon, golden hexagonal shape with electric bolt inside" class="w-15 h-15" height="80" src="./imgs/logo-white.jpg" style="border-radius:50pc;" width="80"/>
+     <span class="text-yellow-400 font-extrabold text-2xl select-none" style="font-family: 'Almarai', sans-serif">
+      Bait 
+      <span class="text-white">
+       gabr
+      </span>
+     </span>
+    </a>
+    <form class="flex-1 max-w-[600px] mx-auto">
+     <label class="sr-only" for="search">
+      البحث عن المنتجات
+     </label>
+     <div class="relative">
+         <input class="w-full rounded-full py-2 pr-4 pl-12 text-black text-sm focus:outline-none" id="search-product" placeholder="البحث عن المنتجات" type="search"/>
+      <button aria-label="Search" class="absolute left-3 top-1/2 -translate-y-1/2 text-black" onclick="search_product();" type="button">
+       <i class="fas fa-search">
+       </i>
+      </button>
+     </div>
+    </form>
+   </div>
+  </div>
+  <!-- Navigation bar below -->
+  <nav id="lest_category" class="max-w-[1200px] mx-auto px-4 py-2 bg-[#f9f8f1] flex flex-wrap gap-2 text-xs sm:text-sm font-semibold text-black select-none">
+   <button aria-current="true" class="flex items-center gap-1 px-3 py-1 rounded-md bg-yellow-100 text-yellow-500" data-slide="0" type="button">
+    <i class="fas fa-home text-base">
+    </i><a id="home-link"> الرئيسية</a>
+   
+   </button>
+  </nav>
   <div class="max-w-[1200px] mx-auto p-4">
    <!-- Breadcrumb -->
    <nav aria-label="breadcrumb" class="text-xs text-gray-500 mb-4 select-none">
-    <ol class="flex flex-wrap gap-1 items-center">
-     <li>
-      <a class="hover:underline" href="#">
-       الرئيسية
-      </a>
-     </li>
-     <li>
-      /
-     </li>
-     <li>
-      <a class="hover:underline" href="#">
-       الإضاءة
-      </a>
-     </li>
-     <li>
-      /
-     </li>
-     <li>
-      <a class="hover:underline" href="#">
-       شريط ليد
-      </a>
-     </li>
-     <li>
-      /
-     </li>
-     <li aria-current="page" class="text-gray-900 font-semibold">
-      بروفايل ليد سيليكوني مرن صفا
-     </li>
-    </ol>
+  
    </nav>
    <div class="flex flex-col lg:flex-row gap-6">
     <!-- Left side: logo and product info -->
     <div class="flex flex-col gap-6 flex-1 max-w-[480px]">
      <!-- Logo -->
      <div class="w-24 h-24 rounded-lg bg-white shadow-md flex items-center justify-center">
-      <img alt="شعار شركة صفا لأنظمة الإضاءة" class="max-w-[70%] max-h-[70%]" height="96" src="https://storage.googleapis.com/a1aa/image/5a3de8a3-83ae-4714-c049-3f9e77fea0ba.jpg" width="96"/>
+      <img alt="شعار شركة صفا لأنظمة الإضاءة" class="max-w-[70%] max-h-[70%]" height="96" src="" id="img_profile" width="96"/>
      </div>
      <!-- Product Title -->
      <h1 class="text-2xl font-extrabold leading-tight" id="product-title">
@@ -83,7 +264,7 @@
       </p>
       <p>
 
-       <span class="font-semibold" >
+       <!-- <span class="font-semibold" >
         الرمز التعريفي:
        </span>
        <span class="font-normal" >
@@ -96,7 +277,7 @@
        </span>
        <span class="font-normal lowercase" >
         safa lighting system
-       </span>
+       </span> -->
       </p>
      </div>
      <!-- Trusted seller badge -->
@@ -107,7 +288,7 @@
      <div class="text-2xl font-extrabold mt-2" >
       سعر:
       <span id="product-price" class="text-gray-900">
-       514,10
+       0
       </span>
       <span>
        EGP
@@ -116,23 +297,34 @@
       <span class="text-gray-600 font-normal mx-1" >
       </span>
       <span class="text-lg text-red-600 font-semibold line-through" id="old-price">
-       135,80 EGP
+       0
       </span>
       <span>
        
       </span>
      </div>
      <!-- Size selector -->
-     <!-- <div class="flex items-center gap-2 mt-4 text-sm text-gray-700" >
+     <div class="flex items-center gap-2 mt-4 text-sm text-gray-700" >
       <label class="min-w-[70px]" for="size" >
        المقاس :
       </label>
-      <select class="border border-gray-300 rounded-md px-3 py-1 w-full max-w-[220px] cursor-pointer" id="size" name="size">
+      <select class="border border-gray-300 rounded-md px-3 py-1 w-full max-w-[220px] cursor-pointer" onchange="the_price();" id="size" name="size">
+       <option>
+        حدد أحد الخيارات 
+       </option>
+      </select>
+     </div>
+      <!-- Material selector -->
+       <div class="flex items-center gap-2 mt-4 text-sm text-gray-700" >
+      <label class="min-w-[70px]" for="material" >
+       الخامه :
+      </label>
+      <select class="border border-gray-300 rounded-md px-3 py-1 w-full max-w-[220px] cursor-pointer" onchange="the_price();" id="material" name="material">
        <option>
         حدد أحد الخيارات
        </option>
       </select>
-     </div> -->
+     </div>
      <!-- Buttons row -->
      <div class="flex flex-wrap gap-3 mt-6" id="buttons-row">
       <button class="bg-yellow-400 text-black font-semibold flex items-center gap-2 px-5 py-2 rounded-md hover:bg-yellow-500 transition" type="button" id="add-to-cart-button">
@@ -140,11 +332,11 @@
        </i>
        إضافة إلى العربة
       </button>
-      <button class="bg-gray-900 text-yellow-400 font-semibold px-5 py-2 rounded-md hover:bg-gray-800 transition flex items-center gap-2" type="button" >
+      <!-- <button class="bg-gray-900 text-yellow-400 font-semibold px-5 py-2 rounded-md hover:bg-gray-800 transition flex items-center gap-2" type="button" >
        تقديم عرض سعر
        <i class="fas fa-pen">
        </i>
-      </button>
+      </button> -->
       <div class="flex items-center justify-center border border-gray-300 rounded-md w-24 h-10 select-none">
        <button aria-label="نقص الكمية" class="text-xl font-bold px-3 leading-none cursor-pointer select-none" onclick="decrementQty()" type="button">
         -
@@ -162,15 +354,15 @@
        </i>
        إضافة الى المفضلة
       </button>
-      <button class="flex items-center gap-1 hover:text-black transition" type="button">
+      <!-- <button class="flex items-center gap-1 hover:text-black transition" type="button">
        <i class="fas fa-exchange-alt">
        </i>
        إضافة الى المقارنة
-      </button>
+      </button> -->
      </div>
      <!-- Accordion items -->
      <div class="mt-6 space-y-3 text-gray-900 text-sm font-semibold cursor-pointer select-none">
-      <details class="border border-gray-300 rounded-md p-3">
+      <!-- <details class="border border-gray-300 rounded-md p-3">
        <summary>
         الشحن والإرجاع
        </summary>
@@ -179,27 +371,187 @@
        <summary>
         العناية بالمنتج
        </summary>
-      </details>
+      </details> -->
      </div>
     </div>
     <!-- Right side: images -->
-    <div class="flex gap-4 max-w-[600px] w-full">
+    <div class="flex gap-4 max-w-[600px] w-full" id="all_imgs_color">
      <!-- Thumbnails vertical -->
-     <div class="flex flex-col gap-3 scrollbar-thumbs overflow-y-auto max-h-[480px] w-20">
-      <img alt="شعار ذهبي مزخرف على خلفية بيضاء" class="rounded-lg border border-gray-300 cursor-pointer" height="80" src="https://storage.googleapis.com/a1aa/image/67179c85-87ba-4893-42af-09126d614b01.jpg" width="80"/>
-      <img alt="صورة تعليمات تركيب بروفايل ليد سيليكوني مرن صفا، توضح خطوات التثبيت الأولى" class="rounded-lg border border-gray-300 cursor-pointer" height="80" src="https://storage.googleapis.com/a1aa/image/2968acd0-7b88-47d4-0f42-5118fb6965af.jpg" width="80"/>
-      <img alt="صورة تعليمات تركيب بروفايل ليد سيليكوني مرن صفا، توضح خطوات التثبيت الثانية" class="rounded-lg border border-gray-300 cursor-pointer" height="80" src="https://storage.googleapis.com/a1aa/image/2ddb00fd-6116-4c05-b514-462faa219011.jpg" width="80"/>
-     </div>
+      <div class="flex flex-col gap-3 scrollbar-thumbs overflow-y-auto max-h-[480px] w-20" id="all_imgs_color2">
+        <!-- <img alt="شعار ذهبي مزخرف على خلفية بيضاء" class="rounded-lg border border-gray-300 cursor-pointer thumbnail" height="80" src="https://storage.googleapis.com/a1aa/image/67179c85-87ba-4893-42af-09126d614b01.jpg" width="80"/>
+        <img alt="صورة تعليمات تركيب بروفايل ليد سيليكوني مرن صفا، توضح خطوات التثبيت الأولى" class="rounded-lg border border-gray-300 cursor-pointer thumbnail" height="80" src="https://storage.googleapis.com/a1aa/image/2968acd0-7b88-47d4-0f42-5118fb6965af.jpg" width="80"/>
+        <img alt="صورة تعليمات تركيب بروفايل ليد سيليكوني مرن صفا، توضح خطوات التثبيت الثانية" class="rounded-lg border border-gray-300 cursor-pointer thumbnail" height="80" src="https://storage.googleapis.com/a1aa/image/2ddb00fd-6116-4c05-b514-462faa219011.jpg" width="80"/> -->
+    </div>
      <!-- Main product image -->
-     <div class="relative flex-1 rounded-lg overflow-hidden" style="max-height: 480px;max-height: 380px;">
-      <img alt="صورة بروفايل ليد سيليكوني مرن صفا مضاء بألوان دافئة مع إضاءة ناعمة متداخلة"  class="w-full h-full object-cover rounded-lg" height="300" src="https://m7et.com/wp-content/uploads/2020/04/303c094f2bf4535ffedc33528a5df7ba.jpg" width="400" id="product-image"/>
+     <div class="relative flex-1 rounded-lg overflow-hidden product-image-container" style="max-height: 480px;max-height: 380px;">
+      <img alt="صورة بروفايل ليد سيليكوني مرن صفا مضاء بألوان دافئة مع إضاءة ناعمة متداخلة"  class="w-full h-full object-cover rounded-lg" height="300" src="" width="400" id="product-image" onerror="console.error('Failed to load image:', this.src)"/>
       <div class="absolute top-3 right-3 bg-red-600 text-white text-xs font-semibold rounded px-3 py-1 select-none">
-       -10%
+       -20%
       </div>
      </div>
     </div>
    </div>
   </div>
+  <div class="zoom-overlay" id="zoom-overlay">
+    <div class="close-zoom" id="close-zoom">×</div>
+    <img id="zoom-image" src="" alt="صورة مكبرة"/>
+</div>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Almarai&display=swap');
+    body {
+      font-family: 'Almarai', sans-serif;
+    }
+  </style>
+            <div id="shoping_icone" onclick="show_sidebar(); show_cart_footer();" class="fixed bottom-6 right-6 bg-yellow-400 text-black p-4 rounded-full shadow-lg cursor-pointer hidden z-50" title="تسوق الآن">
+  <i class="fas fa-shopping-cart fa-lg"></i>
+</div>
+  <footer class="pt-10 pb-6 px-6 md:px-20 bg-[#030201] text-white">
+   <div class="max-w-[1200px] mx-auto">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-8 gap-x-6 text-xs leading-6">
+     <div>
+      <h3 class="font-semibold mb-3">
+       الاضاءة
+      </h3>
+      <ul class="space-y-2">
+       <li>
+        لمبات
+       </li>
+       <li>
+        اضاءة سقف و سبوتات
+       </li>
+       <li>
+        نجف
+       </li>
+       <li>
+        مصابيح طوارئ
+       </li>
+       <li>
+        اضاءة حائط
+       </li>
+       <li>
+        اكسسوارات الاضاءة
+       </li>
+       <li>
+        اضاءة خارجية
+       </li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="font-semibold mb-3">
+       الحمام والمطبخ
+      </h3>
+      <ul class="space-y-2">
+       <li>
+        اكسسوارات الحمام
+       </li>
+       <li>
+        البانيوهات
+       </li>
+       <li>
+        خلطات
+       </li>
+       <li>
+        الدش
+       </li>
+       <li>
+        احواض
+       </li>
+       <li>
+        مرحاض
+       </li>
+      </ul>
+     </div>
+    </div>
+    <input type="text" name="" id="hidden_input" style="visibility: hidden;">
+    <hr class="border-t border-[#3a2f1f] my-8"/>
+    <div class="flex flex-wrap justify-between items-center gap-4 max-w-[1200px] mx-auto">
+     <div class="flex flex-wrap gap-4">
+      <a class="w-12 h-12 flex justify-center items-center border border-gray-600 rounded-md text-white text-xl hover:text-yellow-500 hover:border-yellow-500 transition" href="https://www.instagram.com/baitgabr">
+       <i class="fab fa-instagram">
+       </i>
+      </a>
+      <a class="w-12 h-12 flex justify-center items-center border border-gray-600 rounded-md text-white text-xl hover:text-yellow-500 hover:border-yellow-500 transition" href="https://www.facebook.com/share/14RPuDqnZWB/">
+       <i class="fab fa-facebook-f">
+       </i>
+      </a>
+      <a class="w-12 h-12 flex justify-center items-center border border-gray-600 rounded-md text-white text-xl hover:text-yellow-500 hover:border-yellow-500 transition" href="https://wa.me/01228642140">
+       <i class="fab fa-whatsapp">
+       </i>
+      </a>
+      <a class="flex items-center border border-gray-600 rounded-md px-4 text-xs text-white gap-2 hover:text-yellow-500 hover:border-yellow-500 transition" href="tel:01228642140">
+       <i class="fas fa-mobile-alt">
+       </i>
+        01228642140
+      </a>
+      <a class="flex items-center border border-gray-600 rounded-md px-4 text-xs text-white gap-2 hover:text-yellow-500 hover:border-yellow-500 transition" href="mailto:gabrgroup1@gmail.com">
+       <i class="far fa-envelope">
+       </i>
+       gabrgroup1@gmail.com
+      </a>
+     </div>
+    </div>
+    <hr class="border-t border-[#3a2f1f] my-6"/>
+    <!-- <div class="flex flex-wrap justify-start gap-4 text-[10px] text-gray-400 max-w-[1200px] mx-auto">
+     <a class="hover:text-yellow-500 transition"  href="#">
+      من نحن
+     </a>
+     <a class="hover:text-yellow-500 transition" href="#">
+      اتصل بنا
+     </a>
+     <a class="hover:text-yellow-500 transition" href="#">
+      سياسة الخصوصية
+     </a>
+     <a class="hover:text-yellow-500 transition" href="#">
+      سياسة الإرجاع والاسترداد
+     </a>
+    </div> -->
+    <p class="text-[10px] text-gray-400 mt-4 max-w-[1200px] mx-auto">
+     © جميع الحقوق محفوظة للإكترادي 2025.
+    </p>
+   </div>
+ <aside class="fixed top-0 left-0 h-full w-72 bg-white/70 backdrop-blur z-50 flex flex-col" id="sidebar" style="display: none;">
+   <!-- Header -->
+   <header class="flex items-center justify-between p-4 border-b border-gray-200 bg-transparent">
+    <h2 class="text-base font-semibold">
+     عربة التسوق
+    </h2>
+    <button aria-label="إغلاق" class="text-sm font-normal text-gray-700 flex items-center gap-1" id="close-btn" type="button">
+     إغلاق
+     <i class="fas fa-times">
+     </i>
+    </button>
+   </header>
+   <!-- Cart Items -->
+   <div class="flex flex-col gap-4 p-4" id="cart-items" style="height: calc(100% - 110px);">
+   <div class=""  id="order-detils" style="max-height: 80%;overflow: auto;">
+
+   </div>
+   <!-- Footer -->
+   <footer class="p-4 border-t border-gray-200">
+    <div class="flex justify-between items-center mb-3 text-xs font-semibold text-yellow-600">
+     <span>
+      المجموع الكلي:
+     </span>
+     <span id="total-price">
+     0
+     </span>
+     
+    </div>
+    <!-- <button class="w-full mb-2 py-2 bg-yellow-500 text-black text-xs font-semibold rounded" type="button">
+     شاهد محتوى العربة
+    </button> -->
+    <a href="/checkout">
+    <button class="w-full py-2 bg-yellow-500 text-black text-xs font-semibold rounded" type="button">
+     اتمام الطلب
+    </button>
+    </a>
+   </footer>
+  </aside>
+  <div class="notification-container" id="notification-container"></div>
+   <script src="./js/sidebar.js"></script>
+   <script src="./js/search.js"></script>
+  </footer>
   <script>
    function incrementQty() {
       const qtyInput = document.getElementById("qty");
@@ -211,6 +563,123 @@
       let current = parseInt(qtyInput.value);
       if (current > 1) qtyInput.value = current - 1;
     }
+    // document.addEventListener('DOMContentLoaded', function() {
+    //         console.log('DOM fully loaded and parsed');
+            
+    //         // Get elements
+    //         const thumbnails = document.querySelectorAll('.thumbnail');
+    //         const mainImage = document.getElementById('product-image');
+    //         const imageContainer = document.getElementById('image-container');
+    //         const zoomOverlay = document.getElementById('zoom-overlay');
+    //         const zoomImage = document.getElementById('zoom-image');
+    //         const closeZoom = document.getElementById('close-zoom');
+            
+    //         console.log('Found elements:', {
+    //             thumbnails: thumbnails.length,
+    //             mainImage: !!mainImage,
+    //             imageContainer: !!imageContainer,
+    //             zoomOverlay: !!zoomOverlay,
+    //             zoomImage: !!zoomImage,
+    //             closeZoom: !!closeZoom
+    //         });
+            
+    //         // Check if main image loaded successfully
+    //         mainImage.addEventListener('load', function() {
+    //             console.log('Main image loaded successfully');
+    //         });
+    //         mainImage.addEventListener('error', function() {
+    //             console.error('Main image failed to load');
+    //         });
+            
+    //         // Simple zoom on hover functionality
+    //         imageContainer.addEventListener('mouseenter', function() {
+    //             console.log('Mouse entered image container');
+    //             mainImage.style.transform = 'scale(1.5)';
+    //             mainImage.style.transition = 'transform 0.3s ease';
+    //         });
+            
+    //         imageContainer.addEventListener('mouseleave', function() {
+    //             console.log('Mouse left image container');
+    //             mainImage.style.transform = 'scale(1)';
+    //         });
+            
+    //         // Click to show full zoom overlay
+    //         imageContainer.addEventListener('click', function(e) {
+    //             e.stopPropagation();
+    //             console.log('Image clicked - showing zoom overlay');
+    //             zoomImage.src = mainImage.src;
+    //             zoomOverlay.style.display = 'flex';
+    //         });
+    //         closeZoom.addEventListener('click', function(e) {
+    //             e.stopPropagation();
+    //             console.log('Closing zoom overlay');
+    //             zoomOverlay.style.display = 'none';
+    //         });
+            
+    //         // Close zoom overlay when clicking outside image
+    //         zoomOverlay.addEventListener('click', function(e) {
+    //             if (e.target === zoomOverlay) {
+    //                 console.log('Closing zoom overlay (clicked outside)');
+    //                 zoomOverlay.style.display = 'none';
+    //             }
+    //         });
+            document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded - initializing gallery');
+            
+            // Get all thumbnail images
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const mainImage = document.getElementById('product-image');
+            
+            console.log('Found thumbnails:', thumbnails.length);
+            console.log('Main image found:', mainImage ? 'Yes' : 'No');
+            thumbnails.forEach((thumbnail, index) => {
+                thumbnail.addEventListener('click', function() {
+                    console.log('Thumbnail clicked:', index, this.src);
+                    
+                    // Change the main image source to the clicked thumbnail's source
+                    mainImage.src = this.src;
+                    mainImage.alt = this.alt; // Update the alt text for accessibility
+                    
+                    // Remove active class from all thumbnails
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked thumbnail
+                    this.classList.add('active');
+                    
+                    console.log('Main image updated to:', mainImage.src);
+                });
+                
+                // Add initial active class to first thumbnail
+                if (index === 0) {
+                    thumbnail.classList.add('active');
+                }
+            });
+            
+            console.log('Gallery initialization complete');
+        });
+        // Fallback in case DOMContentLoaded doesn't fire
+        setTimeout(function() {
+            if (!document.querySelector('.thumbnail')) {
+                console.log('Fallback initialization');
+                const thumbnails = document.querySelectorAll('.thumbnail');
+                const mainImage = document.getElementById('product-image');
+                
+                if (thumbnails.length > 0 && mainImage) {
+                    thumbnails.forEach((thumbnail, index) => {
+                        thumbnail.addEventListener('click', function() {
+                            mainImage.src = this.src;
+                            mainImage.alt = this.alt;
+                            thumbnails.forEach(t => t.classList.remove('active'));
+                            this.classList.add('active');
+                        });
+                        
+                        if (index === 0) {
+                            thumbnail.classList.add('active');
+                        }
+                    });
+                }
+            }
+        }, 1000);
   </script>
   <script src="./js/item-profile.js"></script>
  </body>

@@ -1,12 +1,13 @@
     // console.log(Math.floor( Date.now()));
     
-     const url = new URL(window.location.href);
-    const apis = url.searchParams.get('a') || 'err';
-    console.log(apis);
+     const urly = new URL(window.location.href);
+    // const apis = urly.searchParams.get('a') || 'err';
+    // console.log(apis);
     
   async function read_all_products() {
       const url = new URL(window.location.href);
     const api_url =url.origin;
+
     try {
         const response = await fetch(api_url+"/all_products", {
                 method:"get",
@@ -21,12 +22,19 @@
     }
 }
 renderproducts = async () => {
-    const url = new URL(window.location.href);
-    const apis =Number(url.searchParams.get('a') || 3323222);
-    const api_url =url.origin;
+    // const url = new URL(window.location.href);
+    const apisn =Number(urly.searchParams.get('a') );
+    const api_url =urly.origin;
     const products = await read_all_products();
+     if(document.getElementById('home-link').href=api_url)
     for (const product of products) {
-         if(product.sections_code == apis && product.products_Status == 'Active') {
+        const prices = JSON.parse(product.price)
+
+                  const firstPrice = ( Object.values(prices)[0]);
+                  console.log(firstPrice);
+                  
+                  const prices2 = JSON.stringify(firstPrice).split('-')[0].replace(/[^\d.,]/g, '').trim()
+         if(product.sections_code == apisn && product.products_Status == 'Active') {
              document.getElementById('page-title').innerHTML = product.sections_name;
              document.getElementById('section-link').href = api_url;
               document.getElementById('section-link').innerHTML = product.sections_name;
@@ -41,11 +49,6 @@ renderproducts = async () => {
 
       <div class="relative rounded-lg overflow-hidden">
        <img alt="${product.description}" class="w-full h-auto object-cover rounded-lg" style="width:300px;"  loading="lazy" src="${product.image_url}" width="300"/>
-       <!-- Bottom-left black icon -->
-       <div aria-hidden="true" class="absolute bottom-3 left-3 bg-black bg-opacity-70 rounded-md p-1 text-yellow-400 text-lg">
-        <i class="fas fa-adjust">
-        </i>
-       </div>
       </div>
       <h3 class="mt-3 font-bold text-sm leading-tight text-gray-900">
          ${product.name_product}
@@ -65,16 +68,23 @@ renderproducts = async () => {
       </div>
       <!-- Price -->
       <p class="mt-2 font-semibold text-base text-gray-900">
-        ${product.price} EGP
+       EGP ${prices2} --
        <span class="text-gray-500 mx-1">
-        -
        </span>
-        ${Math.floor(Number(product.price) + Number(10/100*product.price))} EGP
+      <span class="text-gray-500">
+       <i class="fas fa-tag">
+       </i>
+          <span class="text-lg text-red-600 font-semibold line-through" >
+          ${Math.floor(Number(prices2) + Number(10/100*prices2))} EGP
+          </span>
+        </span>
       </p>
+<div class="absolute top-3 left-3 bg-red-600 text-white text-x font-semibold rounded px-2 py-1 select-none" style="border-radius:50px;" >
+                   -20%
+                  </div>
+
       <!-- Button -->
-      <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-md py-2 flex items-center justify-center gap-2" type="button" onclick="posh_order(${product.products_code},${product.price})" >
-       اضافه الي العربه
-       <i class="fas fa-shopping-cart">
+
        </i>
       </button>
             <button class="mt-3 bg-yellow-300 hover:bg-yellow-500 text-gray-900 font-semibold rounded-md py-2 flex items-center justify-center gap-2" type="button" >
@@ -86,6 +96,10 @@ renderproducts = async () => {
      `
     };
      }
+
+      //      <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-md py-2 flex items-center justify-center gap-2" type="button" onclick="posh_order(${product.products_code},${product.price})" >
+      //  اضافه الي العربه
+      //  <i class="fas fa-shopping-cart"></i>
 }
 
 if(document.addEventListener('DOMContentLoaded', function () {
@@ -100,7 +114,7 @@ if(document.addEventListener('DOMContentLoaded', function () {
     //
    }
 //اكمل من هنا عرض المنتجات و الاضافه
-const show_order = async () => {
+const show_order2 = async () => {
         const existingOrders = JSON.parse(localStorage.getItem('data_orders'));
         document.getElementById('cart-footer').innerHTML ='';
 
@@ -129,8 +143,9 @@ const show_order = async () => {
   
 }
 const posh_order = (id_prodect,price) => {
-    const url = new URL(window.location.href);
-    const api_url =url.origin;
+    const urlt = new URL(window.location.href);
+    const api_url =urlt.origin;
+   
       if (
         !localStorage.getItem('user_id') || localStorage.getItem('user_id') === 'null' ||
         localStorage.getItem('user_id') === '' || localStorage.getItem('user_id') === 'undefined' || localStorage.getItem('user_id') === undefined 

@@ -9,7 +9,7 @@ const frontend = (app) => {
     res.sendFile(path.resolve('./')+'/src/front-end/category.html');
 })
   app.get('/category/items', async (req, res) => {
-    res.sendFile(path.resolve('./')+'/src/front-end/item.html');
+    res.sendFile(path.resolve('./')+'/src/front-end/category-item.html');
 })
   app.get('/dashbord', async (req, res) => {
     res.sendFile(path.resolve('./')+'/src/front-end/dashbord.html');
@@ -19,6 +19,9 @@ const frontend = (app) => {
 })
   app.get('/checkout', async (req, res) => {
     res.sendFile(path.resolve('./')+'/src/front-end/checkout.html');
+})
+  app.get('/new', async (req, res) => {
+    res.sendFile(path.resolve('./')+'/src/front-end/new.html');
 })
 
 

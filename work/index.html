@@ -1,0 +1,137 @@
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تقييمات العملاء</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <style>
+    /* Override default star color for empty stars */
+    .star-empty {
+      color: #d1d5db; /* Tailwind gray-300 */
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900 min-h-screen p-4">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-6">
+    <!-- Left side product details -->
+    <div class="flex-1 bg-white rounded-lg p-4 min-h-[300px]">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="text-lg font-semibold">تفاصيل المنتج</h2>
+      </div>
+      <div class="text-sm text-gray-700">
+        <div class="flex justify-between border border-transparent rounded-md bg-gray-100 p-3">
+          <span>العلامة</span>
+          <span>الماركة</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side customer reviews -->
+    <div class="flex-1 bg-white rounded-lg p-6 min-h-[300px]">
+      <h2 class="text-lg font-semibold mb-4">تقييمات العملاء</h2>
+
+      <div class="text-gray-400 text-xs mb-1 select-none">
+        <i class="far fa-star star-empty"></i>
+        <i class="far fa-star star-empty"></i>
+        <i class="far fa-star star-empty"></i>
+        <i class="far fa-star star-empty"></i>
+        <i class="far fa-star star-empty"></i>
+      </div>
+      <p class="text-gray-400 text-xs mb-4">0التقييمات</p>
+
+      <div class="space-y-3 mb-6">
+        <!-- Each rating row -->
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-gray-400 w-3">0</span>
+          <div class="flex-1 h-2 rounded-full bg-gray-200 overflow-hidden">
+            <div class="h-2 bg-gray-200 w-full"></div>
+          </div>
+          <div class="flex gap-0.5 text-orange-500 text-sm">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-gray-400 w-3">0</span>
+          <div class="flex-1 h-2 rounded-full bg-gray-200 overflow-hidden">
+            <div class="h-2 bg-gray-200 w-full"></div>
+          </div>
+          <div class="flex gap-0.5 text-orange-500 text-sm">
+            <i class="far fa-star star-empty"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-gray-400 w-3">0</span>
+          <div class="flex-1 h-2 rounded-full bg-gray-200 overflow-hidden">
+            <div class="h-2 bg-gray-200 w-full"></div>
+          </div>
+          <div class="flex gap-0.5 text-orange-500 text-sm">
+            <i class="far fa-star star-empty"></i>
+            <i class="far fa-star star-empty"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-gray-400 w-3">0</span>
+          <div class="flex-1 h-2 rounded-full bg-gray-200 overflow-hidden">
+            <div class="h-2 bg-gray-200 w-full"></div>
+          </div>
+          <div class="flex gap-0.5 text-orange-500 text-sm">
+            <i class="far fa-star star-empty"></i>
+            <i class="far fa-star star-empty"></i>
+            <i class="far fa-star star-empty"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-gray-400 w-3">0</span>
+          <div class="flex-1 h-2 rounded-full bg-gray-200 overflow-hidden">
+            <div class="h-2 bg-gray-200 w-full"></div>
+          </div>
+          <div class="flex gap-0.5 text-orange-500 text-sm">
+            <i class="far fa-star star-empty"></i>
+            <i class="far fa-star star-empty"></i>
+            <i class="far fa-star star-empty"></i>
+            <i class="far fa-star star-empty"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-xs text-gray-600 mb-2">
+        كن أول من يراجع "إليك فاير جلاس"
+      </p>
+      <p class="text-xs text-gray-400 mb-6 underline cursor-pointer max-w-[220px]">
+        يجب أن تكون مسجلا للدخول لنشر مراجعة.
+      </p>
+
+      <div class="text-xs text-gray-700 mb-1 font-semibold">آراء عملائنا</div>
+      <select
+        class="w-40 border border-gray-300 rounded px-2 py-1 text-xs mb-3"
+        aria-label="اختيار الترتيب"
+      >
+        <option>افتراضي</option>
+      </select>
+      <p class="text-xs text-gray-400">لا يوجد تقييمات حتى الآن</p>
+    </div>
+  </div>
+</body>
+</html>

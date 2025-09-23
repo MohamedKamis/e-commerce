@@ -70,6 +70,7 @@
         }
     }
       .sidebar {
+           
             transition: all 0.3s;
         }
         .dashboard-card:hover {

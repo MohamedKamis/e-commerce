@@ -33,52 +33,9 @@
         });
     });
 
-async function read_all_category(endpoint) {
-      try {
-          const response = await fetch(endpoint+"/all", {
-                  method:"get",
-                  headers:{
-                      'Content-Type':'application/json',
-                  }
-              });
-                  const data= await response.json();
-                  return data;
-      } catch (error) {
-          console.error('Error sending data:', error);
-      }
-  }
-  async function renderCategories() {
-    const categories = await read_all_category(api);
-    categories.forEach(category => {
-         document.getElementById('lest_category').innerHTML +=`
-                <a href="category?a=${category.id}">
-                <button class="flex items-center gap-1 px-3 py-1 rounded-md hover:bg-gray-200" data-slide="1" type="button">
-                  <i class="fas fa-bolt text-base text-gray-400">
-                  </i>
-                  ${category.name_categorie}
-                </button>
-                </a>
-            `
-          document.getElementById('shopping_categories').innerHTML +=`
-          <div class="flex-shrink-0 relative w-24 h-24 rounded-full border border-[#c9a52b] bg-[#c9a52b] shadow-[4px_4px_0_0_rgba(0,0,0,0.15)] flex items-center justify-center">
-             <a href="category?a=${category.id}"> <img alt="" class="w-20 h-20 rounded-full object-contain" height="80" src="${category.image_url}" width="80"/>
-                <span class="absolute bottom-3 right-1 text-white text-sm font-semibold select-none">
-                 ${category.name_categorie}
-                </span>
-               </a>
-          </div>
-          `
-          })
-          }
-   document.addEventListener('DOMContentLoaded', function () {
-     const closeButton = document.getElementById('close-btn');
-     const sidebar = document.getElementById('sidebar');
-     const overlay = document.getElementById('overlay');
-     closeButton.addEventListener('click', function () {
-       sidebar.style.display = 'none';
-       overlay.style.display = 'none';
-     });
-   });
+
+  
+ 
    const order_car=() => {
     const order = document.getElementById('order');
     if (order.style.display === 'none' || order.style.display === '') {
@@ -87,6 +44,99 @@ async function read_all_category(endpoint) {
         order.style.display = 'none';
     }
    }
-renderCategories()
+   async function rendome_prodect() {
+    const url = new URL(window.location.href);
+    const api = url.origin;
+    try {
+        const response = await fetch(api+"/getRandomProducts", {
+                method:"get",
+                headers:{
+                    'Content-Type':'application/json',
+                }
+            });
+            document.getElementById('rendome_prodect').innerHTML=''
+                const data= await response.json();
+                console.log(data);
+                for (const product of data) {
+                  const prices = JSON.parse(product.price)
+
+                  const firstPrice = ( Object.values(prices)[0]);
+                  console.log(firstPrice);
+                  
+                  const prices2 = JSON.stringify(firstPrice).split('-')[0].replace(/[^\d.,]/g, '').trim()
+            document.getElementById('rendome_prodect').innerHTML+=`
+             <div class="bg-white rounded-lg border border-gray-200 p-3 relative flex flex-col" style="min-width: 280px;max-height: 400px;">
+      <button aria-label="Add to favorites" class="absolute top-3 right-3 bg-white rounded-md p-2 text-gray-800 hover:text-red-600">
+       <i class="far fa-heart">
+       </i>
+      </button>
+
+      <div class="relative rounded-lg overflow-hidden">
+       <img alt="${product.description}" class="w-full h-auto object-cover rounded-lg" style="width:300px;"  loading="lazy" src="${product.image_url}" width="300"/>
+      </div>
+      <h3 class="mt-3 font-bold text-sm leading-tight text-gray-900">
+         ${product.name_product}
+      </h3>
+      <!-- Rating stars -->
+      <div class="mt-1 flex space-x-1 justify-start rtl:space-x-reverse text-yellow-400 text-lg">
+       <i class="far fa-star">
+       </i>
+       <i class="far fa-star">
+       </i>
+       <i class="far fa-star">
+       </i>
+       <i class="far fa-star">
+       </i>
+       <i class="far fa-star">
+       </i>
+      </div>
+      <!-- Price -->
+      <p class="mt-2 font-semibold text-base text-gray-900">
+       EGP ${prices2}
+       <span class="text-gray-500 mx-1">
+       </span>
+      <span class="text-gray-500">
+       <i class="fas fa-tag">
+       </i>
+          <span class="text-lg text-red-600 font-semibold line-through" >
+          ${Math.floor(Number(prices2) + Number(20/100*prices2))} EGP
+          </span>
+        </span>
+      </p>
+      <!-- Button -->
+
+       </i>
+      </button>
+            <button class="mt-3 bg-yellow-300 hover:bg-yellow-500 text-gray-900 font-semibold rounded-md py-2 flex items-center justify-center gap-2" type="button" >
+      <a href="${api}/item-profile?product=${product.products_code}" class="text-blue-500 hover:underline">  عرض التفاصيل  </a>
+       <i class="fas fa-info-circle">
+       </i>
+      </button>
+     </div>
+     `
+                }
+    } catch (error) {
+        console.error('Error sending data:', error);
+    }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const shopIcon = document.getElementById('shoping_icone');
+    function toggleIconOnScroll() {
+      if (window.scrollY > 50) {
+        shopIcon.classList.remove('hidden');
+      } else {
+        shopIcon.classList.add('hidden');
+      }
+    }
+    window.addEventListener('scroll', toggleIconOnScroll);
+    // Initial check in case page is already scrolled
+    toggleIconOnScroll();
+    // Optional: click handler
+    shopIcon.addEventListener('click', () => {
+      // For example, scroll to top or open cart
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+rendome_prodect()
 
   

@@ -59,5 +59,66 @@ app.get('/all_sections', (req, res) => {
       res.json(rows);
   });
 });
+
+// app.post('/search_product_price_category', (req, res) => {
+
+//   const {from,to,section} = req.body;
+//     let sql = `
+//     SELECT *
+//     FROM products
+//     WHERE  products.price[0] BETWEEN ? AND ?
+//     ORDER BY RANDOM() LIMIT 16
+//   `;      
+//   // const likeTerm = `%${searchTerm}%`;
+//   console.log('Search term:', Number(from),Number(to));
+//   db.all(sql, [Number(from),Number(to)], (err, rows) => {
+
+//     if (err) {
+//               console.log('Database error:', err);
+//               return  res.json(rows);
+//     }
+//     // console.log('Search results:', rows);
+//     res.json(rows);
+//   });
+// });
+app.post('/search_product_price_category', (req, res) => {
+  const { from, to, section } = req.body;
+  const fromNum = Number(from);
+  const toNum = Number(to);
+
+  let sql = `
+    SELECT *
+    FROM products
+    ORDER BY RANDOM()
+    LIMIT 100
+  `;
+
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      console.log('Database error:', err);
+      return res.json([]);
+    }
+
+    // Filter rows in JS based on first number in price JSON
+    const filteredRows = rows.filter(row => {
+      try {
+        const priceObj = JSON.parse(row.price); // parse JSON string
+        const firstKey = Object.keys(priceObj)[0];
+        const priceStr = priceObj[firstKey]; // e.g. "556-987-988"
+        const firstNumberStr = priceStr.split('-')[0]; // "556"
+        const firstNumber = parseInt(firstNumberStr, 10);
+
+        return firstNumber >= fromNum && firstNumber <= toNum;
+      } catch (e) {
+        // If parsing fails, exclude this row
+        return false;
+      }
+    }).slice(0, 16); // limit to 16 results after filtering
+
+    res.json(filteredRows);
+  });
+});
+
+
 }
 export default categories;

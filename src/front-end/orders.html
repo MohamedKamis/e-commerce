@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce Order Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./css/tailwindcss.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+      
         :root {
             --primary-color: #4f46e5;
             --secondary-color: #10b981;
@@ -19,7 +20,7 @@
             background-color: #f9fafb;
         }
         
-        .sidebar {
+        .sidebar_orders_orders_orders {
             transition: all 0.3s ease;
         }
         
@@ -54,21 +55,21 @@
         }
         
         @media (max-width: 768px) {
-            .sidebar {
+            .sidebar_orders_orders_orders {
                 transform: translateX(-100%);
                 position: fixed;
                 z-index: 50;
             }
             
-            .sidebar.active {
+            .sidebar_orders_orders_orders.active {
                 transform: translateX(0);
             }
         }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden">
-    <!-- Sidebar -->
-    <div class="sidebar w-64 bg-white shadow-lg flex-shrink-0">
+  <!-- Main black header with logo r -->
+    <div class="sidebar_orders_orders_orders w-64 bg-white shadow-lg flex-shrink-0">
         <div class="p-4 border-b">
             <div class="flex items-center space-x-3">
                 <img src="https://placehold.co/40x40" alt="Company logo - Modern e-commerce brand mark" class="rounded-full">
@@ -446,7 +447,6 @@
                                     <select id="order-status" class="ml-2 px-2 py-1 rounded">
                                         <option value="pending">Pending</option>
                                         <option value="processing">Processing</option>
-                                        <option value="shipped">Shipped</option>
                                         <option value="delivered">Delivered</option>
                                         <option value="cancelled">Cancelled</option>
                                     </select>
@@ -551,11 +551,13 @@
     <script>
         // Mobile menu toggle
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
+            document.querySelector('.sidebar_orders_orders').classList.toggle('active');
         });
 
         // Edit order modal
         document.querySelectorAll('.edit-order').forEach(button => {
+            console.log(button);
+            
             button.addEventListener('click', function() {
                 const orderId = this.getAttribute('data-order-id');
                 document.getElementById('modal-order-id').textContent = '#EC-' + orderId;

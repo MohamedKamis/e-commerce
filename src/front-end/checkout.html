@@ -3,7 +3,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <title>
-   Invoice and Order with Quantity Update
+    بيت جبر - Bait gabr
   </title>
   <script src="https://cdn.tailwindcss.com">
   </script>
@@ -81,9 +81,132 @@
             50% { width: 85%; }
             100% { width: 65%; }
         }
+        .order-status {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    width: 35%;
+    min-width: 300px;
+    max-width: 90vw; /* prevent overflow on small screens */
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    z-index: 9999;
+    text-align: center;
+  }
+  /* Responsive adjustments for small screens */
+  @media (max-width: 640px) {
+    .order-status {
+      width: 90vw;
+      min-width: auto;
+      padding: 1rem;
+    }
+  }
+  /* Optional styling for inner elements */
+  .order-status .status-icon {
+    font-size: 3rem;
+    color: green;
+    margin-bottom: 0.5rem;
+  }
+  .order-status .status-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .order-status .status-message {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .order-status .order-number {
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .order-status .progress-bar {
+    background: #eee;
+    border-radius: 8px;
+    height: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .order-status .progress {
+    background: #fbbf24; /* yellow-400 */
+    height: 100%;
+    width: 50%; /* example progress */
+    transition: width 0.3s ease;
+  }
   </style>
  </head>
  <body class="bg-[#f9fafb] font-sans text-[14px] text-[#1a1a1a]">
+    <header class="bg-black text-white">
+   <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 py-2 text-xs sm:text-sm">
+    <div class="flex items-center space-x-2 space-x-reverse">
+     <div class="flex items-center justify-center w-5 h-5 rounded-full bg-white text-black text-[10px] font-semibold">
+      0
+     </div>
+     <span>
+      0,00 EGP
+     </span>
+    </div>
+    <nav class="flex items-center space-x-4 space-x-reverse text-white text-sm">
+     <button aria-label="Cart" class="hover:text-yellow-400" onclick="show_sidebar(); show_cart_footer();">
+      <i class="fas fa-shopping-cart">
+      </i>
+     </button>
+     <button aria-label="Favorites" class="hover:text-yellow-400">
+      <i class="far fa-heart">
+      </i>
+     </button>
+     <button aria-label="Notifications" class="hover:text-yellow-400">
+      <i class="far fa-bell">
+      </i>
+     </button>
+     <a class="hover:text-yellow-400" href="/login">
+      دخول / تسجيل
+     </a>
+     <button aria-label="User" class="hover:text-yellow-400">
+      <i class="far fa-user">
+      </i>
+     </button>
+    </nav>
+   </div>
+  </header>
+    <div class="bg-black">
+   <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 py-3">
+    <a class="flex items-center space-x-2 space-x-reverse" href="#">
+     <img alt="Bait gabr  logo icon, golden hexagonal shape with electric bolt inside" class="w-15 h-15" height="80" src="./imgs/logo-white.jpg" style="border-radius:50pc;" width="80"/>
+     <span class="text-yellow-400 font-extrabold text-2xl select-none" style="font-family: 'Almarai', sans-serif">
+      Bait 
+      <span class="text-white">
+       gabr
+      </span>
+     </span>
+    </a>
+    <form class="flex-1 max-w-[600px] mx-auto">
+     <label class="sr-only" for="search">
+      البحث عن المنتجات
+     </label>
+     <div class="relative">
+         <input class="w-full rounded-full py-2 pr-4 pl-12 text-black text-sm focus:outline-none" id="search-product" placeholder="البحث عن المنتجات" type="search"/>
+      <button aria-label="Search" class="absolute left-3 top-1/2 -translate-y-1/2 text-black" onclick="search_product();" type="button">
+       <i class="fas fa-search">
+       </i>
+      </button>
+     </div>
+    </form>
+   </div>
+  </div>
+  <!-- Navigation bar below -->
+  <nav id="lest_category" class="max-w-[1200px] mx-auto px-4 py-2 bg-[#f9f8f1] flex flex-wrap gap-2 text-xs sm:text-sm font-semibold text-black select-none">
+   <button aria-current="true" class="flex items-center gap-1 px-3 py-1 rounded-md bg-yellow-100 text-yellow-500" data-slide="0" type="button">
+       <a href="/">
+    <i class="fas fa-home text-base">
+    </i>
+    الرئيسية
+</a></button>
+  </nav>
   <div class="max-w-[1200px] mx-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
    <!-- Right side: Invoice data -->
    <section class="bg-white rounded-lg p-4 shadow-sm">
@@ -106,6 +229,15 @@
       <p class="mb-3 text-[14px]">
        مصر
       </p>
+     </div>
+         <div>
+      <label class="block mb-1 font-semibold" for="user name">
+       اسم العميل
+       <span class="text-red-600">
+        *
+       </span>
+      </label>
+      <input class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#f59e0b]" id="user_name" placeholder="من فضلك ادخل اسم المستلم " type="text"/>
      </div>
      <div>
       <label class="block mb-1 font-semibold" for="streetAddress">
@@ -156,7 +288,7 @@
     </form>
    </section>
    <!-- Left side: Order -->
-   <section class="bg-white rounded-lg p-4 shadow-sm">
+   <section class="bg-white rounded-lg p-4 shadow-sm"  >
     <header class="flex justify-between items-center bg-[#f3f4f6] rounded-md px-4 py-2 mb-6">
      <h2 class="font-semibold text-[16px]">
       طلبك
@@ -165,7 +297,7 @@
       2
      </div>
     </header>
-    <div class="space-y-6" id="orderSection">
+    <div class="space-y-6" id="orderSection" style="overflow: auto; max-height: 800px;">
      <!-- Product 1 -->
       <div data-price="514.10" class="cart-footer" id="cart-footer">
  <div data-price="2700" class="product-item">
@@ -214,6 +346,7 @@
       <span class="text-[#b59e00] font-bold" id="subtotal">
        
       </span>
+      
      </div>
      <!-- Shipping -->
      <div class="mb-3">
@@ -236,34 +369,51 @@
        المجموع
       </span>
       <span class="text-[#b59e00] font-bold" id="finalTotal">
-       2.985,80 EGP
+       0 EGP
       </span>
      </div>
+          <label class="block mb-1 font-semibold" for="region">
+       طريقة الدفع
+       <span class="text-red-600">
+        *
+       </span>
+      </label>
+      <select class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#f59e0b]" id="payment_method" name="payment_method" required >
+       <option value="wallet">
+        محفظه
+       </option>
+        <option value="instapay">
+        انستاباي 
+       </option>
+      </select>
      <!-- Note -->
      <div class="bg-[#fef3e7] text-[#b59e00] text-[12px] rounded-md p-2 text-center">
-      من المتوقع أن يغادر طلبك مستودعنا خلال 1-7 أيام
+      من المتوقع أن يغادر طلبك مستودعنا خلال 1-10 أيام
      </div>
     </div>
     
-      <div class="order-status" style="position:absolute; top: 30%;left: 30%; display: none;" id="order_processed">
-        <div class="status-icon">✓</div>
-        <div class="status-title">Order Received</div>
-        <div class="status-message">
-            Your order is being processed and will be ready shortly.
-        </div>
-        <div class="order-number">
-            Order Number: #<p id="order_code" style="display: inline-block;">1111111</p> 
-        </div>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-        <p>Estimated completion: 2-5 minutes</p>
-    </div>
+      <div class="order-status" id="order_processed">
+  <div class="status-icon">✓</div>
+  <div class="status-title">Order Received</div>
+  <div class="status-message">
+    جاري معاجلة الطلب سيتم التواصل معك قريباً.
+  </div>
+  <div class="order-number">
+    Order Number: #<p id="order_code" style="display: inline-block;">1111111</p> 
+  </div>
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+  <p>Estimated completion: 1-7 days</p>
+</div
    </section>
+   <div> <img   id="Loading-icone" src="./imgs/login.jpg" style="position: fixed;top: 50%;left: 50%; display: none;width: 100px; border-radius: 20px;" alt=""></div>
+
    <button type="button" class="w-full bg-[#f5b300] text-white text-[13px] py-2 rounded" name="woocommerce_checkout_place_order" id="place_order" value="إتمام الطلب" data-value="إتمام الطلب">إتمام الطلب</button>
    
   </div>
-  
   <script src="../js/checkout.js"></script>
+  <script src="./js/search.js"></script>
+  
  </body>
 </html>

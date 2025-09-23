@@ -1,0 +1,89 @@
+<html dir="ltr" lang="ar">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Shopping Cart Sidebar
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   /* Scrollbar hidden for the sidebar */
+    #sidebar::-webkit-scrollbar {
+      display: none;
+    }
+    #sidebar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+  <script>
+   document.addEventListener('DOMContentLoaded', function () {
+     const closeButton = document.getElementById('close-btn');
+     const sidebar = document.getElementById('sidebar');
+     const overlay = document.getElementById('overlay');
+     closeButton.addEventListener('click', function () {
+       sidebar.style.display = 'none';
+       overlay.style.display = 'none';
+     });
+   });
+  </script>
+ </head>
+ <body class="bg-black/10 overflow-hidden relative">
+  <!-- Overlay -->
+  <div class="fixed inset-0 bg-black/10 z-40" id="overlay">
+  </div>
+  <!-- Sidebar -->
+  <aside class="fixed top-0 left-0 h-full w-72 bg-white/70 backdrop-blur z-50 flex flex-col" id="sidebar">
+   <!-- Header -->
+   <header class="flex items-center justify-between p-4 border-b border-gray-200 bg-transparent">
+    <h2 class="text-base font-semibold">
+     عربة التسوق
+    </h2>
+    <button aria-label="إغلاق" class="text-sm font-normal text-gray-700 flex items-center gap-1" id="close-btn" type="button">
+     إغلاق
+     <i class="fas fa-times">
+     </i>
+    </button>
+   </header>
+   <!-- Cart Items -->
+   <div class="flex-1 overflow-y-auto p-4 space-y-4">
+    <div class="flex gap-3">
+     <img alt="صورة منتج كشاف ليد 24 وات سقف مشرم 3 نكات سراج" class="w-14 h-14 rounded-md object-cover" height="60" src="https://storage.googleapis.com/a1aa/image/272a24ee-1a1f-4b58-1f9a-b24e14dc14c9.jpg" width="60"/>
+     <div class="flex flex-col text-xs text-gray-800">
+      <p class="font-semibold leading-tight">
+       كشاف ليد 24 وات سقف مشرم 3 نكات سراج
+      </p>
+      <p class="text-[9px] text-gray-500 mt-0.5">
+       النوع: Sirage
+      </p>
+      <p class="text-[10px] text-yellow-600 mt-1 font-semibold">
+       395,00 EGP
+      </p>
+     </div>
+     <button aria-label="حذف المنتج" class="text-gray-500 text-xs self-start" title="حذف المنتج">
+      ×
+     </button>
+    </div>
+   </div>
+   <!-- Footer -->
+   <footer class="p-4 border-t border-gray-200">
+    <div class="flex justify-between items-center mb-3 text-xs font-semibold text-yellow-600">
+     <span>
+      المجموع الكلي:
+     </span>
+     <span>
+      395,00 EGP
+     </span>
+    </div>
+    <button class="w-full mb-2 py-2 bg-yellow-500 text-black text-xs font-semibold rounded" type="button">
+     شاهد محتوى العربة
+    </button>
+    <button class="w-full py-2 bg-yellow-500 text-black text-xs font-semibold rounded" type="button">
+     اتمام الطلب
+    </button>
+   </footer>
+  </aside>
+ </body>
+</html>

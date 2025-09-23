@@ -1,4 +1,6 @@
 # e-commerce
+اكمال باقي طريقت الدفع
+https://www.blackbox.ai/chat/QYcduSC
 git commit -m "2"
 git status
 git add . 
