@@ -1,0 +1,535 @@
+<html dir="rtl" lang="ar">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+بيت جبر - Bait gabr
+  </title>
+  <script src="./css/tailwindcss.js">
+  </script>
+  <link href="css/min.css" rel="stylesheet"/>
+  <link href="./css/tailwindcss2.css" rel="stylesheet"/>
+  <style>
+        #sidebar::-webkit-scrollbar {
+      display: none;
+    }
+    #sidebar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+   body {
+      font-family: 'Almarai', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-[#f9f8f1]">
+  <!-- Top black bar -->
+  <header class="bg-black text-white">
+   <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 py-2 text-xs sm:text-sm">
+    <div class="flex items-center space-x-2 space-x-reverse">
+     <div class="flex items-center justify-center w-5 h-5 rounded-full bg-white text-black text-[10px] font-semibold">
+      0
+     </div>
+     <span>
+      0,00 EGP
+     </span>
+    </div>
+    <nav class="flex items-center space-x-4 space-x-reverse text-white text-sm">
+     <button aria-label="Cart" class="hover:text-yellow-400" onclick="show_sidebar(); show_cart_footer();">
+      <i class="fas fa-shopping-cart">
+      </i>
+     </button>
+     <button aria-label="Favorites" class="hover:text-yellow-400">
+      <i class="far fa-heart">
+      </i>
+     </button>
+     <button aria-label="Notifications" class="hover:text-yellow-400">
+      <i class="far fa-bell">
+      </i>
+     </button>
+     <a class="hover:text-yellow-400" href="/login">
+      دخول / تسجيل
+     </a>
+     <button aria-label="User" class="hover:text-yellow-400">
+      <i class="far fa-user">
+      </i>
+     </button>
+    </nav>
+   </div>
+  </header>
+  <!-- Main black header with logo and search -->
+  <div class="bg-black">
+   <div class="max-w-[1200px] mx-auto flex items-center justify-between px-4 py-3">
+    <a class="flex items-center space-x-2 space-x-reverse" href="#">
+     <img alt="Elecadi logo icon, golden hexagonal shape with electric bolt inside" class="w-15 h-15" height="80" src="./imgs/logo-white.jpg" style="border-radius:50px;" width="80"/>
+     <span class="text-brone-400 font-extrabold text-2xl select-none" style="font-family: 'Almarai', sans-serif;color: rgb(155, 78, 23);">
+      Bait 
+      <span class="text-white">
+       gabr
+      </span>
+     </span>
+    </a>
+    <form class="flex-1 max-w-[600px] mx-auto">
+     <label class="sr-only" for="search">
+      البحث عن المنتجات
+     </label>
+     <div class="relative">
+      <input class="w-full rounded-full py-2 pr-4 pl-12 text-black text-sm focus:outline-none" id="search-product" placeholder="البحث عن المنتجات" type="search"/>
+      <button aria-label="Search" class="absolute left-3 top-1/2 -translate-y-1/2 text-black" onclick="search_product();" type="button">
+       <i class="fas fa-search">
+       </i>
+      </button>
+     </div>
+    </form>
+   </div>
+  </div>
+  <!-- Navigation bar below -->
+  <nav id="lest_category" class="max-w-[1200px] mx-auto px-4 py-2 bg-[#f9f8f1] flex flex-wrap gap-2 text-xs sm:text-sm font-semibold text-black select-none">
+   <button aria-current="true" class="flex items-center gap-1 px-3 py-1 rounded-md bg-yellow-100 text-yellow-500" data-slide="0" type="button">
+    <i class="fas fa-home text-base">
+    </i>
+    الرئيسية
+   </button>
+  </nav>
+  <!-- Hero section -->
+<section class="max-w-[1200px] max-h-[800px] mx-auto mt-6 px-4 relative rounded-xl overflow-hidden">
+   <div class="relative w-full max-w-[1200px] mx-auto rounded-xl overflow-hidden shadow-2xl slider-container h-[40vh] sm:h-[50vh] md:h-[60vh] lg:aspect-video min-h-[100px]" style="max-height: 800px;">
+        
+        <!-- Slide 1 - Electrical Products -->
+        <div class="slide active">
+            <div style="background-image: url(./imgs/photo2.jpg);" alt="مجموعة متنوعة من المنتجات الكهربائية المنزلية الحديثة ذات تصميم أنيق وألوان متناسقة" class="w-full h-full object-cover" loading="lazy" >
+                
+            </div>
+            <!-- <img src="./imgs/photo1.jpg" /> -->
+            <div class="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-center px-4 sm:px-8 md:px-16 text-white">
+                <div class="slide-content"> 
+                   <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl" style="color: rgb(255, 255, 255); font-weight: bold;">
+                       بيت جبر بيعمل معجزات
+
+                    </h1>
+                    <!-- <p class="text-gray-200 text-lg sm:text-lg max-w-2xl mt-6 leading-relaxed" style="color: rgb(0, 0, 0); font-weight: bold;">
+                          بيت جبر بيعمل معجزات
+                    </p>  -->
+                    <!-- <button class="mt-8 bg-yellow-400 text-black rounded-xl px-8 py-4 w-56 flex items-center justify-center gap-3 font-semibold hover:bg-yellow-500 transition-all transform hover:scale-105 shadow-lg">
+                        تسوق الآن
+                        <i class="fas fa-shopping-cart"></i>
+                    </button> -->
+                 </div> 
+            </div>
+        </div>
+        <!-- Slide 2 - Smart Home -->
+        <div class="slide">
+            <img src="./imgs/photo2.jpg"  alt="منزل ذكي مزود بأنظمة أتمتة منزلية متطورة وشاشات تحكم ذكية وأجهزة إنترنت الأشياء" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-center px-4 sm:px-8 md:px-16 text-white">
+                <!-- <div class="slide-content"> -->
+                    <!-- <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl">
+                        حلول
+                        <span class="text-blue-400">المنزل الذكي</span>
+                        المتكاملة
+                    </h1>
+                    <p class="text-gray-200 text-sm sm:text-lg max-w-2xl mt-6 leading-relaxed">
+                        حوّل منزلك إلى منزل ذكي مع أحدث أنظمة الأتمتة والأجهزة الذكية.
+                        تحكم في إضاءة منزلك، أجهزة التكييف، وأنظمة الأمان من خلال هاتفك الذكي
+                    </p>
+                    <button class="mt-8 bg-blue-400 text-white rounded-xl px-8 py-4 w-56 flex items-center justify-center gap-3 font-semibold hover:bg-blue-500 transition-all transform hover:scale-105 shadow-lg">
+                        اكتشف الحلول
+                        <i class="fas fa-lightbulb"></i>
+                    </button> -->
+                <!-- </div> -->
+            </div>
+          </div>
+          <!-- Move the shopping icon outside the slider for better positioning (it was misplaced between slides) -->
+          <div id="shoping_icone" onclick="show_sidebar(); show_cart_footer();" class="fixed bottom-6 right-6 bg-yellow-400 text-black p-4 rounded-full shadow-lg cursor-pointer hidden z-50" title="تسوق الآن">
+            <i class="fas fa-shopping-cart fa-lg"></i>
+          </div>
+     <div class="slide">
+            <img src="./imgs/photo3.jpg" alt="لمبات LED موفرة للطاقة وأنظمة شمسية صديقة للبيئة في مساحة معيشة عصرية" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-center px-4 sm:px-8 md:px-16 text-white">
+                <!-- <div class="slide-content"> -->
+                    <!-- <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl">
+                        منتجات
+                        <span class="text-green-400">موفرة للطاقة</span>
+                        وصديقة للبيئة
+                    </h1>
+                    <p class="text-gray-200 text-sm sm:text-lg max-w-2xl mt-6 leading-relaxed">
+                        وفر في فواتير الكهرباء مع منتجاتنا الموفرة للطاقة. لمبات LED،
+                        أجهزة تكييف موفرة، وأنظمة الطاقة الشمسية التي تساعدك على توفير المال
+                        وحماية البيئة
+                    </p>
+                    <button class="mt-8 bg-green-400 text-white rounded-xl px-8 py-4 w-56 flex items-center justify-center gap-3 font-semibold hover:bg-green-500 transition-all transform hover:scale-105 shadow-lg">
+                        ابدأ التوفير
+                        <i class="fas fa-leaf"></i>
+                    </button> -->
+                <!-- </div> -->
+            </div>
+        </div>
+         <div class="slide">
+            <img src="./imgs/photo4.jpg" alt="مجموعة أدوات كهربائية احترافية لمهنيين في ورشة عمل منظمة ومجهزة" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-center px-4 sm:px-8 md:px-16 text-white">
+                <!-- <div class="slide-content"> -->
+                    <!-- <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl">
+                        أدوات
+                        <span class="text-red-400">كهربائية احترافية</span>
+                        للمهنيين
+                    </h1>
+                    <p class="text-gray-200 text-sm sm:text-lg max-w-2xl mt-6 leading-relaxed">
+                        اكتشف مجموعتنا الشاملة من الأدوات الكهربائية الاحترافية المصممة
+                        للفنيين والمهندسين. جودة عالية، أداء ممتاز، وضمان طويل الأمد
+                    </p>
+                    <button class="mt-8 bg-red-400 text-white rounded-xl px-8 py-4 w-56 flex items-center justify-center gap-3 font-semibold hover:bg-red-500 transition-all transform hover:scale-105 shadow-lg">
+                        تصفح الأدوات
+                        <i class="fas fa-tools"></i>
+                    </button> -->
+                <!-- </div> -->
+            </div>
+        </div>
+        <!-- Navigation Arrows -->
+        <button class="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 text-white p-2 sm:p-3 rounded-full nav-btn transition-all duration-300 hover:bg-opacity-30" id="prev-btn">
+            <i class="fas fa-chevron-right text-lg sm:text-xl"></i>
+        </button>
+        <button class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 text-white p-2 sm:p-3 rounded-full nav-btn transition-all duration-300 hover:bg-opacity-30" id="next-btn">
+            <i class="fas fa-chevron-left text-lg sm:text-xl"></i>
+        </button>
+        <!-- Indicators -->
+        <div class="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 space-x-reverse">
+            <button class="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white bg-opacity-50 rounded-full indicator active" data-slide="0"></button>
+            <button class="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white bg-opacity-50 rounded-full indicator" data-slide="1"></button>
+            <button class="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white bg-opacity-50 rounded-full indicator" data-slide="2"></button>
+            <button class="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white bg-opacity-50 rounded-full indicator" data-slide="3"></button>
+        </div>
+        <!-- Play/Pause Button -->
+        <button class="absolute top-2 sm:top-4 right-2 sm:right-4 bg-white bg-opacity-20 text-white p-1.5 sm:p-2 rounded-full nav-btn" id="play-pause-btn">
+            <i class="fas fa-pause text-xs sm:text-sm"></i>
+        </button>
+    </div>
+   <!-- Dots navigation -->
+   <!-- <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 space-x-reverse" id="dots">
+    <span class="w-4 h-4 rounded-full bg-white opacity-90 border border-gray-300">
+    </span>
+    <span class="w-4 h-4 rounded-full bg-white opacity-50 border border-gray-300">
+    </span>
+    <span class="w-4 h-4 rounded-full bg-white opacity-50 border border-gray-300">
+    </span>
+    <span class="w-4 h-4 rounded-full bg-white opacity-50 border border-gray-300">
+    </span>
+   </div> -->
+  </section>
+
+
+
+   <div class="max-w-[1200px] mx-auto px-4 py-6" id="main-section">
+   <!-- Header with arrows and title -->
+   <div class="flex justify-between items-center mb-6">
+    <div class="flex space-x-2 space-x-reverse">
+     <button aria-label="السابق" class="w-8 h-8 rounded border border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition" id="right-button">
+      <i class="fas fa-chevron-left">
+      </i>
+     </button>
+     <button aria-label="التالي" class="w-8 h-8 rounded border border-[#d9d9d9] flex items-center justify-center text-[#d9d9d9] hover:bg-[#1a1a1a] hover:text-white transition"  id="left-button">
+      <i class="fas fa-chevron-right">
+      </i>
+     </button>
+    </div>
+    <h2 class="text-lg font-normal">
+     تسوق حسب الأقسام
+    </h2>
+   </div>
+   <!-- Categories carousel -->
+   <div class="flex space-x-6 space-x-reverse overflow-x-auto scrollbar-hide mb-8" id="shopping_categories">
+    
+   </div>
+   <!-- Categories navigation -->
+   <nav class="flex space-x-6 space-x-reverse text-xs font-normal text-[#7a7a7a] mb-6 overflow-x-auto scrollbar-hide">
+    <a class="whitespace-nowrap border-b-2 border-[#c9a52b] text-[#1a1a1a] font-semibold" href="#">
+     الكل
+    </a>
+   </nav>
+   <!-- Most sold title -->
+   <h3 class="text-xl font-semibold mb-4">
+    الأكثر مبيعاً
+   </h3>
+   <!-- Products grid -->
+   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="rendome_prodect">
+
+   </div>
+  </div>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Almarai&display=swap');
+    body {
+      font-family: 'Almarai', sans-serif;
+    }
+  </style>
+  <footer class="pt-10 pb-6 px-6 md:px-20 bg-[#030201] text-white">
+   <div class="max-w-[1200px] mx-auto">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-8 gap-x-6 text-xs leading-6">
+     <div>
+      <h3 class="font-semibold mb-3">
+       الاضاءة
+      </h3>
+      <ul class="space-y-2">
+       <li>
+        لمبات
+       </li>
+       <li>
+        اضاءة سقف و سبوتات
+       </li>
+       <li>
+        نجف
+       </li>
+       <li>
+        مصابيح طوارئ
+       </li>
+       <li>
+        اضاءة حائط
+       </li>
+       <li>
+        اكسسوارات الاضاءة
+       </li>
+       <li>
+        اضاءة خارجية
+       </li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="font-semibold mb-3">
+       الحمام والمطبخ
+      </h3>
+      <ul class="space-y-2">
+       <li>
+        اكسسوارات الحمام
+       </li>
+       <li>
+        البانيوهات
+       </li>
+       <li>
+        خلطات
+       </li>
+       <li>
+        الدش
+       </li>
+       <li>
+        احواض
+       </li>
+       <li>
+        مرحاض
+       </li>
+      </ul>
+     </div>
+    </div>
+    <hr class="border-t border-[#3a2f1f] my-8"/>
+    <div class="flex flex-wrap justify-between items-center gap-4 max-w-[1200px] mx-auto">
+     <div class="flex flex-wrap gap-4">
+      <a class="w-12 h-12 flex justify-center items-center border border-gray-600 rounded-md text-white text-xl hover:text-yellow-500 hover:border-yellow-500 transition" href="https://www.instagram.com/baitgabr">
+       <i class="fab fa-instagram">
+       </i>
+      </a>
+      <a class="w-12 h-12 flex justify-center items-center border border-gray-600 rounded-md text-white text-xl hover:text-yellow-500 hover:border-yellow-500 transition" href="https://www.facebook.com/share/14RPuDqnZWB/">
+       <i class="fab fa-facebook-f">
+       </i>
+      </a>
+      <a class="w-12 h-12 flex justify-center items-center border border-gray-600 rounded-md text-white text-xl hover:text-yellow-500 hover:border-yellow-500 transition" href="https://wa.me/01228642140">
+       <i class="fab fa-whatsapp">
+       </i>
+      </a>
+      <a class="flex items-center border border-gray-600 rounded-md px-4 text-xs text-white gap-2 hover:text-yellow-500 hover:border-yellow-500 transition" href="tel:01228642140">
+       <i class="fas fa-mobile-alt">
+       </i>
+        01228642140
+      </a>
+      <a class="flex items-center border border-gray-600 rounded-md px-4 text-xs text-white gap-2 hover:text-yellow-500 hover:border-yellow-500 transition" href="mailto:gabrgroup1@gmail.com">
+       <i class="far fa-envelope">
+       </i>
+       gabrgroup1@gmail.com
+      </a>
+     </div>
+    </div>
+    <hr class="border-t border-[#3a2f1f] my-6"/>
+    <!-- <div class="flex flex-wrap justify-start gap-4 text-[10px] text-gray-400 max-w-[1200px] mx-auto">
+     <a class="hover:text-yellow-500 transition" href="#">
+      من نحن
+     </a>
+     <a class="hover:text-yellow-500 transition" href="#">
+      اتصل بنا
+     </a>
+     <a class="hover:text-yellow-500 transition" href="#">
+      سياسة الخصوصية
+     </a>
+     <a class="hover:text-yellow-500 transition" href="#">
+      سياسة الإرجاع والاسترداد
+     </a>
+    </div> -->
+    <p class="text-[10px] text-gray-400 mt-4 max-w-[1200px] mx-auto">
+     © جميع الحقوق محفوظة للإكترادي 2025.
+    </p>
+   </div>
+ <aside class="fixed top-0 left-0 h-full w-72 bg-white/70 backdrop-blur z-50 flex flex-col" id="sidebar" style="display: none;">
+   <!-- Header -->
+   <header class="flex items-center justify-between p-4 border-b border-gray-200 bg-transparent">
+    <h2 class="text-base font-semibold">
+     عربة التسوق
+    </h2>
+    <button aria-label="إغلاق" class="text-sm font-normal text-gray-700 flex items-center gap-1" id="close-btn" type="button">
+     إغلاق
+     <i class="fas fa-times">
+     </i>
+    </button>
+   </header>
+   <!-- Cart Items -->
+   <div class="flex flex-col gap-4 p-4" id="cart-items" style="height: calc(100% - 110px);">
+   <div class=""  id="order-detils" style="max-height: 80%;overflow: auto;">
+
+   </div>
+   <!-- Footer -->
+   <footer class="p-4 border-t border-gray-200">
+    <div class="flex justify-between items-center mb-3 text-xs font-semibold text-yellow-600">
+     <span>
+      المجموع الكلي:
+     </span>
+     <span id="total-price">
+     0
+     </span>
+     
+    </div>
+    <!-- <button class="w-full mb-2 py-2 bg-yellow-500 text-black text-xs font-semibold rounded" type="button">
+     شاهد محتوى العربة
+    </button> -->
+    <a href="/checkout">
+    <button class="w-full py-2 bg-yellow-500 text-black text-xs font-semibold rounded" type="button">
+     اتمام الطلب
+    </button>
+    </a>
+   </footer>
+  </aside>
+   <script src="./js/script.js"></script>
+   <script src="./js/search.js"></script>
+   <script src="./js/sidebar.js"></script>
+     <script>
+       document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            
+            let currentSlide = 0;
+            let isPlaying = true;
+            let slideInterval;
+            // Initialize slider
+            function initSlider() {
+                updateSlide();
+                startSlideShow();
+            }
+            // Update slide display
+            function updateSlide() {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active');
+                    indicators[index].classList.remove('active');
+                });
+                
+                slides[currentSlide].classList.add('active');
+                indicators[currentSlide].classList.add('active');
+            }
+            // Next slide
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlide();
+            }
+            // Previous slide
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateSlide();
+            }
+            // Start slideshow
+            function startSlideShow() {
+                slideInterval = setInterval(nextSlide, 5000);
+                isPlaying = true;
+                playPauseBtn.innerHTML = '<i class="fas fa-pause text-sm"></i>';
+            }
+            // Stop slideshow
+            function stopSlideShow() {
+                clearInterval(slideInterval);
+                isPlaying = false;
+                playPauseBtn.innerHTML = '<i class="fas fa-play text-sm"></i>';
+            }
+            // Event listeners
+            nextBtn.addEventListener('click', function() {
+                nextSlide();
+                if (isPlaying) {
+                    stopSlideShow();
+                    startSlideShow();
+                }
+            });
+            prevBtn.addEventListener('click', function() {
+                prevSlide();
+                if (isPlaying) {
+                    stopSlideShow();
+                    startSlideShow();
+                }
+            });
+            playPauseBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    stopSlideShow();
+                } else {
+                    startSlideShow();
+                }
+            });
+            // Indicator click
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    currentSlide = index;
+                    updateSlide();
+                    if (isPlaying) {
+                        stopSlideShow();
+                        startSlideShow();
+                    }
+                });
+            });
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (e.key === ' ') {
+                    if (isPlaying) {
+                        stopSlideShow();
+                    } else {
+                        startSlideShow();
+                    }
+                }
+            });
+     // Touch swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            const slider = document.querySelector('.slider-container');
+            
+            slider.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            slider.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    nextSlide();
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    prevSlide();
+                }
+                
+                if (isPlaying) {
+                    stopSlideShow();
+                    startSlideShow();
+                }
+            }
+            // Initialize the slider
+            initSlider();
+        });
+   </script>
+  </footer>
+ </body>
+</html>

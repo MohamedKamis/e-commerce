@@ -1,0 +1,36 @@
+       .arabic-text {
+            font-family: 'Almarai', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #daa520 100%);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+        }
+        
+        .category-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover {
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+            color: #1a202c;
+            transform: scale(1.05);
+        }
+        
+        .cart-item {
+            animation: slideIn 0.3s ease;
+        }
